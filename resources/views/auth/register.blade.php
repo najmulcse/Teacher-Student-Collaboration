@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+@section('title')
+    <title> TS | Signup</title>
+@endsection
+
+
 @section('content')
 
     <div class="top-content login_cover">
@@ -15,7 +20,7 @@
                     <div class="col-sm-6 col-sm-offset-3 form-box">
                         <div class="form-top">
                             <div class="form-top-left">
-                                <h3>Signup to our site</h3>
+                                <h3>Signup</h3>
                                 <p>Enter your Email and Password to log on:</p>
                             </div>
                             <div class="form-top-right">

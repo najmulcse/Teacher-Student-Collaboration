@@ -6,15 +6,13 @@
 @section('content')
 <div class="container">
     <div class="row">
-        <div class="col-md-12 ">
-            <div class="panel panel-default">
-                <div class="panel-heading">Dashboard</div>
+        <div class="col-sm-3">
 
-                <div class="panel-body">
-                    You are logged in!
-                </div>
-            </div>
         </div>
+        <div class="col-sm-8">
+
+        </div>
+        <div class="col-sm-1"></div>
     </div>
 </div>
 @endsection

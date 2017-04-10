@@ -19,6 +19,12 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/', function () {
         return view('welcome');
     });
+    Route::get('/groups/index', function () {
+        return view('groups.index');
+    });
+    Route::get('/groups/create', function () {
+        return view('groups.create');
+    });
 
     Route::auth();
 

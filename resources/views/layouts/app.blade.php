@@ -50,7 +50,7 @@
                         <li><a href="{{ url('/login') }}">Login</a></li>
                         <li><a href="{{ url('/register') }}">Register</a></li>
                     @else
-
+                        <li><a href="{{url('groups/create')}}">Create a group</a></li>
                         <li><a href="{{ url('/home') }}">Home</a></li>
 
                         <li class="dropdown">

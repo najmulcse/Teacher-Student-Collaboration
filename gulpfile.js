@@ -26,6 +26,7 @@ elixir(function(mix) {
             'font-awesome.min.css'
 
 
+
     ],'./public/css/libs.css')
 
         .scripts([
@@ -36,7 +37,7 @@ elixir(function(mix) {
             'jquery-1.11.1.min.js',
             'npm.js',
             'scripts.js',
-            'placeholder.js'
+            'placeholder.js',
 
         ],'./public/js/libs.js')
 });

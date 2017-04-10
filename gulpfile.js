@@ -23,7 +23,8 @@ elixir(function(mix) {
             'bootstrap-theme.css',
             'bootstrap-theme.min.css',
             'font-awesome.css',
-            'font-awesome.min.css'
+            'font-awesome.min.css',
+            'SidebarNav.min.css'
 
 
 
@@ -38,6 +39,7 @@ elixir(function(mix) {
             'npm.js',
             'scripts.js',
             'placeholder.js',
+            'SidebarNav.min.js'
 
         ],'./public/js/libs.js')
 });

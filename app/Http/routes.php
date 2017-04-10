@@ -25,6 +25,12 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/groups/create', function () {
         return view('groups.create');
     });
+    Route::get('/admin/grouphome', function () {
+        return view('admin.grouphome');
+    });
+    Route::get('/admin/index', function () {
+        return view('admin.Adminindex');
+    });
 
     Route::auth();
 

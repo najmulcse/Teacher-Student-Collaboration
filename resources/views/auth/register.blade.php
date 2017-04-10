@@ -29,7 +29,9 @@
                         </div>
                         <div class="form-bottom">
                             <form role="form" action="{{url('/register')}}" method="post" class="login-form">
+
                                 {{csrf_field()}}
+
                                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
 
                                     <input type="text" name="name" placeholder="Your full name" class="form-username form-control" id="form-username" value="{{old('name')}}">

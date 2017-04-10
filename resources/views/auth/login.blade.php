@@ -34,12 +34,20 @@
                             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
 
                                 <input type="email" name="email" placeholder="Email" class="form-username form-control" id="form-username" value="{{old('email')}}">
-
+                                @if ($errors->has('email'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                             <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
 
                                 <input type="password" name="password" placeholder="Password" class="form-password form-control" id="form-password">
-
+                                @if ($errors->has('password'))
+                                    <span class="help-block">
+                                        <strong >{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                             <button type="submit" class="btn">Sign in!</button>
                         </form>

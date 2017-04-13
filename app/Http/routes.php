@@ -17,6 +17,10 @@
 Route::group(['middleware' => ['web']], function () {
 
     Route::get('/', function () {
+        if (Auth::check()) {
+            return redirect()->routes('home');
+        }
+
         return view('welcome');
     });
     Route::get('/groups/index', function () {
@@ -34,6 +38,6 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::auth();
 
-    Route::get('/home', 'HomeController@index');
+    Route::get('/home', ['as'=>'home', 'uses'=>'HomeController@index'] );
 
 });

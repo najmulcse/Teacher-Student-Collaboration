@@ -11,11 +11,14 @@ class GroupMembersTableSeeder extends Seeder
      */
     public function run()
     {
+        $faker = Faker\Factory::create();
+        for($i=0;$i<5;$i++){
         DB::table('groupmembers')->insert([
-            'group_id'=>1,
-            'user_id'=>random_int(1,10),
+            'group_id'=>$faker->randomElement($array =array(1,2)),
+            'user_id'=>$faker->unique()->randomDigit,
             'created_at'=>\Carbon\Carbon::now(),
             'updated_at'=>\Carbon\Carbon::now()
         ]);
+        }
     }
 }

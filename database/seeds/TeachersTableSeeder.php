@@ -11,11 +11,16 @@ class TeachersTableSeeder extends Seeder
      */
     public function run()
     {
+
+        $faker =Faker\Factory::create();
+
+        for ($i=0;$i<4;$i++){
         DB::table('teachers')->insert([
-           'user_id'=>random_int(1,100),
-            'designation'=>'Professor',
+           'user_id'=>$faker->unique()->randomDigit,
+            'designation'=>$faker->randomElement( $array = array('Professor','Lecturer','Assistant professor')),
             'created_at'=>\Carbon\Carbon::now(),
             'updated_at'=>\Carbon\Carbon::now()
         ]);
+        }
     }
 }

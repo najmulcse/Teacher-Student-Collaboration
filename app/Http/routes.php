@@ -41,3 +41,11 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/home', ['as'=>'home', 'uses'=>'HomeController@index'] );
 
 });
+
+
+//Teacher activities ...
+
+
+Route::get('teacher/',function (){
+        return view('teachers.indexTeacher');
+});

@@ -9,11 +9,13 @@
 
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <link rel="stylesheet" href="{{asset('css/libs.css')}}">
+    <link rel="stylesheet" href="{{asset('sbadmin.css')}}">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
 
 </head>
 <body id="app-layout">
+<section>
     <nav class="navbar navbar-default navbar-static-top">
         <div class="container">
             <div class="navbar-header">
@@ -67,9 +69,28 @@
             </div>
         </div>
     </nav>
+</section>
+<section>
+    <div id="page-wrapper">
 
-    @yield('content')
+        <div class="container-fluid">
 
+            <!-- Page Heading -->
+            <div class="row">
+                <div class="col-sm-12">
+
+                    @yield('content')
+                </div>
+            </div>
+            <!-- /.row -->
+
+
+
+        </div>
+        <!-- /.container-fluid -->
+
+    </div>
+</section>
 
 
 

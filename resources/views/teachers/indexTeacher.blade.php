@@ -158,15 +158,33 @@
                 <!-- Page Heading -->
                 <div class="row">
                     <div class="col-sm-12">
-                        <h1 class="page-header">
-                           No group
-                        </h1>
-                        @yield('teacherContents')
+                         <h1 class="page-header"> <ol class="breadcrumb">  All Groups  </ol>  </h1>
+                      
+                       <div >
+                            <table class="table table-border table-hover">
+                                <thead>
+                                    <tr>
+                                        <th class="text-center">Group Name</th> 
+                                        <th class="text-center">Details</th>
+                                        <th class="text-center">Edit</th>
+                                        <th class="text-center">Delete</th> 
+                                    </tr>
+                                </thead>
+
+                                    <tbody>
+                                        <tr>
+                                        <td> <a href="#">Software Engineering</a></td>
+                                       <td><a  class="btn btn-primary" data-toggle='modal' data-target="#exampleModalLong" href="#">Details</a></td>
+                                       <td><a   class="btn btn-success" data-toggle='modal' data-target="#exampleModalLong" href="#">Edit</a></td>
+                                      <td><a   class="btn btn-danger" data-toggle='modal' data-target="#exampleModalLong" href="#">delete</a></td>   
+                                        </tr>
+                                    
+                                    </tbody>
+                           </table>
+                        </div>
                     </div>
                 </div>
                 <!-- /.row -->
-
-
 
             </div>
             <!-- /.container-fluid -->

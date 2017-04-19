@@ -81,10 +81,10 @@
                 <div class="collapse navbar-collapse navbar-ex1-collapse">
                     <ul class="nav navbar-nav side-nav">
 
-                        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">New Group</button>
+                        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myGroupModal">New Group</button>
 
                         <!-- Modal -->
-                        <div class="modal" id="myModal" role="dialog">
+                        <div class="modal" id="myGroupModal" role="dialog">
                             <div class="modal-dialog modal-md">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -128,7 +128,7 @@
                         </div>  <!-- Modal end-->
 
                         <li>
-                            <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v "></i> Groups <i class="fa fa-fw fa-caret-down pull-right"></i></a>
+                            <!-- <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v "></i> Groups <i class="fa fa-fw fa-caret-down pull-right"></i></a>
                             <ul id="demo" class="collapse">
                                 <li>
                                     <a href="#">Group 1</a>
@@ -136,7 +136,9 @@
                                 <li>
                                     <a href="#">Group 2</a>
                                 </li>
-                            </ul>
+                            </ul> -->
+                            <a href="#"><i class="fa fa-user-circle" aria-hidden="true"></i>All Groups</a>
+
                         </li>
                         <li>
                             <a href="#"><i class="fa fa-user-circle" aria-hidden="true"></i>Profile</a>
@@ -174,6 +176,12 @@
                                     <tbody>
                                         <tr>
                                         <td> <a href="#">Software Engineering</a></td>
+                                       <td><a  class="btn btn-primary" data-toggle='modal' data-target="#exampleModalLong" href="#">Details</a></td>
+                                       <td><a   class="btn btn-success" data-toggle='modal' data-target="#exampleModalLong" href="#">Edit</a></td>
+                                      <td><a   class="btn btn-danger" data-toggle='modal' data-target="#exampleModalLong" href="#">delete</a></td>   
+                                        </tr>
+                                         <tr>
+                                        <td> <a href="#">Web Engineering</a></td>
                                        <td><a  class="btn btn-primary" data-toggle='modal' data-target="#exampleModalLong" href="#">Details</a></td>
                                        <td><a   class="btn btn-success" data-toggle='modal' data-target="#exampleModalLong" href="#">Edit</a></td>
                                       <td><a   class="btn btn-danger" data-toggle='modal' data-target="#exampleModalLong" href="#">delete</a></td>   

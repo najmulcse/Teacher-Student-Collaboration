@@ -54,7 +54,7 @@
             </div>  <!-- Modal end-->
 
             <li>
-                <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v "></i> Groups <i class="fa fa-fw fa-caret-down pull-right"></i></a>
+               <!--  <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v "></i> Groups <i class="fa fa-fw fa-caret-down pull-right"></i></a>
                 <ul id="demo" class="collapse">
                     <li>
                         <a href="#">Group 1</a>
@@ -62,7 +62,8 @@
                     <li>
                         <a href="#">Group 2</a>
                     </li>
-                </ul>
+                </ul> -->
+                <a href="#"><i class="fa fa-user-circle" aria-hidden="true"></i>Groups</a>
             </li>
             <li>
                 <a href="#"><i class="fa fa-user-circle" aria-hidden="true"></i>Profile</a>

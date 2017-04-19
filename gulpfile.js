@@ -16,7 +16,7 @@ elixir(function(mix) {
 
         .styles([
 
-            'form-elements.css',
+            'formelements.css',
             'style.css',
             'bootstrap.css',
             'bootstrap.min.css',

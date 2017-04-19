@@ -1,58 +1,48 @@
-@extends('layouts.app')
-@section('title')
-
-    <title> TS | Group</title>
-@endsection
-@section('content')
-    <!--sidebar of admin panel -->
-    @include('layouts.adminsidebar');
-    {{--<div class="container-fluid">--}}
-
-        {{--<div id="mySidenav" class="sidenav">--}}
-            {{--<a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>--}}
-
-            {{--<li class="active treeview">--}}
-                {{--<a href="#">--}}
-                    {{--<i class="fa fa-dashboard"></i> <span>Dashboard</span> <i class="fa fa-angle-left pull-right"></i>--}}
-                {{--</a>--}}
-                {{--<ul class="treeview-menu ">--}}
-                    {{--<li><a href="indexTeacher.blade.php"><i class="fa fa-circle-o"></i> Dashboard </a></li>--}}
-                    {{--<li class="active"><a href="index2.html"><i class="fa fa-circle-o"></i> Dashboard </a></li>--}}
-                {{--</ul>--}}
-            {{--</li>--}}
-            {{--<a href="#">Upload files</a>--}}
-            {{--<a href="#">Assignment</a>--}}
-            {{--<a href="#">Presentation</a>--}}
-        {{--</div>--}}
-
-        {{--<!-- Use any element to open the sidenav -->--}}
-
-        {{--<span class="pull-left" style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open tasks</span>--}}
-
-        {{--<!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page -->--}}
-        {{--<div id="main">--}}
-
-        {{--</div>--}}
-
-    {{--</div>--}}
+@extends('layouts.groupHomeLayout')
 
 
+@section('group_home_content')
+<section>
+    
+    <div class="row">
+       <div class="col-sm-8"><h1 class="text-center">Group name</h1></div>
+      <div class="col-sm-4">
+         <form action="" method="">
+              <div class="input-group col-md-12">
+                  <input type="text" class="  search-query form-control" placeholder="Search" />
+                  <span class="input-group-btn">
+                  <button class="btn btn-danger" type="button">
+                 <span class=" glyphicon glyphicon-search"></span>
+                 </button>
+                </span>
+            </div>
+        </form>
+      </div>
+    </div>
+</section>
 
-
-    {{--<script>--}}
-        {{--function openNav() {--}}
-            {{--document.getElementById("mySidenav").style.width = "250px";--}}
-        {{--}--}}
-
-        {{--function closeNav() {--}}
-            {{--document.getElementById("mySidenav").style.width = "0";--}}
-        {{--}--}}
-    {{--</script>--}}
+<section>
+    <h1>Previous posts </h1>
 
     <div class="row">
-        <div class="col-sm-12">
-            <h1>Hello user Group</h1>
+        <div class="col-sm-6">
+            <h2>Lecture 1 posted </h2>
+            <span> <label>date:01-03-2017</label>
+            </span>
         </div>
-    </div>
-
+        <div class="col-sm-6">
+        </div>
+         </div>
+         <div class="row">
+        <div class="col-sm-6">
+            <h2>Assignement 1 posted </h2>
+            <span> <label>date:01-01-2017</label>
+            </span>
+        </div>
+        <div class="col-sm-6">
+        </div>
+        </div>
+        
+   
+</section>
 @endsection

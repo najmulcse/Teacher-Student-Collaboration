@@ -49,7 +49,7 @@
                                     </span>
                                 @endif
                             </div>
-                            <button type="submit" class="btn">Sign in!</button>
+                            <button type="submit" class="btn signin_button">Sign in!</button>
                         </form>
                     </div>
                 </div>

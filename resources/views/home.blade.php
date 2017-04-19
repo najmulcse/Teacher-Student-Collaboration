@@ -1,23 +1,51 @@
-@extends('layouts.app')
-@section('title')
+@extends('layouts.teacherHomeLayout')
 
-    <title> TS | Home</title>
-@endsection
-@section('content')
+
+@section('group_body_content')
+
+
+
 <div class="container-fluid">
 
-    <div class="row">
-        <div class="col-sm-4">
-            <h1>User home page</h1>
-        </div>
-       <div >
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-sm-12">
+                         <h1 class="page-header"> <ol class="breadcrumb">  All Groups  </ol>  </h1>
+                      
+                       <div >
+                            <table class="table table-border table-hover">
+                                <thead>
+                                    <tr>
+                                        <th class="">Group Name</th> 
+                                        <th class="">Details</th>
+                                        <th class="">Edit</th>
+                                        <th class="">Delete</th> 
+                                    </tr>
+                                </thead>
 
-         </div>
+                                    <tbody>
+                                        <tr>
+                                        <td> <a href="{{ url('/groups/index') }}">Software Engineering</a></td>
+                                       <td><a  class="btn btn-primary" data-toggle='modal' data-target="#exampleModalLong" href="#">Details</a></td>
+                                       <td><a   class="btn btn-success" data-toggle='modal' data-target="#exampleModalLong" href="#">Edit</a></td>
+                                      <td><a   class="btn btn-danger" data-toggle='modal' data-target="#exampleModalLong" href="#">delete</a></td>   
+                                        </tr>
+                                         <tr>
+                                        <td> <a href="#">Web Engineering</a></td>
+                                       <td><a  class="btn btn-primary" data-toggle='modal' data-target="#exampleModalLong" href="#">Details</a></td>
+                                       <td><a   class="btn btn-success" data-toggle='modal' data-target="#exampleModalLong" href="#">Edit</a></td>
+                                      <td><a   class="btn btn-danger" data-toggle='modal' data-target="#exampleModalLong" href="#">delete</a></td>   
+                                        </tr>
+                                    
+                                    </tbody>
+                           </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
 
-   </div>
-
-
-</div>
-
+            </div>
+            <!-- /.container-fluid -->
 
 @endsection
+

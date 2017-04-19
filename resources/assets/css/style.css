@@ -3,9 +3,9 @@ body {
     font-family: 'Roboto', sans-serif;
     font-size: 16px;
     font-weight: 300;
-    color: #888;
+    
     line-height: 30px;
-    text-align: center;
+    
 }
 
 /***** Login page background *****/
@@ -191,4 +191,7 @@ img { max-width: 100%; }
 	h1, h2 { font-size: 32px; }
 
 }
-
+.group_button a{
+	padding-top: 30px;
+text-decoration: none;
+}

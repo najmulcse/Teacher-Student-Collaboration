@@ -14,7 +14,7 @@
     <!-- Bootstrap Core CSS -->
     <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <link rel="stylesheet" href="{{asset('css/libs.css')}}">
-    <link rel="stylesheet" href="css/sb-admin.css">
+    <link rel="stylesheet" href="{{asset('css/sb-admin.css')}}">
     <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
 
@@ -128,15 +128,7 @@
                         </div>  <!-- Modal end-->
 
                         <li>
-                            <!-- <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v "></i> Groups <i class="fa fa-fw fa-caret-down pull-right"></i></a>
-                            <ul id="demo" class="collapse">
-                                <li>
-                                    <a href="#">Group 1</a>
-                                </li>
-                                <li>
-                                    <a href="#">Group 2</a>
-                                </li>
-                            </ul> -->
+                           
                             <a href="#"><i class="fa fa-user-circle" aria-hidden="true"></i>All Groups</a>
 
                         </li>
@@ -154,49 +146,9 @@
 
         </nav>
         <div id="page-wrapper">
+          <!-- /#Group page body started from here -->
 
-            <div class="container-fluid">
-
-                <!-- Page Heading -->
-                <div class="row">
-                    <div class="col-sm-12">
-                         <h1 class="page-header"> <ol class="breadcrumb">  All Groups  </ol>  </h1>
-                      
-                       <div >
-                            <table class="table table-border table-hover">
-                                <thead>
-                                    <tr>
-                                        <th class="">Group Name</th> 
-                                        <th class="">Details</th>
-                                        <th class="">Edit</th>
-                                        <th class="">Delete</th> 
-                                    </tr>
-                                </thead>
-
-                                    <tbody>
-                                        <tr>
-                                        <td> <a href="#">Software Engineering</a></td>
-                                       <td><a  class="btn btn-primary" data-toggle='modal' data-target="#exampleModalLong" href="#">Details</a></td>
-                                       <td><a   class="btn btn-success" data-toggle='modal' data-target="#exampleModalLong" href="#">Edit</a></td>
-                                      <td><a   class="btn btn-danger" data-toggle='modal' data-target="#exampleModalLong" href="#">delete</a></td>   
-                                        </tr>
-                                         <tr>
-                                        <td> <a href="#">Web Engineering</a></td>
-                                       <td><a  class="btn btn-primary" data-toggle='modal' data-target="#exampleModalLong" href="#">Details</a></td>
-                                       <td><a   class="btn btn-success" data-toggle='modal' data-target="#exampleModalLong" href="#">Edit</a></td>
-                                      <td><a   class="btn btn-danger" data-toggle='modal' data-target="#exampleModalLong" href="#">delete</a></td>   
-                                        </tr>
-                                    
-                                    </tbody>
-                           </table>
-                        </div>
-                    </div>
-                </div>
-                <!-- /.row -->
-
-            </div>
-            <!-- /.container-fluid -->
-
+            @yield('group_body_content')
         </div>
         <!-- /#page-wrapper -->
 

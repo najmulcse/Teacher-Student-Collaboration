@@ -49,3 +49,6 @@ Route::group(['middleware' => ['web']], function () {
 Route::get('teacher/',function (){
         return view('teachers.indexTeacher');
 });
+Route::get('group/',function(){
+        return view('groups.index');
+});

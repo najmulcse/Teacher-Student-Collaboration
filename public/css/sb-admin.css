@@ -6,6 +6,10 @@
 
 /* Global Styles */
 
+body {
+    margin-top: 100px;
+    
+}
 
 @media(min-width:768px) {
     body {

@@ -2,10 +2,11 @@
 
 
 @section('group_home_content')
+<div class="container-fluid">
 <section>
     
     <div class="row">
-       <div class="col-sm-8"><h1 class="text-center">Group name</h1></div>
+       <div class="col-sm-8"><h1 class="page-header"> <ol class="breadcrumb"> Group name  </ol>  </h1></div>
       <div class="col-sm-4">
          <form action="" method="">
               <div class="input-group col-md-12">
@@ -45,4 +46,6 @@
         
    
 </section>
+
+</div>
 @endsection

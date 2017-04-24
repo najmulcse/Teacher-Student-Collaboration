@@ -15,7 +15,7 @@
         </div>
         
         <div class="col-sm-3">
-       
+       <button class="btn btn-sucess pull-right">Create new group</button>
           <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="active">

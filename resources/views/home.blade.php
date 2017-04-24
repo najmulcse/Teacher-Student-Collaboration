@@ -23,12 +23,12 @@
                                         <td><ul class="nav navbar-nav navbar-right">
                                             <li class="dropdown">
                                               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                                   <span class=""><i class="fa fa-gear"></i></span>
+                                                   <span class=""><i class="fa fa-cog"></i></span>
                                               </a>
 
                                               <ul class="dropdown-menu" role="menu">
-                                                  <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>edit</a></li>
-                                                  <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>delete</a></li>
+                                                  <li><a href="{{ url('/logout') }}"><i class="fa fa-pencil fa-fw"></i>edit</a></li>
+                                                  <li><a href="{{ url('/logout') }}"><i class="fa fa-trash-o fa-fw"></i>delete</a></li>
                                              </ul>
                                          </li>
                                       </ul>
@@ -40,29 +40,29 @@
                                         <td><ul class="nav navbar-nav navbar-right">
                                             <li class="dropdown">
                                               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                                   <span class=""><i class="fa fa-gear"></i></span>
+                                                   <span class=""><i class="fa fa-cog"></i></span>
                                               </a>
 
                                               <ul class="dropdown-menu" role="menu">
-                                                  <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>edit</a></li>
-                                                  <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>delete</a></li>
+                                                  <li><a href="{{ url('/logout') }}"><i class="fa fa-pencil fa-fw"></i>edit</a></li>
+                                                  <li><a href="{{ url('/logout') }}"><i class="fa fa-trash-o fa-fw"></i>delete</a></li>
                                              </ul>
                                          </li>
                                       </ul>
                                       </td>
                                         </tr>
-                                         <tr>
+                                        <tr>
                                         <td> <a href="{{ url('/group') }}">Software Engineering</a></td>
                                         <td><p  href="#">Software is made by programmers</p></td>
                                         <td><ul class="nav navbar-nav navbar-right">
                                             <li class="dropdown">
                                               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                                 <span class=""><i class="fa fa-gear"></i></span>
+                                                   <span class=""><i class="fa fa-cog"></i></span>
                                               </a>
 
                                               <ul class="dropdown-menu" role="menu">
-                                                  <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>edit</a></li>
-                                                  <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>delete</a></li>
+                                                  <li><a href="{{ url('/logout') }}"><i class="fa fa-pencil fa-fw"></i>edit</a></li>
+                                                  <li><a href="{{ url('/logout') }}"><i class="fa fa-trash-o fa-fw"></i>delete</a></li>
                                              </ul>
                                          </li>
                                       </ul>

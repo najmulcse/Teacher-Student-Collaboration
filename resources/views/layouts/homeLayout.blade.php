@@ -75,17 +75,17 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li class="active">
-                        <a href="{{url('/home')}}"><i class="fa fa-fw fa-group"></i>Groups</a>
+                        <a href="{{url('/home')}}"><i class="fa fa-fw fa-group"></i>    Groups</a>
                     </li>
                     
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-fw fa-arrows-v"></i> Profile <i class="fa fa-fw fa-caret-down"></i></a>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-user fa-fw""></i>     Profile <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
                             <li>
-                                <a href="#">Changed Password</a>
+                                <a href="#"> <i class="fa fa-unlock""></i> Changed Password</a>
                             </li>
                             <li>
-                                <a href="#">Edit Profile</a>
+                                <a href="#"> <i class="fa fa-user""></i> Edit Profile</a>
                             </li>
                         </ul>
                     </li>

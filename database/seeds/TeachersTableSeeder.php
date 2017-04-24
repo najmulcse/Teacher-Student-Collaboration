@@ -16,6 +16,7 @@ class TeachersTableSeeder extends Seeder
 
         for ($i=0;$i<4;$i++){
         DB::table('teachers')->insert([
+
            'user_id'=>$faker->unique()->randomDigit,
             'designation'=>$faker->randomElement( $array = array('Professor','Lecturer','Assistant professor')),
             'created_at'=>\Carbon\Carbon::now(),

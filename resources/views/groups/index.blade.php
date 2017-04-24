@@ -1,48 +1,36 @@
-@extends('layouts.groupHomeLayout')
+@extends('layouts.homeLayout')
 
 
-@section('group_home_content')
-<div class="container-fluid">
-<section>
-    
-    <div class="row">
-       <div class="col-sm-8"><h1 class="page-header"> <ol class="breadcrumb"> Group name  </ol>  </h1></div>
-      <div class="col-sm-4">
-         <form action="" method="">
-              <div class="input-group col-md-12">
-                  <input type="text" class="  search-query form-control" placeholder="Search" />
-                  <span class="input-group-btn">
-                  <button class="btn btn-danger" type="button">
-                 <span class=" glyphicon glyphicon-search"></span>
-                 </button>
-                </span>
-            </div>
-        </form>
-      </div>
-    </div>
-</section>
+@section('group_body')
+
 
 <section>
     <h1>Previous posts </h1>
 
     <div class="row">
-        <div class="col-sm-6">
+        <div class="col-sm-9">
             <h2>Lecture 1 posted </h2>
             <span> <label>date:01-03-2017</label>
             </span>
         </div>
-        <div class="col-sm-6">
+        
+        <div class="col-sm-3">
+       
+          <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="active">
+                        <a href="#"><i class="fa fa-fw fa-file"></i>Upload file</a>
+                    </li>
+                    
+                    <li>
+                         <a href="#"><i class="fa fa-fw fa-upload"></i>Create Post</a>
+                    </li>
+                    
+                </ul>
+            </div>
+      
         </div>
-         </div>
-         <div class="row">
-        <div class="col-sm-6">
-            <h2>Assignement 1 posted </h2>
-            <span> <label>date:01-01-2017</label>
-            </span>
-        </div>
-        <div class="col-sm-6">
-        </div>
-        </div>
+    </div>
         
    
 </section>

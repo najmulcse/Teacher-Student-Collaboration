@@ -18,12 +18,12 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('/', function () {
         if (Auth::check()) {
-            return redirect()->routes('home');
+            return redirect()->route('home');
         }
 
         return view('welcome');
     });
-    Route::get('/groups/index', function () {
+    Route::get('/group', function () {
         return view('groups.index');
     });
     Route::get('/groups/create', function () {

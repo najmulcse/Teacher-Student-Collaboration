@@ -7,16 +7,26 @@
 
     @yield('title')
 
-    <link rel="stylesheet" href="{{asset('css/app.css')}}">
+    <!-- <link rel="stylesheet" href="{{asset('css/app.css')}}">
     <link rel="stylesheet" href="{{asset('css/libs.css')}}">
-    <link rel="stylesheet" href="{{asset('sb-admin.css')}}">
-    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto:400,100,300,500">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css" integrity="sha384-XdYbMnZ/QjLh6iI4ogqCTaIjrFk87ip+ekIjefZch0Y+PvJ8CDYtEs1ipDmPorQ+" crossorigin="anonymous">
+    <link rel="stylesheet" href="{{asset('css/sb-admin.css')}}"> -->
+
+ <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="css/sbadmin.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet" type="text/css" >
+    <link href="css/formelements.css" rel="stylesheet" type="text/css" >
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+  <!-- <link rel="stylesheet" type="text/css" href="{{asset('css/formelements.css')}}"> -->
+
 
 </head>
 <body id="app-layout">
 <section>
-    <nav class="navbar navbar-inverse navbar-static-top">
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
             <div class="navbar-header">
 
@@ -94,12 +104,11 @@
 
 
 
-
-     {{--<script src="{{ elixir('js/app.js') }}"></script>--}}
-
+       <script src="js/bootstrap.min.js"></script>
+    <script src="js/jquery.js"></script>
+        
 </body>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-<script src="{{asset('js/libs.js')}}"></script>
+
+
 </html>

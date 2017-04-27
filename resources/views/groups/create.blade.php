@@ -4,6 +4,12 @@
     <title> TS | Home</title>
 
 @endsection
+@section('group_heading')
+              <h2 class="page-header">
+                    Create Group
+                    <small></small>
+             </h2>
+@endsection
 @section('group_body')
    
 <section>

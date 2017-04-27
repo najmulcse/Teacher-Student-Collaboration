@@ -74,7 +74,9 @@
                         
                     </div>
                     <div class="col-sm-3">
-                      <button class="btn btn-sucess pull-right">Create new group</button>
+                        <div>
+                        <a href="{{url('/create')}}" class="create_group_button">Create new group</a>
+                        </div>
                     </div>
                 </div>
                 <!-- /.row -->

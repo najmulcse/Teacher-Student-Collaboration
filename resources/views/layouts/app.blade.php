@@ -14,6 +14,7 @@
  <link href="css/bootstrap.min.css" rel="stylesheet">
 
     <!-- Custom CSS -->
+    <link href="css/mystyle.css" rel="stylesheet" type="text/css" >
     <link href="css/sbadmin.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet" type="text/css" >
     <link href="css/formelements.css" rel="stylesheet" type="text/css" >
@@ -60,7 +61,7 @@
                     <!-- Authentication Links -->
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Login</a></li>
-                        <li><a href="{{ url('/register') }}">Register</a></li>
+                        <li><a href="{{ url('/register') }}">Sign up</a></li>
                     @else
 
                         <li><a href="{{ url('/home') }}">Home</a></li>
@@ -89,7 +90,7 @@
             <div class="row">
                 <div class="col-sm-12">
 
-                    @yield('content')
+                    @yield('content')  <!-- Goto welcome page where the body of the landing page is existed -->
                 </div>
             </div>
             <!-- /.row -->

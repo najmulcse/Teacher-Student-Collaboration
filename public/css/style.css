@@ -8,11 +8,6 @@ body {
     
 }
 
-/***** Login page background *****/
-.login_cover{
-	
-	background-color: gray;
-}
 strong { font-weight: 500; }
 
 a, a:hover, a:focus {
@@ -32,7 +27,7 @@ h1, h2 {
 h3 {
 	font-size: 22px;
     font-weight: 300;
-    color: #555;
+    
     line-height: 30px;
 }
 
@@ -178,34 +173,6 @@ img { max-width: 100%; }
 	padding-top: 30px;
 text-decoration: none;
 }
-
-.pullme {
-  text-align: center; }
-
-.signuphome {
-  background-color: #2e3436;
-  padding-top: 30px;
-  padding-bottom: 50px; }
-
-.landingPageCover {
-  background-color: gainsboro;
-  padding-top: 40px; }
-
-.someFeatureOfMyGroup {
-  text-align: center;
-  padding-top: 20px; }
-
-.someFeature {
-  padding-top: 20px; }
-
-.someFeature:hover {
-  background-color: green;
-  color: white; }
-
-.groupBackground {
-  padding-top: 30px;
-  background-color: #c6c6c6; }
-
 
 /***** Media queries *****/
 

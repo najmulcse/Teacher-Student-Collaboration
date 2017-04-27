@@ -107,11 +107,8 @@
                     <div class="col-lg-12 col-md-12 col-sm-12">
 
                         <div class="row">  <!-- searching started -->
-                                <div class="col-sm-4 col-md-4 col-xs-3">
-                                    <h1 class="page-header">
-                                  All Groups
-                                    <small>#20</small>
-                                    </h1>
+                                <div class="col-sm-6 col-md-4 col-xs-3">
+                                   @yield('group_heading')
                                 </div>
                                 <div class="col-sm-4 col-md-4 col-xs-12" >
                                     <form action="searchResult.php" method="POST">
@@ -125,7 +122,7 @@
                                       </div>                                
                                     </form>
                               </div>
-                              <div class="col-sm-4 col-md-4 col-xs-3 ">
+                              <div class="col-sm-2 col-md-4 col-xs-3 ">
 <!--                                   <a href="{{url('/create')}}" class="pull-right create_group_button">Create new group</a> -->
                               </div>
                         </div> <!-- searching ended -->       

@@ -1,6 +1,11 @@
 @extends('layouts.homeLayout')
 
-
+@section('group_heading')
+              <h2 class="page-header">
+                    All Groups
+                   <small></small>
+             </h2>
+@endsection
 @section('group_body')
 
        <section>         <!-- Contents body started -->

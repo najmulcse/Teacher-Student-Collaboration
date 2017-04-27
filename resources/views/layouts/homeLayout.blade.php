@@ -12,10 +12,13 @@
     <title>Home | TS-Group</title>
 
     <!-- Bootstrap Core CSS -->
+    <link href="css/mystyle.css" rel="stylesheet" type="text/css" >
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <!-- Custom CSS -->
+   <!--  <link href="css/style.css" rel="stylesheet" type="text/css" > -->
     <link href="css/sbadmin.css" rel="stylesheet">
     <!-- Custom Fonts -->
+    <!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
 </head>
@@ -50,7 +53,7 @@
                
 
                 <!-- Right Side Of Navbar started-->
-                <ul class="nav navbar-nav navbar-right">
+                <ul class="nav navbar-nav navbar-right log_nav">
                     <!-- Authentication Links -->
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Login</a></li>
@@ -104,13 +107,13 @@
                     <div class="col-lg-12 col-md-12 col-sm-12">
 
                         <div class="row">  <!-- searching started -->
-                                <div class="col-sm-8">
+                                <div class="col-sm-4 col-md-4 col-xs-3">
                                     <h1 class="page-header">
                                   All Groups
                                     <small>#20</small>
                                     </h1>
                                 </div>
-                                <div class="col-sm-4 " >
+                                <div class="col-sm-4 col-md-4 col-xs-12" >
                                     <form action="searchResult.php" method="POST">
                                        <div class="input-group col-md-12 ">
                                         <input type="text" class="input_search  search-query form-control " name="search_value" placeholder="Search" />
@@ -121,6 +124,9 @@
                                         </span>
                                       </div>                                
                                     </form>
+                              </div>
+                              <div class="col-sm-4 col-md-4 col-xs-3 ">
+<!--                                   <a href="{{url('/create')}}" class="pull-right create_group_button">Create new group</a> -->
                               </div>
                         </div> <!-- searching ended -->       
                     </div>

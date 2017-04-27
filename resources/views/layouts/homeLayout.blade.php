@@ -50,7 +50,7 @@
             </div>
 
             <div class="collapse navbar-collapse" id="app-navbar-collapse">
-               
+
 
                 <!-- Right Side Of Navbar started-->
                 <ul class="nav navbar-nav navbar-right log_nav">
@@ -80,7 +80,7 @@
                     <li class="active">
                         <a href="{{url('/home')}}"><i class="fa fa-fw fa-group"></i>    Groups</a>
                     </li>
-                    
+
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-user fa-fw""></i>     Profile <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
@@ -92,7 +92,7 @@
                             </li>
                         </ul>
                     </li>
-                    
+
                 </ul>
             </div>
             <!-- /.navbar-collapse -->
@@ -104,34 +104,47 @@
 
                 <!-- Page header and search -->
                 <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12">
+                    <div class="col-lg-6">
+                        <form action="searchResult.php" method="POST">
+                           <div class="input-group col-md-12 ">
+                            <input type="text" class="input_search  search-query form-control " name="search_value" placeholder="Search" />
+                            <span class="input-group-btn">
+                                <button class="btn btn-danger" type="submit" name="search">
+                                    <span class=" glyphicon glyphicon-search"></span>
+                                </button>
+                            </span>
+                          </div>
+                        </form>
+                    </div>
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right">
 
-                        <div class="row">  <!-- searching started -->
-                                <div class="col-sm-6 col-md-4 col-xs-3">
-                                   @yield('group_heading')
-                                </div>
-                                <div class="col-sm-4 col-md-4 col-xs-12" >
-                                    <form action="searchResult.php" method="POST">
-                                       <div class="input-group col-md-12 ">
-                                        <input type="text" class="input_search  search-query form-control " name="search_value" placeholder="Search" />
-                                        <span class="input-group-btn">
-                                            <button class="btn btn-danger" type="submit" name="search">
-                                                <span class=" glyphicon glyphicon-search"></span>
-                                            </button>
-                                        </span>
-                                      </div>                                
-                                    </form>
-                              </div>
-                              <div class="col-sm-2 col-md-4 col-xs-3 ">
+                        <a class="btn btn-success btn-lg" href="#" role="button">Create Group</a>
+                    </div>
+                </div>
+
+                <div class="row">  <!-- searching started -->
+                        <div class="col-lg-12">
+                           @yield('group_heading')
+                        </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        @yield('group_body')
+                    </div>
+
+                </div>
+                        <div class="col-sm-4 col-md-4 col-xs-12" >
+                      </div>
+                      <div class="col-sm-2 col-md-4 col-xs-3 ">
 <!--                                   <a href="{{url('/create')}}" class="pull-right create_group_button">Create new group</a> -->
-                              </div>
-                        </div> <!-- searching ended -->       
+                      </div>
+                </div> <!-- searching ended -->
                     </div>
                 </div>
                 <!-- /.row end for page header and search-->
 
                 <!-- group body contents started -->
-                @yield('group_body')
 
             </div>
             <!-- /.container-fluid -->

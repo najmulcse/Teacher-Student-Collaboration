@@ -90,11 +90,6 @@
         </div>
         <div class="col-sm-3">
 
-{{--                 <div>
-                        <a href="{{url('/create')}}" class="create_group_button">Create new group</a>
-
-
-                 </div>    --}}
                 <div class="row">
                        <div class="col-sm-12">
                                  <div class="right_sidebar">

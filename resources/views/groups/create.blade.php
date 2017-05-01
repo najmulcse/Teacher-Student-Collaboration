@@ -13,56 +13,70 @@
 @section('group_body')
    
 <section>
-    <div class="row">
-    <div class="col-sm-1"></div>
-        <div class="col-sm-6">
-          <div class="">
-                <form role="form" action="index" method="post" class="login-form">
-                    {{csrf_field()}}
-                    <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-
-                        <input type="text" name="name" placeholder="Group name" class="form-username form-control" id="form-username" value="{{old('name')}}">
-
-                    </div>
-                    <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-
-                        <input type="text" name="name" placeholder="Course name" class="form-username form-control" id="form-username" value="{{old('name')}}">
-
-                    </div>
-                    <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                        <input type="text" name="name" placeholder="Year" class="form-username form-control" id="form-username" value="{{old('name')}}">
-
-
-                    </div>
-                    <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-
-                        <textarea class="form-control" rows="5" placeholder="Short description about group"></textarea>
-                    </div>
-
-                    <button type="submit" class="btn pull-right btn-success">
-                        <i class="fa fa-btn fa-user"> </i> Create group!</button>
-                </form>
+   <div class="panel panel-primary">
+            <div class="panel-heading">
+                <span> <h2></h2></span>
             </div>
 
-        </div>
-        <div class="col-sm-2"></div>
-        
-        <div class="col-sm-3">  
-                <div class="row"> 
-                    <div class="col-sm-12">
-                        <a href="{{url('/create')}}" class="create_group_button">Create new group</a>
-                     </div>  
-                </div>   
-                <div class="row">
-               
-                    <div class="col-sm-12">
-                        
-                    </div>
-                </div>      
-         </div>      
-    
-    </div>
+            <div class="panel-body" id="pBody">
+                
+                <div class="row">                                    
+                 <div class="col-md-9">
+                    <div class="panel panel-info">
+                      
+                        <div class="panel-body">
+                            <form action="addsubc.php" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
+                                 
+                                <div class="form-group">
+                                    <label for="exampleInputEmail1" class="col-sm-3 control-label">Group Name</label>
+                                    <div class="col-sm-9">
+                                    <input type="text" name="group_name" class="form-control" placeholder="Group Name">
+                                    </div>
+                                </div> 
+                           
+                          <div class="form-group">
+                                <label for="title" class="col-sm-3 control-label">Course name</label>
+                                <div class="col-sm-9">
+                                  <input type="text" name="title" placeholder="Course name" class="form-control" required>
+                                </div>
+                          </div>
+                          <div class="form-group">
+                                <label for="title" class="col-sm-3 control-label">Year</label>
+                                <div class="col-sm-9">
+                                  <input type="text" name="title" class="form-control" placeholder="Year" required>
+                                </div>
+                          </div>
+                          <div class="form-group">
+                                <label for="inputEmail3" class="col-sm-3 control-label">Short Description</label>
+                                <div class="col-sm-9">
+                                  <textarea  name="article" type="text" class="form-control" id="inputtext" placeholder="Short Description about group" rows="5" required> </textarea>
+                                </div>
+                          </div>
+                           <div class="form-group">
+                                <div class="col-sm-8"></div>
+                                <div class="col-sm-4">
+                                    <button  type="submit" class="btn btn-success form-control" name="add_content">Create group</button>
+                                </div>
+                          </div>
 
+                         </form>
+                        </div>
+                     
+                                   
+
+                    </div>
+                                                                 
+                </div>
+
+                
+             </div> 
+
+        </div>
+                                     
+                                      
+  
+
+    </div>
         
 
 </section>

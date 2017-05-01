@@ -1,6 +1,11 @@
 @extends('layouts.homeLayout')
 
-
+@section('group_heading')
+              <h2 class="page-header">
+                    All groups
+                   <small></small>
+             </h2>
+@endsection
 @section('group_body')
 
        <section>         <!-- Contents body started -->
@@ -74,9 +79,9 @@
                         
                     </div>
                     <div class="col-sm-3">
-                        <div>
+                      <!--   <div>
                         <a href="{{url('/create')}}" class="create_group_button">Create new group</a>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
                 <!-- /.row -->

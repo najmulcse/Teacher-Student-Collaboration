@@ -104,7 +104,8 @@
 
                 <!-- Page header and search -->
                 <div class="row">
-                    <div class="col-lg-6">
+                    <div class="col-lg-5"></div>
+                    <div class="col-lg-4">
                         <form action="searchResult.php" method="POST">
                            <div class="input-group col-md-12 ">
                             <input type="text" class="input_search  search-query form-control " name="search_value" placeholder="Search" />
@@ -116,9 +117,9 @@
                           </div>
                         </form>
                     </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 text-right">
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3 text-right">
 
-                        <a class="btn btn-success btn-lg" href="#" role="button">Create Group</a>
+                        <a class="btn btn-success btn-lg" href="{{url('/create')}}" role="button">Create Group</a>
                     </div>
                 </div>
 
@@ -134,22 +135,14 @@
                     </div>
 
                 </div>
-                        <div class="col-sm-4 col-md-4 col-xs-12" >
-                      </div>
-                      <div class="col-sm-2 col-md-4 col-xs-3 ">
-<!--                                   <a href="{{url('/create')}}" class="pull-right create_group_button">Create new group</a> -->
-                      </div>
                 </div> <!-- searching ended -->
                     </div>
-                </div>
+               
                 <!-- /.row end for page header and search-->
 
                 <!-- group body contents started -->
 
-            </div>
             <!-- /.container-fluid -->
-
-        </div>
         <!-- /#page-wrapper -->
 
     </div>

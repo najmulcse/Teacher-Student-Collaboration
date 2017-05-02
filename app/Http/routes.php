@@ -23,9 +23,8 @@ Route::group(['middleware' => ['web']], function () {
 
         return view('welcome');
     });
-    Route::get('/group', function () {
-        return view('groups.index');
-    });
+    Route::get('/group', ['as'=>'group','uses'=>'GroupController@index']);
+
     Route::get('/create', function () {
         return view('groups.create');
     });
@@ -49,6 +48,6 @@ Route::group(['middleware' => ['web']], function () {
 Route::get('teacher/',function (){
         return view('teachers.indexTeacher');
 });
-Route::get('group/',function(){
-        return view('groups.index');
-});
+// Route::get('group/',function(){
+//         return view('groups.index');
+// });

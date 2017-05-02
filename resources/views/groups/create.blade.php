@@ -25,31 +25,31 @@
                     <div class="panel panel-info">
                       
                         <div class="panel-body">
-                            <form action="#" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
-                                 
+                            <form action="{{url('/add')}}" method="post" class="form-horizontal" >
+                                 {{ csrf_field() }}
                                 <div class="form-group">
                                     <label for="exampleInputEmail1" class="col-sm-3 control-label">Group Name</label>
                                     <div class="col-sm-9">
-                                    <input type="text" name="group_name" class="form-control" placeholder="Group Name" required>
+                                    <input type="text" name="group_name" class="form-control" placeholder="Group Name">
                                     </div>
                                 </div> 
                            
                           <div class="form-group">
                                 <label for="title" class="col-sm-3 control-label">Course code</label>
                                 <div class="col-sm-9">
-                                  <input type="text" name="title" placeholder="Course Code(Example: CSE-1111)" class="form-control" required>
+                                  <input type="text" name="course_code" placeholder="Course Code(Example: CSE-1111)" class="form-control">
                                 </div>
                           </div>
                           <div class="form-group">
                                 <label for="title" class="col-sm-3 control-label">Session</label>
                                 <div class="col-sm-9">
-                                  <input type="text" name="title" class="form-control" placeholder="Session (Example: 2012-13)" required>
+                                  <input type="text" name="session" class="form-control" placeholder="Session (Example: 2012-13)">
                                 </div>
                           </div>
                           <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-3 control-label">Short Description</label>
                                 <div class="col-sm-9">
-                                  <textarea  name="article" type="text" class="form-control" id="inputtext" placeholder="Short Description about group" rows="5" required> </textarea>
+                                  <textarea  name="short_description" type="text" class="form-control" id="inputtext" placeholder="Short Description about group" rows="5"> </textarea>
                                 </div>
                           </div>
                            <div class="form-group">

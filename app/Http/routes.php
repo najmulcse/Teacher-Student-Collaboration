@@ -25,9 +25,9 @@ Route::group(['middleware' => ['web']], function () {
     });
     Route::get('/group', ['as'=>'group','uses'=>'GroupController@index']);
 
-    Route::get('/create', function () {
-        return view('groups.create');
-    });
+    Route::get('/create',['as'=>'create','uses'=>'GroupController@create']);
+    Route::post('/add',['as'=>'add','uses'=>'GroupController@add']);
+    
     Route::get('/admin/grouphome', function () {
         return view('admin.grouphome');
     });

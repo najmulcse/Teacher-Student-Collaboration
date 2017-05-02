@@ -21,29 +21,29 @@
             <div class="panel-body" id="pBody">
                 
                 <div class="row">                                    
-                 <div class="col-md-9">
+                 <div class="col-sm-9">
                     <div class="panel panel-info">
                       
                         <div class="panel-body">
-                            <form action="addsubc.php" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
+                            <form action="#" method="post" class="form-horizontal" role="form" enctype="multipart/form-data">
                                  
                                 <div class="form-group">
                                     <label for="exampleInputEmail1" class="col-sm-3 control-label">Group Name</label>
                                     <div class="col-sm-9">
-                                    <input type="text" name="group_name" class="form-control" placeholder="Group Name">
+                                    <input type="text" name="group_name" class="form-control" placeholder="Group Name" required>
                                     </div>
                                 </div> 
                            
                           <div class="form-group">
-                                <label for="title" class="col-sm-3 control-label">Course name</label>
+                                <label for="title" class="col-sm-3 control-label">Course code</label>
                                 <div class="col-sm-9">
-                                  <input type="text" name="title" placeholder="Course name" class="form-control" required>
+                                  <input type="text" name="title" placeholder="Course Code(Example: CSE-1111)" class="form-control" required>
                                 </div>
                           </div>
                           <div class="form-group">
-                                <label for="title" class="col-sm-3 control-label">Year</label>
+                                <label for="title" class="col-sm-3 control-label">Session</label>
                                 <div class="col-sm-9">
-                                  <input type="text" name="title" class="form-control" placeholder="Year" required>
+                                  <input type="text" name="title" class="form-control" placeholder="Session (Example: 2012-13)" required>
                                 </div>
                           </div>
                           <div class="form-group">
@@ -67,6 +67,7 @@
                     </div>
                                                                  
                 </div>
+                <div class="col-sm-3"></div>
 
                 
              </div> 

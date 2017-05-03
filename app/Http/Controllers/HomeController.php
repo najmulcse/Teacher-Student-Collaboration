@@ -28,7 +28,7 @@ class HomeController extends Controller
     public function index()
     {
          $user_id=Auth::user()->id;
-         $groups=Group::all()->where('group_admin',$user_id);
+         $groups=Group::all()->where('user_id',$user_id);
          $count=count($groups);
          return view('home',compact('groups','count'));
     }

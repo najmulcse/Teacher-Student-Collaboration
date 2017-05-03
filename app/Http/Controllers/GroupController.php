@@ -27,8 +27,8 @@ class GroupController extends Controller
 
 /* I want to write the code like this  */
  
-      $request->user()->groups()->create(['group_name'=>$request->group_name,'course_code'=>$request->course_code,'session'=>$request->session,'short_description'=>$request->short_description]);
-      return redirect('/group');
+       $request->user()->groups()->create(['group_name'=>$request->group_name,'course_code'=>$request->course_code,'session'=>$request->session,'short_description'=>$request->short_description]);
+        return redirect('/group');
 
 
     		//  $admin=Auth::user()->id;

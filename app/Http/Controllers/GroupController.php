@@ -23,7 +23,7 @@ class GroupController extends Controller
     	return view('groups.create');
     }
 
-    public function add(Request $request){
+    public function store(Request $request){
 
 /* I want to write the code like this  */
  

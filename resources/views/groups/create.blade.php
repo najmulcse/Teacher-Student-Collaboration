@@ -25,7 +25,7 @@
                     <div class="panel panel-info">
                       
                         <div class="panel-body">
-                            <form action="{{url('/add')}}" method="post" class="form-horizontal" >
+                            <form action="{{url('/store')}}" method="post" class="form-horizontal" >
                                  {{ csrf_field() }}
                                 <div class="form-group">
                                     <label for="exampleInputEmail1" class="col-sm-3 control-label">Group Name</label>

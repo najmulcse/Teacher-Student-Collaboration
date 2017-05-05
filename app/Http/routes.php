@@ -23,10 +23,15 @@ Route::group(['middleware' => ['web']], function () {
 
         return view('welcome');
     });
-    Route::get('/group', ['as'=>'group','uses'=>'GroupController@index']);
 
+    // For group controlling , all the methods are defined in the GroupController 
+
+    Route::get('/group', ['as'=>'group','uses'=>'GroupController@index']);
+    Route::get('/group/{id}/edit',['as'=>'group_id','uses'=>'GroupController@edit']);
+    Route::patch('/group/{id}/update',['as'=>'update','uses'=>'GroupController@update']);
     Route::get('/create',['as'=>'create','uses'=>'GroupController@create']);
     Route::post('/store',['as'=>'store','uses'=>'GroupController@store']);
+    Route::get('group/{id}/delete',['as'=>'group_deleted_id','uses'=>'GroupController@delete']);
     
     Route::get('/admin/grouphome', function () {
         return view('admin.grouphome');

@@ -12,14 +12,14 @@
     <title>Home | TS-Group</title>
 
     <!-- Bootstrap Core CSS -->
-    <link href="css/mystyle.css" rel="stylesheet" type="text/css" >
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{asset('css/mystyle.css')}}" rel="stylesheet" type="text/css" >
+    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
     <!-- Custom CSS -->
    <!--  <link href="css/style.css" rel="stylesheet" type="text/css" > -->
-    <link href="css/sbadmin.css" rel="stylesheet">
+    <link href="{{ asset('css/sbadmin.css')}}" rel="stylesheet">
     <!-- Custom Fonts -->
     <!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="{{ asset('font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
 
 </head>
 

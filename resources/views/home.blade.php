@@ -46,8 +46,8 @@
                                                   </a>
 
                                                   <ul class="dropdown-menu" role="menu">
-                                                      <li><a href="{{ url('/logout') }}"><i class="fa fa-pencil fa-fw"></i>edit</a></li>
-                                                      <li><a href="{{ url('/logout') }}"><i class="fa fa-trash-o fa-fw"></i>delete</a></li>
+                                                      <li><a href="{{ route('group_id',['id'=>$group->id]) }}"><i class="fa fa-pencil fa-fw"></i>edit</a></li>
+                                                      <li><a href="{{ route('group_deleted_id',['id'=>$group->id]) }}"><i class="fa fa-trash-o fa-fw"></i>delete</a></li>
                                                  </ul>
                                              </li>
                                           </ul>

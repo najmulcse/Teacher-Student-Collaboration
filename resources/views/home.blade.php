@@ -47,10 +47,10 @@
                                                   </a>
 
                                                   <ul class="dropdown-menu" role="menu">
-                                                      <li><a href="{{ route('group_id',['id'=>$group->id]) }}"><i class="fa fa-pencil fa-fw"></i>edit</a></li>
+                                                      <li><a href="{{ route('group_id',['id'=>$group->id]) }}"><i class="fa fa-pencil fa-fw"></i>Edit</a></li>
 
-                                                     <li><a onclick="return confirm('are you sure?')" href="{{ route('group_deleted_id',['id'=>$group->id]) }}"><i class="fa fa-trash-o fa-fw"></i>delete</a></li>
-                                                      <li><button class="btn btn-sm"><span class=""><i class="fa fa-cog fa-fw"></i></span>Add member</button></li>
+                                                     <li><a onclick="return confirm('are you sure?')" href="{{ route('group_deleted_id',['id'=>$group->id]) }}"><i class="fa fa-trash-o fa-fw"></i>Delete</a></li>
+                                                      <li><a href="#"><span class=""><i class="fa fa-plus fa-fw"></i></span>Add member</a></li>
 
                                                       
 

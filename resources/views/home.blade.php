@@ -1,7 +1,7 @@
 @extends('layouts.homeLayout')
 
 @if($count==0)
-  
+
     @section('group_heading')
                   <h2 class="page-header">
                        You have no group!
@@ -17,24 +17,25 @@
     @endsection
     @section('group_body')
 
+
            <section>         <!-- Contents body started -->
                     <div class="row">
-                        <div class="col-sm-9">                      
+                        <div class="col-sm-9">
                                 <table class="table table-border table-hover">
                                     <thead>
                                         <tr>
-                                            <th>Group Name</th> 
+                                            <th>Group Name</th>
                                             <th> Course Code</th>
                                             <th>Short Description</th>
                                             <th>Options</th>
-                                            
+
                                         </tr>
                                     </thead>
 
                                         <tbody>
                                   <!--loop started for finding group contents-->
                                    @foreach($groups as $group)
-               
+
                                             <tr>
                                             <td> <a href="{{ url('/group') }}"> {{ $group->group_name }}</a></td>
                                             <td>{{$group->course_code}}</td>
@@ -47,8 +48,12 @@
 
                                                   <ul class="dropdown-menu" role="menu">
                                                       <li><a href="{{ route('group_id',['id'=>$group->id]) }}"><i class="fa fa-pencil fa-fw"></i>edit</a></li>
-                                                      <li><a href="{{ route('group_deleted_id',['id'=>$group->id]) }}"><i class="fa fa-trash-o fa-fw"></i>delete</a></li>
-                                                      <li><button class="btn btn-sm"><span class=""><i class="fa fa-cog fa-fw"></i></span>  Settings</button></li>
+
+                                                     <li><a onclick="return confirm('are you sure?')" href="{{ route('group_deleted_id',['id'=>$group->id]) }}"><i class="fa fa-trash-o fa-fw"></i>delete</a></li>
+                                                      <li><button class="btn btn-sm"><span class=""><i class="fa fa-cog fa-fw"></i></span>Add member</button></li>
+
+                                                      
+
                                                  </ul>
                                              </li>
                                           </ul>
@@ -56,10 +61,10 @@
                                             </tr>
                                              @endforeach
                                              <!--loop ended for finding group contents-->
-                                        
+
                                         </tbody>
                                </table>
-                            
+
                         </div>
                         <div class="col-sm-3">
                           <!--   <div>
@@ -68,10 +73,11 @@
                         </div>
                     </div>
                     <!-- /.row -->
-              
-            </section>  
+
+            </section>
 
     @endsection
 
 @endif
+
 

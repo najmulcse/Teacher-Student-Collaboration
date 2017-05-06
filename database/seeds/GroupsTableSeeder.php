@@ -17,7 +17,7 @@ class GroupsTableSeeder extends Seeder
            DB::table('groups')->insert([
                'group_name'=>'Laravel',
                'short_description'=>$faker->text,
-               'group_admin'=>1,
+               'user_id'=>1,
                'group_moderator'=>3,
                'created_at'=>\Carbon\Carbon::now(),
                'updated_at'=>\Carbon\Carbon::now()
@@ -28,7 +28,7 @@ class GroupsTableSeeder extends Seeder
         DB::table('groups')->insert([
             'group_name'=>'Software Engineering',
             'short_description'=>$faker->text,
-            'group_admin'=>2,
+            'user_id'=>2,
             'group_moderator'=>4,
             'created_at'=>\Carbon\Carbon::now(),
             'updated_at'=>\Carbon\Carbon::now()

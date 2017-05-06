@@ -48,6 +48,7 @@
                                                   <ul class="dropdown-menu" role="menu">
                                                       <li><a href="{{ route('group_id',['id'=>$group->id]) }}"><i class="fa fa-pencil fa-fw"></i>edit</a></li>
                                                       <li><a href="{{ route('group_deleted_id',['id'=>$group->id]) }}"><i class="fa fa-trash-o fa-fw"></i>delete</a></li>
+                                                      <li><button class="btn btn-sm"><span class=""><i class="fa fa-cog fa-fw"></i></span>  Settings</button></li>
                                                  </ul>
                                              </li>
                                           </ul>

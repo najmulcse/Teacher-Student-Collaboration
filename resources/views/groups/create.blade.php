@@ -49,7 +49,7 @@
                           <div class="form-group">
                                 <label for="inputEmail3" class="col-sm-3 control-label">Short Description</label>
                                 <div class="col-sm-9">
-                                  <textarea  name="short_description" type="text" class="form-control" id="inputtext" placeholder="Short Description about group" rows="5"> </textarea>
+                                  <textarea  name="short_description" type="text" class="form-control" id="inputtext" placeholder="Short Description about group" rows="5"></textarea>
                                 </div>
                           </div>
                            <div class="form-group">

@@ -37,7 +37,7 @@
                                    @foreach($groups as $group)
 
                                             <tr>
-                                            <td> <a href="{{ url('/group') }}"> {{ $group->group_name }}</a></td>
+                                            <td> <a href="{{ route('id',['id' => $group->id]) }}"> {{ $group->group_name }}</a></td>
                                             <td>{{$group->course_code}}</td>
                                             <td><p  href="#">{{$group->short_description}}</p></td>
                                             <td><ul class="nav navbar-nav navbar-right">

@@ -15,8 +15,11 @@ class GroupController extends Controller
 		$this->middleware('auth');
 	}
 
-   public function index(){
-   		return view('groups.index');
+   public function index($id){
+
+      $group = Group::findOrFail($id);
+      $user=User::findOrFail($group->user_id);
+   		return view('groups.index',compact('group','user'));
     }
     public function edit($id)
     {
@@ -44,11 +47,23 @@ class GroupController extends Controller
 
 /* I want to write the code like this  */
  
-       $request->user()->groups()->create(['group_name'=>$request->group_name,'course_code'=>$request->course_code,'session'=>$request->session,'short_description'=>$request->short_description]);
-        return redirect('/group');
+       $rq=$request->user()->groups()->create(['group_name'=>$request->group_name,'course_code'=>$request->course_code,'session'=>$request->session,'short_description'=>$request->short_description]);
+        return redirect()->route( 'id' , [$rq->id ]);
 
 
     	
+      }
+
+
+      public function createPost( $groupid ){
+        
+        $group= Group::findOrFail( $groupid );
+        return view('groups.createPost',compact('group'));
+      }
+
+      public function storePost(Request $request)
+      {
+
       }
 
 

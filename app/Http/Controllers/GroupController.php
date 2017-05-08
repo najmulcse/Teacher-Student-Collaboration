@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\User;
 use App\Group;
+use App\GroupMember;
 use Illuminate\Support\Facades\Auth;
 class GroupController extends Controller
 {
@@ -47,7 +48,7 @@ class GroupController extends Controller
 
 /* I want to write the code like this  */
  
-       $rq=$request->user()->groups()->create(['group_name'=>$request->group_name,'course_code'=>$request->course_code,'session'=>$request->session,'short_description'=>$request->short_description]);
+       $rq=$request->user()->groups()->create(['group_name'=>$request->group_name, 'group_code' => $request->group_code , 'course_code'=>$request->course_code,'session'=>$request->session,'short_description'=>$request->short_description]);
         return redirect()->route( 'id' , [$rq->id ]);
 
 
@@ -61,13 +62,42 @@ class GroupController extends Controller
         return view('groups.createPost',compact('group'));
       }
 
+
+
       public function storePost(Request $request)
       {
-
+     
       }
 
 
+      public function joinGroup(){
+        return view('groups.joinGroup');
+      }
+      public function checkGroupForJoining(Request $request)
+      {
+         $rq_code=$request->group_code;
+         $group=Group::where('group_code',$rq_code)->first();
+         if($group)
+          {
+           $group_id=$group->id;
+           $groupMember=new GroupMember;
+           $user_id = Auth::user()->id;
+           $check = GroupMember::where('user_id',$user_id)->where('group_id',$group_id)->first();
+           if($check){
+           $msg="Already you are the member of this group!";
+          }
+          else
+          {
+           $groupMember->user_id = $user_id ;
+           $groupMember->group_id = $group_id;
+           $groupMember->save();
+           $msg="Successfully joined";
+           }
+          }
+        else 
+          $msg="Not found";
 
-
+        return redirect('/joinGroup')->with('status', $msg);
+      }
 }
 

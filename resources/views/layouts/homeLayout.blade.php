@@ -54,6 +54,21 @@
 
                 <!-- Right Side Of Navbar started-->
                 <ul class="nav navbar-nav navbar-right log_nav">
+
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bell">4</i> <b class="caret"></b></a>
+                    <ul class="dropdown-menu alert-dropdown">
+                        <li>
+                            <a href="#">Alert Name <span class="label label-default">Alert Badge</span></a>
+                        </li>
+                        
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#">View All</a>
+                        </li>
+                    </ul>
+                </li>
                     <!-- Authentication Links -->
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Login</a></li>
@@ -82,7 +97,7 @@
                     </li>
 
                     <li>
-                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-user fa-fw""></i>     Profile <i class="fa fa-fw fa-caret-down"></i></a>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-user fa-fw""></i> Profile <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
                             <li>
                                 <a href="#"> <i class="fa fa-unlock""></i> Changed Password</a>
@@ -104,8 +119,8 @@
 
                 <!-- Page header and search -->
                 <div class="row">
-                    <div class="col-lg-5"></div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-4"></div>
+                    <div class="col-lg-4">  <!-- searching started -->
                         <form action="searchResult.php" method="POST">
                            <div class="input-group col-md-12 ">
                             <input type="text" class="input_search  search-query form-control " name="search_value" placeholder="Search" />
@@ -116,30 +131,32 @@
                             </span>
                           </div>
                         </form>
-                    </div>
-                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-3 text-right">
+                    </div>  <!-- searching ended -->
+                    <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4">  <!-- group creating button started -->
+                        <ul class="list-inline">
+                           <li class="list-inline-item"> <a class="btn btn-success btn-lg" href="{{url('/joinGroup')}}" role="button">Join Group</a> </li>
+                            <li class="list-inline-item"><a class="btn btn-success btn-lg" href="{{url('/create')}}" role="button">Create Group</a></li>
+                        </ul>
+                    </div>   <!-- group creating button ended -->
+                </div> 
+                <!-- Page header and search ended -->
 
-                        <a class="btn btn-success btn-lg" href="{{url('/create')}}" role="button">Create Group</a>
-                    </div>
-                </div>
-
-                <div class="row">  <!-- searching started -->
-                        <div class="col-lg-12">
+                <div class="row">  
+                        <div class="col-lg-12">  <!--Group heading started -->
                            @yield('group_heading')
-                        </div>
+                        </div><!--Group heading ended -->
                 </div>
 
-                <div class="row">
+                <div class="row"> <!--Group body started -->
                     <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         @yield('group_body')
-                    </div>
+                    </div> <!--Group body ended -->
 
                 </div>
-                </div> <!-- searching ended -->
+                </div> 
                     </div>
                
-                <!-- /.row end for page header and search-->
-
+               
                 <!-- group body contents started -->
 
             <!-- /.container-fluid -->

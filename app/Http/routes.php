@@ -33,9 +33,9 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/store',['as'=>'store','uses'=>'GroupController@store']);
     Route::get('group/{id}/delete',['as'=>'group_deleted_id','uses'=>'GroupController@delete']);
     Route::get('group/{id}/createPost',['as' => 'createPost','uses' => 'GroupController@createPost']);
-    Route::post('post',['as' => 'post_id','uses' => 'GroupController@storePost']);
-
-
+    Route::post('/post',['as' => 'post_id','uses' => 'GroupController@storePost']);
+    Route::get('/joinGroup',['as' => 'joinGroupid', 'uses' => 'GroupController@joinGroup']);
+    Route::post('/checkGroup' , [ 'as' => 'checkGroup','uses' => 'GroupController@checkGroupForJoining']);
 
     Route::get('/admin/grouphome', function () {
         return view('admin.grouphome');

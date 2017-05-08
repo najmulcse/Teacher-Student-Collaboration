@@ -11,7 +11,7 @@
 @else
     @section('group_heading')
                   <h2 class="page-header">
-                        All Groups <span class="small"> (You have {{$count}} groups)</span>
+                        My Groups <span class="small"> (You have {{$count}} groups)</span>
                  </h2>
 
     @endsection

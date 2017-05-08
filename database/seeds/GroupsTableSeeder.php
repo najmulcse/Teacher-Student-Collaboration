@@ -19,6 +19,7 @@ class GroupsTableSeeder extends Seeder
                'short_description'=>$faker->text,
                'user_id'=>1,
                'group_moderator'=>3,
+               'group_code' => $faker->numerify('group###'),
                'created_at'=>\Carbon\Carbon::now(),
                'updated_at'=>\Carbon\Carbon::now()
 
@@ -30,6 +31,7 @@ class GroupsTableSeeder extends Seeder
             'short_description'=>$faker->text,
             'user_id'=>2,
             'group_moderator'=>4,
+            'group_code' => $faker->numerify('group###'),
             'created_at'=>\Carbon\Carbon::now(),
             'updated_at'=>\Carbon\Carbon::now()
 

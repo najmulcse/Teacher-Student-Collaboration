@@ -33,17 +33,22 @@
                                     <input type="text" name="group_name" class="form-control" placeholder="Group Name" required>
                                     </div>
                                 </div> 
-                           
+                           <div class="form-group">
+                                <label for="title" class="col-sm-3 control-label">Group code</label>
+                                <div class="col-sm-9">
+                                  <input type="text" name="group_code" placeholder="Choice a unique Code(Example:group123)" class="form-control" required>
+                                </div>
+                          </div>
                           <div class="form-group">
                                 <label for="title" class="col-sm-3 control-label">Course code</label>
                                 <div class="col-sm-9">
-                                  <input type="text" name="course_code" placeholder="Course Code(Example: CSE-1111)" class="form-control" required>
+                                  <input type="text" name="course_code" placeholder="Course Code(Example: CSE-1111)" class="form-control">
                                 </div>
                           </div>
                           <div class="form-group">
                                 <label for="title" class="col-sm-3 control-label">Session</label>
                                 <div class="col-sm-9">
-                                  <input type="text" name="session" class="form-control" placeholder="Session (Example: 2012-13)" required>
+                                  <input type="text" name="session" class="form-control" placeholder="Session (Example: 2012-13)" >
                                 </div>
                           </div>
                           <div class="form-group">

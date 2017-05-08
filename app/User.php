@@ -30,4 +30,9 @@ class User extends Authenticatable
 
        return $this->hasMany('App\Group');
     }
+
+    // public function groupMembers(){
+
+    //     return $this->hasMany('App\GroupMember');
+    // }
 }

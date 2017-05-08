@@ -34,17 +34,22 @@
                                     <input type="text" name="group_name" class="form-control" value='{{ $group->group_name}}' required>
                                     </div>
                                 </div> 
-                           
+                            <div class="form-group">
+                                <label for="title" class="col-sm-3 control-label">Group code</label>
+                                <div class="col-sm-9">
+                                  <input type="text" name="course_code" class="form-control" required>
+                                </div>
+                          </div>
                           <div class="form-group">
                                 <label for="title" class="col-sm-3 control-label">Course code</label>
                                 <div class="col-sm-9">
-                                  <input type="text" name="course_code" value='{{ $group->course_code}}' class="form-control" required>
+                                  <input type="text" name="course_code" value='{{ $group->course_code}}' class="form-control">
                                 </div>
                           </div>
                           <div class="form-group">
                                 <label for="title" class="col-sm-3 control-label">Session</label>
                                 <div class="col-sm-9">
-                                  <input type="text" name="session" class="form-control" value='{{ $group->session }}' required>
+                                  <input type="text" name="session" class="form-control" value='{{ $group->session }}'>
                                 </div>
                           </div>
                           <div class="form-group">

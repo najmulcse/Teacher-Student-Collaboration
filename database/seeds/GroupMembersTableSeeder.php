@@ -13,7 +13,7 @@ class GroupMembersTableSeeder extends Seeder
     {
         $faker = Faker\Factory::create();
         for($i=0;$i<5;$i++){
-        DB::table('groupmembers')->insert([
+        DB::table('group_members')->insert([
             'group_id'=>$faker->randomElement($array =array(1,2)),
             'user_id'=>$faker->unique()->randomDigit,
             'created_at'=>\Carbon\Carbon::now(),

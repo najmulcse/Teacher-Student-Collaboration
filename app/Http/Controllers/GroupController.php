@@ -84,7 +84,7 @@ class GroupController extends Controller
            $user_id = Auth::user()->id;
            $check = GroupMember::where('user_id',$user_id)->where('group_id',$group_id)->first();
            if($check){
-           $msg="Already you are the member of this group!";
+           $msg="Already you are a member of this group!";
           }
           else
           {

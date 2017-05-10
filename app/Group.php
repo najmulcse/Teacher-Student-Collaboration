@@ -7,15 +7,21 @@ use Illuminate\Database\Eloquent\Model;
 class Group extends Model
 {
     protected $guarded=[''];
-
+    protected $table='groups';
 
     public function user(){
 
     return $this->belongsTo('App\User');
     }
 
-    public function groupMembers(){
+    // public function users(){
 
-        return $this->hasMany('App\groupMember');
-    }
+    //     return $this->hasMany('App\GroupMember','group_id','id');
+    // }
+    // public function members(){
+    // 	return $this->hasMany('App\GroupMember');
+    // }
+
+
+    
 }

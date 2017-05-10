@@ -24,14 +24,17 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-
+    protected $table='users';
 
     public function groups(){
-
-       return $this->hasMany('App\Group');
+        return $this->hasMany('App\Group');
     }
+    // public function groups(){
 
-    // public function groupMembers(){
+    //    return $this->hasManyThrough('App\Group','App\GroupMember','user_id','id');
+    // }
+
+    // public function members(){
 
     //     return $this->hasMany('App\GroupMember');
     // }

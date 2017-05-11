@@ -23,7 +23,11 @@
                 <div class="row">                                    
                  <div class="col-sm-9">
                     <div class="panel panel-info">
-                      
+                       @if (session('status'))
+                          <div class="alert alert-success">
+                              {{ session('status') }}
+                          </div>
+                       @endif
                         <div class="panel-body">
                             <form action="{{url('/store')}}" method="post" class="form-horizontal" >
                                  {{ csrf_field() }}

@@ -30,7 +30,7 @@ class GroupController extends Controller
      //return $group=user()->groups()->get();
       return view('groups.edit',compact('group'));
     }
-    
+
     public function create()
     {
     	return view('groups.create');
@@ -49,8 +49,13 @@ class GroupController extends Controller
     public function store(Request $request){
 
 /* I want to write the code like this  */
- 
+        $group_code=$request->group_code;
+        if (Group::where('group_code', '=', $group_code)->exists()) {
+           $msg= "Group code already exists ! Try another one.";
+            return redirect('/create')->with('status', $msg);
+       }else
        $rq=$request->user()->groups()->create(['group_name'=>$request->group_name, 'group_code' => $request->group_code , 'course_code'=>$request->course_code,'session'=>$request->session,'short_description'=>$request->short_description]);
+
         return redirect()->route( 'id' , [$rq->id ]);
 
 

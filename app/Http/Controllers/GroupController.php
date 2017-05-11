@@ -54,7 +54,7 @@ class GroupController extends Controller
            $msg= "Group code already exists ! Try another one.";
             return redirect('/create')->with('status', $msg);
        }else
-       $rq=$request->user()->groups()->create(['group_name'=>$request->group_name, 'group_code' => $request->group_code , 'course_code'=>$request->course_code,'session'=>$request->session,'short_description'=>$request->short_description]);
+       $rq=$request->user()->myGroups()->create(['group_name'=>$request->group_name, 'group_code' => $request->group_code , 'course_code'=>$request->course_code,'session'=>$request->session,'short_description'=>$request->short_description]);
 
         return redirect()->route( 'id' , [$rq->id ]);
 
@@ -90,19 +90,21 @@ class GroupController extends Controller
            if($group)
               {
                      $group_id=$group->id;
+                     $group_user_id=$group->user_id;
                      $groupMember=new GroupMember;
                      $user_id = Auth::user()->id;
                      $check = GroupMember::where('user_id',$user_id)->where('group_id',$group_id)->first();
-                     if($check){
-                     $msg="Already you are a member of this group!";
-                }
-                else
-                {
-                     $groupMember->user_id = $user_id ;
-                     $groupMember->group_id = $group_id;
-                     $groupMember->save();
-                     $msg="Successfully joined";
-                 }
+                     if($check || $group_user_id == $user_id)
+                       {
+                          $msg="Already you are a member of this group!"; 
+                       }
+                      else
+                      {
+                           $groupMember->user_id = $user_id ;
+                           $groupMember->group_id = $group_id;
+                           $groupMember->save();
+                           $msg="Successfully joined";
+                       }
             }
           else
           {

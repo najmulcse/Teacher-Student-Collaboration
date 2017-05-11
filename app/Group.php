@@ -18,9 +18,10 @@ class Group extends Model
 
     //     return $this->hasMany('App\GroupMember','group_id','id');
     // }
-    public function members(){
-    	return $this->belongToMany('App\GroupMember','users','group_id','user_id');
-    }
+    // public function members(){
+    // 	return $this->belongToMany('App\GroupMember','users','group_id','user_id');
+    // }
+    
 
 
     

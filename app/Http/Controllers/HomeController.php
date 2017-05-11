@@ -31,21 +31,22 @@ class HomeController extends Controller
         
 
 
-        
+       $user_id=Auth::user()->id;
+       $joinedGroups=User::findOrFail($user_id)->joinedGroups;
+        $countJ=count($joinedGroups);
 
-
-
+       
        // return $groups=Group::with('user','members','members.user')->get();
 
           // $member=GroupMember::with(['user','groups'])->first();
           // $member->user->name;
-         $user_id=Auth::user()->id;
-         $groups=User::find($user_id)->groups;
+         // $user_id=Auth::user()->id;
+         $myGroups=User::findOrFail($user_id)->myGroups;
         //  $user= User::find(3);
         // return  $user->groups;
          //$groups=Group::all()->where('user_id',$user_id);
          
-         $count=count($groups);
-         return view('home',compact('groups','count'));
+         $countM=count($myGroups);
+         return view('home',compact('joinedGroups','myGroups','countJ','countM'));
     }
 }

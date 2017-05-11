@@ -9,11 +9,11 @@ class GroupMember extends Model
 	protected $table='group_members';
     public function user()
     {
-    	$this->belongsTo('App\User');
+    	$this->belongsTo('App\User','user_id');
     }
-    public function group()
+    public function groups()
     {
-    	$this->belongsTo('App\Group');
+    	$this->belongsToMany('App\Group','user_id');
     }
    
 

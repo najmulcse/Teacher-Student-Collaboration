@@ -22,6 +22,7 @@ class GroupController extends Controller
       $user=User::findOrFail($group->user_id);
    		return view('groups.index',compact('group','user'));
     }
+
     public function edit($id)
     {
 
@@ -29,6 +30,7 @@ class GroupController extends Controller
      //return $group=user()->groups()->get();
       return view('groups.edit',compact('group'));
     }
+    
     public function create()
     {
     	return view('groups.create');
@@ -70,34 +72,42 @@ class GroupController extends Controller
       }
 
 
-      public function joinGroup(){
+      public function joinGroup()
+      {
         return view('groups.joinGroup');
       }
+
       public function checkGroupForJoining(Request $request)
       {
-         $rq_code=$request->group_code;
-         $group=Group::where('group_code',$rq_code)->first();
-         if($group)
-          {
-           $group_id=$group->id;
-           $groupMember=new GroupMember;
-           $user_id = Auth::user()->id;
-           $check = GroupMember::where('user_id',$user_id)->where('group_id',$group_id)->first();
-           if($check){
-           $msg="Already you are a member of this group!";
-          }
+           $rq_code=$request->group_code;
+           $group=Group::where('group_code',$rq_code)->first();
+
+           if($group)
+              {
+                     $group_id=$group->id;
+                     $groupMember=new GroupMember;
+                     $user_id = Auth::user()->id;
+                     $check = GroupMember::where('user_id',$user_id)->where('group_id',$group_id)->first();
+                     if($check){
+                     $msg="Already you are a member of this group!";
+                }
+                else
+                {
+                     $groupMember->user_id = $user_id ;
+                     $groupMember->group_id = $group_id;
+                     $groupMember->save();
+                     $msg="Successfully joined";
+                 }
+            }
           else
           {
-           $groupMember->user_id = $user_id ;
-           $groupMember->group_id = $group_id;
-           $groupMember->save();
-           $msg="Successfully joined";
-           }
+            $msg="Group not found";
           }
-        else 
-          $msg="Not found";
 
-        return redirect('/joinGroup')->with('status', $msg);
-      }
+           return redirect('/joinGroup')->with('status', $msg);
+     }
+
+       
+      
 }
 

@@ -16,13 +16,16 @@ class GroupController extends Controller
 		$this->middleware('auth');
 	}
 
+    //All groups are shown of user home page 
    public function index($id){
 
       $group = Group::findOrFail($id);
       $user=User::findOrFail($group->user_id);
+
    		return view('groups.index',compact('group','user'));
     }
 
+    //Group editing view is called by this method 
     public function edit($id)
     {
 
@@ -31,21 +34,26 @@ class GroupController extends Controller
       return view('groups.edit',compact('group'));
     }
 
+    //Group creation view is called by this method
     public function create()
     {
     	return view('groups.create');
     }
 
+      //Users will able to edit their groups by this method
     public function update(Request $request,$id){
          Group::findOrFail($id)->update(['group_name'=>$request->group_name,'course_code'=>$request->course_code,'session'=>$request->session,'short_description'=>$request->short_description]);
         return redirect('/home');
     }
 
+    //Group deleted method
     public function delete($id)
     {
       Group::findOrFail($id)->delete();
       return redirect('/home');
     }
+
+    //User can create any group by this store method
     public function store(Request $request){
 
 /* I want to write the code like this  */
@@ -54,34 +62,36 @@ class GroupController extends Controller
            $msg= "Group code already exists ! Try another one.";
             return redirect('/create')->with('status', $msg);
        }else
-       $rq=$request->user()->myGroups()->create(['group_name'=>$request->group_name, 'group_code' => $request->group_code , 'course_code'=>$request->course_code,'session'=>$request->session,'short_description'=>$request->short_description]);
+         $rq=$request->user()->myGroups()->create(['group_name'=>$request->group_name, 'group_code' => $request->group_code , 'course_code'=>$request->course_code,'session'=>$request->session,'short_description'=>$request->short_description]);
 
         return redirect()->route( 'id' , [$rq->id ]);
 
 
     	
       }
+        //In a group ,teachers can see a view to uploading a lecture by this method 
 
-
-      public function createPost( $groupid ){
+      public function createLecture( $groupid ){
         
         $group= Group::findOrFail( $groupid );
-        return view('groups.createPost',compact('group'));
+        $user= User::findOrFail($group->user_id);
+        return view('groups.createLecture',compact('group','user'));
       }
 
 
-
+      //unused yet now
       public function storePost(Request $request)
       {
      
       }
 
-
+      //For joning a group , a form view will be seen a user by this method
       public function joinGroup()
       {
         return view('groups.joinGroup');
       }
 
+      //Here joining group will check which the searching group exists or not , also check  the requested user is group admin or not.  
       public function checkGroupForJoining(Request $request)
       {
            $rq_code=$request->group_code;
@@ -89,26 +99,26 @@ class GroupController extends Controller
 
            if($group)
               {
-                     $group_id=$group->id;
-                     $group_user_id=$group->user_id;
-                     $groupMember=new GroupMember;
+                     $group_id = $group->id;
+                     $group_owner_id = $group->user_id;
+                     $groupMember = new GroupMember;
                      $user_id = Auth::user()->id;
                      $check = GroupMember::where('user_id',$user_id)->where('group_id',$group_id)->first();
-                     if($check || $group_user_id == $user_id)
+                     if($check || $group_owner_id == $user_id)
                        {
-                          $msg="Already you are a member of this group!"; 
+                          $msg = "Already you are a member of this group!"; 
                        }
                       else
                       {
                            $groupMember->user_id = $user_id ;
                            $groupMember->group_id = $group_id;
                            $groupMember->save();
-                           $msg="Successfully joined";
+                           $msg = "Successfully joined";
                        }
             }
           else
           {
-            $msg="Group not found";
+            $msg = "Group not found";
           }
 
            return redirect('/joinGroup')->with('status', $msg);

@@ -19,29 +19,32 @@
               <div class="row">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                     Create a Post 
+                     Create a lecture
                     </div>
                     
                     <div class="panel-body">
                     <div class="col-sm-1"></div>
                      <div class="col-sm-10">
                    
-                      <form action="#" class="form-horizontal" method="post" enctype="multipart/form-data">
-
+                      <form action="{{ route('storeLecture',['gid' => $group->id]) }}" class="form-horizontal" method="post" enctype="multipart/form-data">
+                           {{ csrf_field() }}
                           <div class="form-group ">     
-                              <label class="control-label">Title</label>
-                              <input type="text" name="title" class="form-control" placeholder="Title">  
+                              <label class="control-label">Lecture Title</label>
+                              <input type="text" name="lecture_title" class="form-control" placeholder="Lecture Title" required>  
                           </div>
                           <div class="form-group">
                           <label class="control-label">Body</label>
-                              <textarea class="form-control" name="body" rows="5" placeholder="Write here..."></textarea>
+                              <textarea class="form-control" name="body" rows="5" placeholder="Write here..." required></textarea>
                              
                           </div>
                           <div class="form-group">
+                          <label class="control-label">File</label>
                           	<input type="file" name="file" class="form-control" accept=".doc,.ppt,.jpeg,.png,.jpg,">	 
                           </div>
                           <div class="form-group">
-                          	 <a type="button" class="btn btn-lg btn-primary pull-right">Post</a>	
+
+                          	 <button type="submit" class="btn btn-sm btn-success pull-right">Upload lecture</button>	
+                             <button type="submit" class="btn btn-sm btn-primary pull-right">Cancle</button>
                           </div>
                           </form>
                       </div>
@@ -61,9 +64,14 @@
                                 <!-- Sidebar -->
                                     <div class="w3-sidebar w3-bar-block w3-card-2" style="width:18%;right:0;padding-top: 0px;">
                                    <!--   <a href="{{url('/create')}}" class="create_group_button">Create new group</a> -->
-                                      <a href="{{ route('createPost',['id'=>$group->id]) }}" class="w3-bar-item w3-button">Create a Post </a>
-                                      <a href="#" class="w3-bar-item w3-button">Upload file</a>
-                                      <a href="#" class="w3-bar-item w3-button">Assignment</a>
+
+                                   @if( $user-> user_type_id == 1)
+                                        <a href="#" class="w3-bar-item w3-button">Create a post</a>
+                                          <a href="{{ route('createLecture',['id'=>$group->id]) }}" class="w3-bar-item w3-button">Lecture Upload </a>
+                                          <a href="#" class="w3-bar-item w3-button">Assignment Upload</a>
+                                    @elseif( $user->user_type_id == 2)
+                                          <a href="#" class="w3-bar-item w3-button">Create a post</a>
+                                    @endif
                                     </div>
                                 </div>
 

@@ -22,7 +22,12 @@ class Group extends Model
     // 	return $this->belongToMany('App\GroupMember','users','group_id','user_id');
     // }
     
-
+    public function lectures(){
+       return $this->hasMany('App\Lecture');
+    }
+    public function contents(){
+       return $this->hasMany('App\Content');
+    }
 
     
 }

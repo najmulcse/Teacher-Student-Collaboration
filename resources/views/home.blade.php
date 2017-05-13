@@ -109,7 +109,7 @@
                                   <!--loop started for finding group contents-->
                                    @foreach($joinedGroups as $groupJ)
                                             <tr>
-                                            <td> <a href="{{ route('id',['id' => $group->id]) }}"> {{ $groupJ->group_name }}</a></td>
+                                            <td> <a href="{{ route('id',['id' => $groupJ->id]) }}"> {{ $groupJ->group_name }}</a></td>
                                             <td>{{$groupJ->course_code}}</td>
                                             <td><p  href="#">{{$groupJ->short_description}}</p></td>
                                             <td><ul class="nav navbar-nav navbar-right">

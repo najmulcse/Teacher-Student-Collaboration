@@ -20,7 +20,7 @@ class GroupController extends Controller
    public function index($id){
 
       $group = Group::findOrFail($id);
-      $user=User::findOrFail($group->user_id);
+      $user=User::findOrFail(Auth::user()->id);
 
    		return view('groups.index',compact('group','user'));
     }
@@ -50,6 +50,7 @@ class GroupController extends Controller
     public function delete($id)
     {
       Group::findOrFail($id)->delete();
+      GroupMember::where('group_id',$id)->delete();
       return redirect('/home');
     }
 
@@ -114,6 +115,7 @@ class GroupController extends Controller
                            $groupMember->group_id = $group_id;
                            $groupMember->save();
                            $msg = "Successfully joined";
+                           return redirect('/home')->with('status',$msg);
                        }
             }
           else

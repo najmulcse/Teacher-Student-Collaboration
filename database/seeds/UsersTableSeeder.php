@@ -19,7 +19,7 @@ class UsersTableSeeder extends Seeder
           'name'=>$faker->name,
            'email'=>'student'.$i.'@gmail.com',
            'password'=>bcrypt('123456'),
-           'user_type_id'=>1,
+           'user_type_id'=>$faker->randomElement($array =array(1,2)),
            'gender'=>$faker->randomElement($array = array ('Male','Female')),
            'created_at'=>\Carbon\Carbon::now(),
            'updated_at'=>\Carbon\Carbon::now()

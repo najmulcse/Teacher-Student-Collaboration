@@ -16,6 +16,7 @@ class CreateTableAssignment extends Migration
             $table->increments('id');
             $table->integer('group_id');
             $table->string('assignment_title');
+            $table->string('body');
             $table->string('last_submit_date');
             $table->timestamps();
         });

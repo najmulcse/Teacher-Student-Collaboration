@@ -35,9 +35,15 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('group/{id}/createLecture',['as' => 'createLecture','uses' => 'GroupController@createLecture']);
     Route::post('group/{gid}/store',['as' => 'storeLecture','uses' => 'LectureController@storeLecture']);
 
-    Route::post('/post',['as' => 'post_id','uses' => 'GroupController@storePost']);
+    
     Route::get('/joinGroup',['as' => 'joinGroupid', 'uses' => 'GroupController@joinGroup']);
     Route::post('/checkGroup' , [ 'as' => 'checkGroup','uses' => 'GroupController@checkGroupForJoining']);
+
+
+
+    //PostController methods are here
+
+    Route::get('/group/{gid}/createPost',['as' => 'createPost','uses' => 'PostController@createPost']);
 
     Route::get('/admin/grouphome', function () {
         return view('admin.grouphome');

@@ -16,6 +16,7 @@ class CreateLecturesTable extends Migration
             $table->increments('id');
             $table->integer('group_id');
             $table->string('lecture_title');
+            $table->string('body');
             $table->timestamps();
         });
     }

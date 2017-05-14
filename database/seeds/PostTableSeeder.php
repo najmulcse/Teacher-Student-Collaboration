@@ -2,7 +2,7 @@
 
 use Illuminate\Database\Seeder;
 
-class ContentsTableSeeder extends Seeder
+class PostTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -11,14 +11,13 @@ class ContentsTableSeeder extends Seeder
      */
     public function run()
     {
-        
+       
         $faker=Faker\factory::create();
         for($i=0;$i<10;$i++)
         {
-        	DB::table('contents')->insert([
-        		'content_type_id'=>$faker->randomElement($array =array(1,2,3,4,5,6,7,8,9,10)),
-        		'content'=>$faker->name ,
-        		'content_type'=>$faker->randomElement($array =array('L','A','P')),
+        	DB::table('posts')->insert([
+        		'group_id'=>$faker->randomElement($array =array(1,2,3,4,5,6,7,8,9,10)),
+                'body' =>$faker->name ,
         		'created_at'=>\Carbon\Carbon::now(),
           		 'updated_at'=>\Carbon\Carbon::now()
         		]);

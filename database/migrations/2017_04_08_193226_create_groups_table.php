@@ -16,8 +16,11 @@ class CreateGroupsTable extends Migration
             $table->increments('id');
             $table->string('group_name');
             $table->string('short_description');
-            $table->Integer('group_admin');
+            $table->Integer('user_id');
             $table->integer('group_moderator');
+            $table->string('group_code');
+            $table->string('course_code');
+            $table->string('session');
             $table->timestamps();
         });
     }

@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddNewColumnIntoGroupsTable extends Migration
+class CreatePostsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -12,9 +12,11 @@ class AddNewColumnIntoGroupsTable extends Migration
      */
     public function up()
     {
-        Schema::table('groups', function (Blueprint $table) {
-            
-        $table->string('group_code');
+        Schema::create('posts', function (Blueprint $table) {
+            $table->increments('id');
+            $table->integer('group_id');
+            $table->string('body');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +27,6 @@ class AddNewColumnIntoGroupsTable extends Migration
      */
     public function down()
     {
-        Schema::table('groups', function (Blueprint $table) {
-            $table->dropColumn('group_code');
-        });
+        Schema::drop('posts');
     }
 }

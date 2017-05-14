@@ -17,6 +17,7 @@ class AssignmentsTableSeeder extends Seeder
         	DB::table('assignments')->insert([
         		'group_id'=>$faker->randomElement($array =array(1,2,3,4,5,6,7,8,9,10)),
         		'assignment_title'=>$faker->unique()->name,
+                'body' =>$faker->name ,
         		'last_submit_date'=>$faker->date($format='Y-M-D',$max='now'),
         		'created_at'=>\Carbon\Carbon::now(),
           		 'updated_at'=>\Carbon\Carbon::now()

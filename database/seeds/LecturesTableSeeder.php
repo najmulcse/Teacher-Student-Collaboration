@@ -17,6 +17,7 @@ class LecturesTableSeeder extends Seeder
         	DB::table('lectures')->insert([
         		'group_id'=>$faker->randomElement($array =array(1,2,3,4,5,6,7,8,9,10)),
         		'lecture_title'=>$faker->unique()->name,
+                'body' => $faker->name,
         		'created_at'=>\Carbon\Carbon::now(),
           		 'updated_at'=>\Carbon\Carbon::now()
         		]);

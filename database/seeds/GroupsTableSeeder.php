@@ -19,6 +19,8 @@ class GroupsTableSeeder extends Seeder
                'short_description'=>$faker->text,
                'user_id'=>1,
                'group_moderator'=>3,
+               'session' => $faker ->numerify('20##-##'),
+               'course_code' => $faker->numerify('cse-####'),
                'group_code' => $faker->numerify('group###'),
                'created_at'=>\Carbon\Carbon::now(),
                'updated_at'=>\Carbon\Carbon::now()
@@ -31,6 +33,8 @@ class GroupsTableSeeder extends Seeder
             'short_description'=>$faker->text,
             'user_id'=>2,
             'group_moderator'=>4,
+            'session' => $faker ->numerify('20##-##'),
+            'course_code' => $faker->numerify('cse-####'),
             'group_code' => $faker->numerify('group###'),
             'created_at'=>\Carbon\Carbon::now(),
             'updated_at'=>\Carbon\Carbon::now()

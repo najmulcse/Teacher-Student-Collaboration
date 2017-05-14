@@ -81,10 +81,7 @@ class GroupController extends Controller
 
 
       //unused yet now
-      public function storePost(Request $request)
-      {
-     
-      }
+      
 
       //For joning a group , a form view will be seen a user by this method
       public function joinGroup()

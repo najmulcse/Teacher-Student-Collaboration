@@ -19,6 +19,14 @@ class PostController extends Controller
 		return view('posts.createPost',compact('group','user'));
 
 	}
+
+	public function allPosts($gid)
+	{
+		$posts = Post::where('group_id', $gid)->orderBy('created_at','desc')->get();
+		$group =Group::findOrFail($gid);
+		$user= User::findOrFail($group->user_id);
+		return view('posts.allPosts',compact('group','posts','user'));
+	}
 	public function storePost(Request $request , $gid)
       {
      	$file= $request->file('file');

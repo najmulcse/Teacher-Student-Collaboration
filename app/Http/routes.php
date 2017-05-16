@@ -45,6 +45,7 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('/group/{gid}/createPost',['as' => 'createPost','uses' => 'PostController@createPost']);
     Route::post('group/{gid}/storePost',['as' =>'storePost', 'uses' =>'PostController@storePost']);
+    Route::get('group/{gid}/allPosts', ['as' => 'allPosts' ,'uses' => 'PostController@allPosts']);
 
 //unused till now
     Route::get('/admin/grouphome', function () {

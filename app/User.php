@@ -28,15 +28,7 @@ class User extends Authenticatable
     public function myGroups(){
         return $this->hasMany('App\Group');
     }
-    // public function groups(){
-
-    //    return $this->hasManyThrough('App\Group','App\GroupMember','user_id','id');
-    // }
-
-    // public function members(){
-
-    //     return $this->belongsToMany('App\GroupMember');
-    // }
+   
 
     public function joinedGroups()
     {

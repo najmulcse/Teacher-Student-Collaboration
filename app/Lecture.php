@@ -8,7 +8,7 @@ class Lecture extends Model
 {
 
 	protected $guarded=[''];
-    protected $table='lectures';
+    
 
     public function group(){
 

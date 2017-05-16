@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\User;
 use App\Group;
 use App\GroupMember;
+use App\Lecture;
 use Illuminate\Support\Facades\Auth;
 class GroupController extends Controller
 {
@@ -20,9 +21,10 @@ class GroupController extends Controller
    public function index($id){
 
       $group = Group::findOrFail($id);
+      $lectures=Lecture::where('group_id',$id)->orderBy('created_at','desc')->get();
       $user=User::findOrFail(Auth::user()->id);
 
-   		return view('groups.index',compact('group','user'));
+   		return view('groups.index',compact('group','user','lectures'));
     }
 
     //Group editing view is called by this method 

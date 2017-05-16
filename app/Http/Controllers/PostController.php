@@ -12,6 +12,7 @@ use App\Content;
 
 class PostController extends Controller
 {
+	//Creating post form will show...
 
 	public function createPost($gid){
 		$group = Group::findOrFail( $gid );
@@ -19,6 +20,7 @@ class PostController extends Controller
 		return view('posts.createPost',compact('group','user'));
 
 	}
+	//here posts are stored through storePost method
 	public function storePost(Request $request , $gid)
       {
      	$file= $request->file('file');
@@ -33,7 +35,7 @@ class PostController extends Controller
      	}
 
 
-     	 return redirect()->route('id',$gid);  
+     	 return redirect()->route('id',$gid);  // Redirect to group home page
      	 
       }
     

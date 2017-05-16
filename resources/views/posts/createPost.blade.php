@@ -26,7 +26,7 @@
                     <div class="col-sm-1"></div>
                      <div class="col-sm-10">
                    
-                      <form action="#" class="form-horizontal" method="post" enctype="multipart/form-data">
+                      <form action="{{ route('storePost',['gid' => $group->id])}}" class="form-horizontal" method="post" enctype="multipart/form-data">
                            {{ csrf_field() }}
                           
                           <div class="form-group">

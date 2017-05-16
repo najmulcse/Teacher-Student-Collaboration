@@ -7,17 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 class Group extends Model
 {
     protected $guarded=[''];
-    protected $table='groups';
+    
 
     public function user(){
 
     return $this->belongsTo('App\User');
     }
 
-    // public function users(){
+    public function users(){
 
-    //     return $this->hasMany('App\GroupMember','group_id','id');
-    // }
+        return $this->belongToMany('App\User');
+    }
     // public function members(){
     // 	return $this->belongToMany('App\GroupMember','users','group_id','user_id');
     // }
@@ -28,6 +28,7 @@ class Group extends Model
     public function contents(){
        return $this->hasMany('App\Content');
     }
+
 
     
 }

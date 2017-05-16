@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Lecture;
 use App\Content;
+use App\Group;
 class LectureController extends Controller
 {
     public function __construct()
@@ -18,16 +19,20 @@ class LectureController extends Controller
     
     public function storeLecture(Request $request , $gid){
 
-    	$reql=Lecture::create(['lecture_title' =>$request->lecture_title ,'group_id' =>$gid]);
-    	$lecture_id=$reql->id;
-    	$reqC=Content::create(['body' => $request->body , 'content'=> $request->file, 'lecture_or_assignment_id' =>$lecture_id,'content_type' => 'L']);
-    	// $reqC=$request->group()->lectures()->create(['lecture_title' => $request->lecture_title]);
-    	if($reql && $reqC)
-    	{
-    		return redirect()->route('id',$gid);
-    	}
-    	else
-    		return back(); //here error message need to include when the data storing is failed.
+     $file= $request->file('file');
+     $lecture=Lecture::create(['group_id'=> $gid ,'lecture_title' => $request->lecture_title ,'body' => $request->body]);
+
+     if(!empty($file))
+     {
+        $content=time().$file->getClientOriginalName();
+        $lecture_id=$lecture->id;
+        $file->move('lecturefiles',$content);
+        Content::create(['content_type_id' => $lecture_id ,'content' =>$content , 'content_type' =>'L' ]);
+     }
+
+
+      return redirect()->route('id',$gid);  
+      
 
     }
 }

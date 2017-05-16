@@ -24,7 +24,6 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    protected $table='users';
 
     public function myGroups(){
         return $this->hasMany('App\Group');
@@ -41,7 +40,7 @@ class User extends Authenticatable
 
     public function joinedGroups()
     {
-        return $this->belongsToMany('App\Group','group_members');
+        return $this->belongsToMany('App\Group','group_members','user_id','group_id');
     }
 
     public function lectures()

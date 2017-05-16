@@ -100,10 +100,14 @@
                                  
                                    @if( $user-> user_type_id == 1 && $user->id == $group->user_id)
                                         <a href="{{route('createPost',['gid' =>$group->id])}}" class="w3-bar-item w3-button">Create a post</a>
+                                          <a href="#" class="w3-bar-item w3-button">All Posts</a>
                                           <a href="{{ route('createLecture',['id'=>$group->id]) }}" class="w3-bar-item w3-button">Lecture Upload </a>
+                                          <a href="#" class="w3-bar-item w3-button">All Lectures</a>
                                           <a href="#" class="w3-bar-item w3-button">Assignment Upload</a>
                                     @elseif( $user->user_type_id == 2 || $user-> user_type_id == 1)
                                           <a href="{{route('createPost',['gid' =>$group->id])}}" class="w3-bar-item w3-button">Create a post</a>
+                                          <a href="#" class="w3-bar-item w3-button">All Posts</a>
+                                          <a href="#" class="w3-bar-item w3-button">All Lectures</a>
                                     @endif
 
 

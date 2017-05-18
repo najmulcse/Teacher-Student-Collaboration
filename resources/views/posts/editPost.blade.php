@@ -19,7 +19,7 @@
               <div class="row">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                     Create a Post
+                     Edit Post
                     </div>
                     
                     <div class="panel-body">
@@ -31,7 +31,7 @@
                           
                           <div class="form-group">
                           <label class="control-label">Body</label>
-                              <textarea class="form-control" name="body" rows="5" placeholder="Write here..." required></textarea>
+                              <textarea class="form-control" name="body" rows="5" required>{{$post->body}}</textarea>
                              
                           </div>
                           <div class="form-group">
@@ -40,7 +40,7 @@
                           </div>
                           <div class="form-group">
 
-                          	 <button type="submit" class="btn btn-sm btn-success pull-right">Post</button>	
+                          	 <button type="submit" class="btn btn-sm btn-success pull-right">Update Post</button>	
                              <button type="submit" class="btn btn-sm btn-primary pull-right">Cancle</button>
                           </div>
                           </form>
@@ -62,7 +62,7 @@
                                     <div class="w3-sidebar w3-bar-block w3-card-2" style="width:18%;right:0;padding-top: 0px;">
                                    <!--   <a href="{{url('/create')}}" class="create_group_button">Create new group</a> -->
 
-                                   @if( $user-> user_type_id == 1 && $user->id == $group->user_id)
+                                    @if( $user-> user_type_id == 1 && $user->id == $group->user_id)
                                         <a href="{{route('createPost',['gid' => $group->id])}}" class="w3-bar-item w3-button">Create a post</a>
                                           <a href="{{ route('allPosts',['gid' => $group->id])}}" class="w3-bar-item w3-button">All Posts</a>
                                           <a href="{{ route('createLecture',['id'=>$group->id]) }}" class="w3-bar-item w3-button">Lecture Upload </a>

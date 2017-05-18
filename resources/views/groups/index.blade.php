@@ -28,6 +28,25 @@
                                     <div>
                                         
                                             <h2>{{ $lecture->lecture_title }}</h2>
+                                            <div class="pull-right">
+                                              <ul class="nav navbar-nav navbar-right">
+                                                <li class="dropdown">
+                                                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                                       <span class=""><i class="fa fa-cog"></i></span>
+                                                  </a>
+
+                                                  <ul class="dropdown-menu" role="menu">
+                                                      <li><a href="{{ route('group_id',['id'=>$group->id]) }}"><i class="fa fa-pencil fa-fw"></i>Edit</a></li>
+
+                                                     <li><a onclick="return confirm('are you sure?')" href="{{ route('group_deleted_id',['id'=>$group->id]) }}"><i class="fa fa-trash-o fa-fw"></i>Delete</a></li>
+                                                      
+
+                                                      
+
+                                                 </ul>
+                                             </li>
+                                          </ul>
+                                            </div>
                                             <span><small>date:{{ $lecture->created_at->diffForHumans() }}
                                             </small>
                                         </span>

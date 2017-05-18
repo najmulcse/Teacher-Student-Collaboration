@@ -10,6 +10,7 @@ use App\user;
 use App\Post;
 use App\Content;
 
+
 class PostController extends Controller
 {
 
@@ -43,6 +44,19 @@ class PostController extends Controller
 
      	 return redirect()->route('id',$gid);  
      	 
+      }
+
+      public function edit($gid, $pid)
+      {
+      
+  		  $post=Post::findOrFail($pid);
+  		 
+  		  $group=Group::findOrFail($gid);
+        $user=$group->user;
+        
+        
+  		  return view('posts.editPost',compact('post','user','group'));
+
       }
     
 }

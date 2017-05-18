@@ -8,4 +8,8 @@ class Post extends Model
 {
 	protected $guarded=[''];
     //
+    public function getFileContent()
+    {
+    	return $this->hasOne('App\Content','content_type_id');
+    }
 }

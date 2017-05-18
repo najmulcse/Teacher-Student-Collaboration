@@ -35,7 +35,9 @@ class PostController extends Controller
 	public function storePost(Request $request , $gid)
       {
      	$file= $request->file('file');
-     	$post=Post::create(['group_id'=> $gid ,'body' => $request->body]);
+      $user=Group::where('id',$gid)->first();
+      $user_id=$user->user_id;
+     	$post=Post::create(['group_id'=> $gid ,'user_id' =>$user_id ,'type'=>'P','body' => $request->body]);
 
      	if(!empty($file))
      	{
@@ -67,13 +69,24 @@ class PostController extends Controller
 
           if(!empty($file))
           {
-             $content=time().$file->getClientOriginalName();
-             $file->move('postfiles',$content);
-             Content::where('content_type_id',$pid)->update(['content' =>$content ]);
+             $file_Exists=Content::where('post_id',$pid)->first();
+               if($file_Exists)
+               {
+                  $db_file=$file_Exists->content;
+                  unlink(public_path('postfiles/'.$db_file));
+               }
+               $content=$pid.$file->getClientOriginalName();
+               $file->move('postfiles',$content);
+               Content::where('post_id',$pid)->update(['content' =>$content ]);
           }
 
 
            return redirect()->route('allPosts',$gid); 
+      }
+
+      public function delete()
+      {
+        
       }
     
 }

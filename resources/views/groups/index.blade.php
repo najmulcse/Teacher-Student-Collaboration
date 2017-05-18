@@ -12,7 +12,6 @@
 <section>
 
 
-
     <div class="row">
         <div class="col-sm-9">
           @foreach ($lectures as $lecture)

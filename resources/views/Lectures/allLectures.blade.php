@@ -27,7 +27,7 @@
                        <div class="col-sm-11">
                                     <div>
                                         
-                                            <h2>{{ $lecture->title }}</h2>
+                                           <h2>{{ $lecture->title }}</h2>
                                             <div class="pull-right">
                                               <ul class="nav navbar-nav navbar-right">
                                                 <li class="dropdown">

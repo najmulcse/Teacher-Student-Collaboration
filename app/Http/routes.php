@@ -47,6 +47,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('group/{gid}/storePost',['as' =>'storePost', 'uses' =>'PostController@storePost']);
     Route::get('group/{gid}/allPosts', ['as' => 'allPosts' ,'uses' => 'PostController@allPosts']);
     Route::get('group/{gid}/post/{pid}/edit',['as' => 'edit_post' ,'uses' => 'PostController@edit']);
+    Route::patch('group/{gid}/post/{pid}/update',['as' => 'updatePost', 'uses' =>'PostController@update']);
 
 //unused till now
     Route::get('/admin/grouphome', function () {

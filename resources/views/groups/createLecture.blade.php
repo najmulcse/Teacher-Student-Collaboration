@@ -44,7 +44,7 @@
                           <div class="form-group">
 
                           	 <button type="submit" class="btn btn-sm btn-success pull-right">Upload lecture</button>	
-                             <button type="submit" class="btn btn-sm btn-primary pull-right">Cancle</button>
+                            
                           </div>
                           </form>
                       </div>

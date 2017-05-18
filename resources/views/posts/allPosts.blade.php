@@ -18,13 +18,13 @@
         @foreach ($posts as $post)
               <div class="row">
                   
-                       <div class="col-sm-2">
+                       <div class="col-sm-1">
                           <figure>
-                            <img class="img-responsive" src="img/author.jpg">
+                            <img class="img-responsive" src="{{asset('img/author.jpg')}}">
                           </figure>
                           <label>{{ $user->name }}</label>
                        </div>
-                       <div class="col-sm-10">
+                       <div class="col-sm-11">
                         <div class="pull-right">
                                               <ul class="nav navbar-nav navbar-right">
                                                 <li class="dropdown">
@@ -51,7 +51,7 @@
                                          <p>{{ $post->body }}</p>
                                        <!--   {{$post->getFileContent}} -->
                                     </div>
-                        
+                        <hr>
                        </div>
                       
                    

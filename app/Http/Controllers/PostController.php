@@ -13,6 +13,10 @@ use App\Content;
 
 class PostController extends Controller
 {
+  public function __construct(){
+
+    return $this->middleware('auth');
+  }
 
 	public function createPost($gid){
 		$group = Group::findOrFail( $gid );
@@ -42,21 +46,36 @@ class PostController extends Controller
      	}
 
 
-     	 return redirect()->route('id',$gid);  
+     	 return redirect()->route('allPosts',$gid);  
      	 
       }
 
       public function edit($gid, $pid)
       {
       
-  		  $post=Post::findOrFail($pid);
+  		  $post = Post::findOrFail($pid);
   		 
-  		  $group=Group::findOrFail($gid);
-        $user=$group->user;
+  		  $group = Group::findOrFail($gid);
+        $user = $group->user;
         
         
   		  return view('posts.editPost',compact('post','user','group'));
 
+      }
+      public function update(Request $request , $gid , $pid)
+      {
+        $file= $request->file('file');
+        Post::findOrFail($pid)->update(['body' => $request->body]);
+
+          if(!empty($file))
+          {
+             $content=time().$file->getClientOriginalName();
+             $file->move('postfiles',$content);
+             Content::where('content_type_id',$pid)->update(['content' =>$content ]);
+          }
+
+
+           return redirect()->route('allPosts',$gid); 
       }
     
 }

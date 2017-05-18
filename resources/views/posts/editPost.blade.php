@@ -26,8 +26,9 @@
                     <div class="col-sm-1"></div>
                      <div class="col-sm-10">
                    
-                      <form action="{{ route('storePost',['gid' => $group->id])}}" class="form-horizontal" method="post" enctype="multipart/form-data">
+                      <form action="{{ route('updatePost',['gid' => $group->id,'pid' =>$post->id])}}" class="form-horizontal" method="post" enctype="multipart/form-data">
                            {{ csrf_field() }}
+                           {{method_field('PATCH')}}
                           
                           <div class="form-group">
                           <label class="control-label">Body</label>
@@ -40,8 +41,8 @@
                           </div>
                           <div class="form-group">
 
-                          	 <button type="submit" class="btn btn-sm btn-success pull-right">Update Post</button>	
-                             <button type="submit" class="btn btn-sm btn-primary pull-right">Cancle</button>
+                          	 <button type="submit" class="btn btn-md btn-success pull-right">Update Post</button>	
+                             
                           </div>
                           </form>
                       </div>

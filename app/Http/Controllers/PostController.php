@@ -27,7 +27,7 @@ class PostController extends Controller
 
 	public function allPosts($gid)
 	{
-		$posts = Post::where('group_id', $gid)->orderBy('created_at','desc')->get();
+		$posts = Post::where('group_id', $gid)->where('type','P')->orderBy('created_at','desc')->get();
 		$group =Group::findOrFail($gid);
 		$user= User::findOrFail($group->user_id);
 		return view('posts.allPosts',compact('group','posts','user'));
@@ -39,10 +39,10 @@ class PostController extends Controller
 
      	if(!empty($file))
      	{
-     	   $content=time().$file->getClientOriginalName();
-     	   $post_id=$post->id;
+         $post_id=$post->id;
+     	   $content=$post_id.$file->getClientOriginalName();    	   
      	   $file->move('postfiles',$content);
-     	   Content::create(['content_type_id' => $post_id ,'content' =>$content , 'content_type' =>'P' ]);
+     	   Content::create(['post_id' => $post_id ,'content' =>$content ]);
      	}
 
 
@@ -56,9 +56,7 @@ class PostController extends Controller
   		  $post = Post::findOrFail($pid);
   		 
   		  $group = Group::findOrFail($gid);
-        $user = $group->user;
-        
-        
+        $user = $group->user;           
   		  return view('posts.editPost',compact('post','user','group'));
 
       }

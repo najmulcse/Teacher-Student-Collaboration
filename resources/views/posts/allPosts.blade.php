@@ -2,8 +2,8 @@
 
 @section('group_heading')
               <h2 class="page-header">
-                   <a href="{{ route('id',['id' => $group->id]) }}">{{ $group->group_name }}</a> >>All Posts
-                   <small></small>
+                   <a href="{{ route('id',['id' => $group->id]) }}">{{ $group->group_name }}</a> 
+                    <small> >>All posts </small>
              </h2>
 @endsection
 @section('group_body')
@@ -51,11 +51,12 @@
                                          <p>{{ $post->body }}</p>
                                        <!--   {{$post->getFileContent}} -->
                                     </div>
-                        <hr>
+                        
                        </div>
                       
-                   
+                 
                 </div>
+               <hr>
           @endforeach
 
         </div>
@@ -72,13 +73,13 @@
                                         <a href="{{route('createPost',['gid' => $group->id])}}" class="w3-bar-item w3-button">Create a post</a>
                                           <a href="{{ route('allPosts',['gid' => $group->id])}}" class="w3-bar-item w3-button">All Posts</a>
                                           <a href="{{ route('createLecture',['id'=>$group->id]) }}" class="w3-bar-item w3-button">Lecture Upload </a>
-                                          <a href="#" class="w3-bar-item w3-button">All Lectures</a>
+                                          <a href="{{ route('allLectures',['gid'=>$group->id ]) }}" class="w3-bar-item w3-button">All Lectures</a>
                                           <a href="#" class="w3-bar-item w3-button">Assignment Upload</a>
 
                                     @elseif( $user->user_type_id == 2 || $user-> user_type_id == 1)
                                           <a href="{{route('createPost',['gid' =>$group->id])}}" class="w3-bar-item w3-button">Create a post</a>
                                           <a href="{{ route('allPosts',['gid' => $group->id])}}" class="w3-bar-item w3-button">All Posts</a>
-                                          <a href="#" class="w3-bar-item w3-button">All Lectures</a>
+                                         <a href="{{ route('allLectures',['gid'=>$group->id ]) }}" class="w3-bar-item w3-button">All Lectures</a>
                                     @endif
 
 

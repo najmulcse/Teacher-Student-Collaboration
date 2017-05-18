@@ -32,22 +32,29 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/create',['as'=>'create','uses'=>'GroupController@create']);
     Route::post('/store',['as'=>'store','uses'=>'GroupController@store']);
     Route::get('group/{id}/delete',['as'=>'group_deleted_id','uses'=>'GroupController@delete']);
-    Route::get('group/{id}/createLecture',['as' => 'createLecture','uses' => 'GroupController@createLecture']);
-    Route::post('group/{gid}/store',['as' => 'storeLecture','uses' => 'LectureController@storeLecture']);
-
-    
     Route::get('/joinGroup',['as' => 'joinGroupid', 'uses' => 'GroupController@joinGroup']);
     Route::post('/checkGroup' , [ 'as' => 'checkGroup','uses' => 'GroupController@checkGroupForJoining']);
 
 
 
-    //PostController methods are here
+    //PostController routes are started here
 
     Route::get('/group/{gid}/createPost',['as' => 'createPost','uses' => 'PostController@createPost']);
     Route::post('group/{gid}/storePost',['as' =>'storePost', 'uses' =>'PostController@storePost']);
     Route::get('group/{gid}/allPosts', ['as' => 'allPosts' ,'uses' => 'PostController@allPosts']);
     Route::get('group/{gid}/post/{pid}/edit',['as' => 'edit_post' ,'uses' => 'PostController@edit']);
     Route::patch('group/{gid}/post/{pid}/update',['as' => 'updatePost', 'uses' =>'PostController@update']);
+
+    //PostController routes are ended 
+
+
+    //LectureController routes are  started here
+    Route::get('group/{gid}/allLectures',['as' => 'allLectures' , 'uses' => 'LectureController@allLectures']);
+     Route::get('group/{id}/createLecture',['as' => 'createLecture','uses' => 'LectureController@createLecture']);
+    Route::post('group/{gid}/store',['as' => 'storeLecture','uses' => 'LectureController@storeLecture']);
+
+    //LectureController routes are  ended
+
 
 //unused till now
     Route::get('/admin/grouphome', function () {

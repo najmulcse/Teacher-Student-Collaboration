@@ -10,6 +10,10 @@ class Post extends Model
     //
     public function getFileContent()
     {
-    	return $this->hasMany('App\Content','content_type_id');
+    	return $this->hasMany('App\Content');
+    }
+     public function group(){
+
+    	return $this->belongsTo('App\Group');
     }
 }

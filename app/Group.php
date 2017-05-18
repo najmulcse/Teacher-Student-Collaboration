@@ -10,21 +10,17 @@ class Group extends Model
     
 
     public function user(){
-
-    return $this->belongsTo('App\User');
+        return $this->belongsTo('App\User');
     }
 
     public function users(){
-
         return $this->belongToMany('App\User');
     }
-    // public function members(){
-    // 	return $this->belongToMany('App\GroupMember','users','group_id','user_id');
-    // }
     
-    public function lectures(){
-       return $this->hasMany('App\Lecture');
+    public function posts(){
+       return $this->hasMany('App\Post');
     }
+    
     public function contents(){
        return $this->hasMany('App\Content');
     }

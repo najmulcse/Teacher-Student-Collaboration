@@ -8,7 +8,7 @@ use App\Http\Requests;
 use App\User;
 use App\Group;
 use App\GroupMember;
-use App\Lecture;
+use App\Post;
 use Illuminate\Support\Facades\Auth;
 class GroupController extends Controller
 {
@@ -21,7 +21,7 @@ class GroupController extends Controller
    public function index($id){
 
       $group = Group::findOrFail($id);
-      $lectures=Lecture::where('group_id',$id)->orderBy('created_at','desc')->get();
+      $lectures=Post::where('group_id',$id)->orderBy('created_at','desc')->get();
       $user=User::findOrFail(Auth::user()->id);
 
    		return view('groups.index',compact('group','user','lectures'));
@@ -74,12 +74,12 @@ class GroupController extends Controller
       }
         //In a group ,teachers can see a view to uploading a lecture by this method 
 
-      public function createLecture( $groupid ){
+      // public function createLecture( $groupid ){
         
-        $group= Group::findOrFail( $groupid );
-        $user= User::findOrFail($group->user_id);
-        return view('groups.createLecture',compact('group','user'));
-      }
+      //   $group= Group::findOrFail( $groupid );
+      //   $user= User::findOrFail($group->user_id);
+      //   return view('groups.createLecture',compact('group','user'));
+      // }
 
 
       //unused yet now

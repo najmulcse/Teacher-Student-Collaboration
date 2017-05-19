@@ -36,7 +36,7 @@
                           </div>
                           <div class="form-group">
                           <label class="control-label">File</label>
-                          	<input type="file" name="file" class="form-control" accept=".doc,.ppt,.jpeg,.png,.jpg,">	 
+                          	<input type="file" name="file" class="form-control" accept=".doc,.ppt,.pdf,.jpeg,.png,.jpg,">	 
                           </div>
                           <div class="form-group">
 

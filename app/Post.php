@@ -8,7 +8,7 @@ class Post extends Model
 {
 	protected $guarded=[''];
     //
-    public function getFileContent()
+    public function contents()
     {
     	return $this->hasMany('App\Content');
     }

@@ -9,7 +9,7 @@ use App\Group;
 use App\user;
 use App\Post;
 use App\Content;
-
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -29,7 +29,7 @@ class PostController extends Controller
 	{
 		$posts = Post::where('group_id', $gid)->where('type','P')->orderBy('created_at','desc')->get();
 		$group =Group::findOrFail($gid);
-		$user= User::findOrFail($group->user_id);
+		$user= Auth::user();
 		return view('posts.allPosts',compact('group','posts','user'));
 	}
 	public function storePost(Request $request , $gid)
@@ -84,9 +84,18 @@ class PostController extends Controller
            return redirect()->route('allPosts',$gid); 
       }
 
-      public function delete()
+      public function delete($gid, $pid)
       {
-        
+        $post=Post::findOrFail($pid)->delete();
+
+        $content=Content::where('post_id',$pid)->first();
+        if($content){
+          $file=$content->content;
+          unlink(public_path('postfiles/'.$file));
+          $content->delete();
+          return back();
+        }
+
       }
     
 }

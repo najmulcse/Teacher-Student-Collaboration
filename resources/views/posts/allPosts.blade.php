@@ -35,7 +35,7 @@
                                                   <ul class="dropdown-menu" role="menu">
                                                       <li><a href="{{ route('edit_post',['gid'=>$group->id,'pid' =>$post->id]) }}"><i class="fa fa-pencil fa-fw"></i>Edit</a></li>
 
-                                                     <li><a onclick="return confirm('are you sure?')" href="{{ route('group_deleted_id',['id'=>$group->id]) }}"><i class="fa fa-trash-o fa-fw"></i>Delete</a></li>
+                                                     <li><a onclick="return confirm('are you sure?')" href="{{ route('post_deleted',['gid' => $group->id,'pid'=>$post->id]) }}"><i class="fa fa-trash-o fa-fw"></i>Delete</a></li>
                                                       
 
                                                       
@@ -49,7 +49,11 @@
                                     <div>
                                     
                                          <p>{{ $post->body }}</p>
-                                       <!--   {{$post->getFileContent}} -->
+                                          @if($contents=$post->contents->where('post_id',$post->id))
+                                            @foreach($contents as $content)
+                                            {{$content->content}}
+                                            @endforeach
+                                          @endif
                                     </div>
                         
                        </div>

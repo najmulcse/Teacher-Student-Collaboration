@@ -105,6 +105,8 @@ class PostController extends Controller
      	 
       }
 
+
+// Posts and lectures both are edit ,update,deletable in these methods . 
       public function edit($gid,$type, $pid)
       {
       
@@ -172,6 +174,7 @@ class PostController extends Controller
       }
 
 
+//Posts and lectures contents can download by this method 
 
       public function download($fileid)
       {

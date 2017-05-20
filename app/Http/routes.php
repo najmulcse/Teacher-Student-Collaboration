@@ -45,16 +45,15 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('group/{gid}/post/{type}/{pid}/edit',['as' => 'edit_post' ,'uses' => 'PostController@edit']);
     Route::patch('group/{gid}/post/{type}/{pid}/update',['as' => 'updatePost', 'uses' =>'PostController@update']);
     Route::get('group/{gid}/post/{pid}/delete', ['as' => 'post_deleted', 'uses' => 'PostController@delete']);
+    Route::get('download/{file}',['as' => 'download' , 'uses' => 'PostController@download']);
+
+    Route::get('group/{gid}/allLectures',['as' => 'allLectures' , 'uses' => 'PostController@allLectures']);
+     Route::get('group/{id}/createLecture',['as' => 'createLecture','uses' => 'PostController@createLecture']);
+    Route::post('group/{gid}/store',['as' => 'storeLecture','uses' => 'PostController@storeLecture']);
 
     //PostController routes are ended 
 
 
-    //LectureController routes are  started here
-    Route::get('group/{gid}/allLectures',['as' => 'allLectures' , 'uses' => 'LectureController@allLectures']);
-     Route::get('group/{id}/createLecture',['as' => 'createLecture','uses' => 'LectureController@createLecture']);
-    Route::post('group/{gid}/store',['as' => 'storeLecture','uses' => 'LectureController@storeLecture']);
-
-    //LectureController routes are  ended
 
 
 //unused till now

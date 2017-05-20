@@ -14,10 +14,56 @@ use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
+
   public function __construct(){
 
     return $this->middleware('auth');
   }
+
+// Lecture related routing methods are started here 
+
+ public function createLecture( $groupid ){
+      
+      $group= Group::findOrFail( $groupid );
+      $user= User::findOrFail($group->user_id);
+      return view('lectures.createLecture',compact('group','user'));
+    }
+
+
+    public function allLectures($gid){
+
+       $group = Group::findOrFail($gid);
+       $lectures = Post::where('group_id', $gid)->where('type','L')->orderBy('created_at','desc')->get();
+       $user=User::findOrFail(Auth::user()->id);
+
+        return view('lectures.allLectures',compact('group','user','lectures'));
+     }
+
+
+    //Here all lectures will be stored in the individual group 
+    
+    public function storeLecture(Request $request , $gid){
+
+     $file= $request->file('file');
+     $user_id = Auth::user()->id;
+     $post=Post::create(['group_id'=> $gid ,'user_id'=> $user_id , 'title' => $request->lecture_title ,'body' => $request->body,'type' => 'L']);
+
+     if(!empty($file))
+     {
+        $content=time().$file->getClientOriginalName();
+        $post_id=$post->id;
+        $file_store=Content::create(['post_id' => $post_id ,'content' =>$content ]);
+        $file->move('postfiles',$file_store->id);
+     }
+
+
+      return redirect()->route('allLectures',$gid);  
+      
+
+    }
+
+
+//Post related routing methods are started here 
 
 	public function createPost($gid){
 		$group = Group::findOrFail( $gid );
@@ -26,6 +72,9 @@ class PostController extends Controller
 
 	}
 
+	//here posts are stored through storePost method
+
+
 	public function allPosts($gid)
 	{
 		$posts = Post::where('group_id', $gid)->where('type','P')->orderBy('created_at','desc')->get();
@@ -33,6 +82,7 @@ class PostController extends Controller
 		$user= Auth::user();
 		return view('posts.allPosts',compact('group','posts','user'));
 	}
+
 	public function storePost(Request $request , $gid)
       {
      	$file= $request->file('file');
@@ -43,16 +93,20 @@ class PostController extends Controller
      	if(!empty($file))
      	{
          $post_id=$post->id;
-     	   $content=$post_id.$file->getClientOriginalName();    	   
-     	   $file->move('postfiles',$content);
-     	   Content::create(['post_id' => $post_id ,'content' =>$content ]);
+     	   $content=$file->getClientOriginalName();    	   
+     	   $content_store=Content::create(['post_id' => $post_id ,'content' =>$content ]);
+         $file->move('postfiles',$content_store->id);
      	}
 
 
+
      	 return redirect()->route('allPosts',$gid);  
+
      	 
       }
 
+
+// Posts and lectures both are edit ,update,deletable in these methods . 
       public function edit($gid,$type, $pid)
       {
       
@@ -81,27 +135,27 @@ class PostController extends Controller
         {
           Post::findOrFail($pid)->update(['body' => $request->body, 'title'=>$request->title]);
         }
-          if(!empty($file))
-          {
-             $file_Exists=Content::where('post_id',$pid)->first();
-               if($file_Exists)
-               {
-                  $db_file=$file_Exists->content;
-                  unlink(public_path('postfiles/'.$db_file));
-               }
-               $content=$pid.$file->getClientOriginalName();
-               $file->move('postfiles',$content);
-               Content::where('post_id',$pid)->update(['content' =>$content ]);
-          }
+            if(!empty($file))
+            {
+               $file_Exists=Content::where('post_id',$pid)->first();
+                 if($file_Exists)
+                 {
+                    $db_file=$file_Exists->id;
+                    unlink(public_path('postfiles/'.$db_file));
+                 }
+                 $content=$file->getClientOriginalName();
+                 $file_store=Content::where('post_id',$pid)->update(['content' =>$content ]);
+                $file->move('postfiles/',$db_file);
+            }
 
-          if($type=='P')
-          {
-           return redirect()->route('allPosts',$gid); 
-          }
-          else if($type=='L')
-          {
-            return redirect()->route('allLectures',$gid); 
-          }
+                if($type=='P')
+                {
+                 return redirect()->route('allPosts',$gid); 
+                }
+                else if($type=='L')
+                {
+                  return redirect()->route('allLectures',$gid); 
+                }
       }
 
       public function delete($gid , $pid)
@@ -110,13 +164,24 @@ class PostController extends Controller
 
         $content=Content::where('post_id',$pid)->first();
         if($content){
-          $file=$content->content;
+          $file=$content->id;
           unlink(public_path('postfiles/'.$file));
           $content->delete();
          
         }
          return back();
 
+      }
+
+
+//Posts and lectures contents can download by this method 
+
+      public function download($fileid)
+      {
+            $content=Content::where('id',$fileid)->first();
+            $name=$content->content;
+            $file_path = public_path('postfiles/').$fileid;
+            return response()->download($file_path,$name);
       }
     
 }

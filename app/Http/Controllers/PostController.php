@@ -11,6 +11,7 @@ use App\Post;
 use App\Content;
 use Illuminate\Support\Facades\Auth;
 
+
 class PostController extends Controller
 {
   public function __construct(){
@@ -52,21 +53,34 @@ class PostController extends Controller
      	 
       }
 
-      public function edit($gid, $pid)
+      public function edit($gid,$type, $pid)
       {
       
-  		  $post = Post::findOrFail($pid);
-  		 
+  		  $post = Post::findOrFail($pid); 		 
   		  $group = Group::findOrFail($gid);
-        $user = $group->user;           
-  		  return view('posts.editPost',compact('post','user','group'));
+        $user = $group->user;   
+        if($type=='P')
+        {        
+  		      return view('posts.editPost',compact('post','user','group'));
+        }
+        else if($type='L')
+        {
+            return view('lectures.editLecture',compact('post','user','group'));
+        }
 
       }
-      public function update(Request $request , $gid , $pid)
+      
+      public function update(Request $request , $gid ,$type, $pid)
       {
         $file= $request->file('file');
+        if($type=='P')
+        {
         Post::findOrFail($pid)->update(['body' => $request->body]);
-
+        }
+        else if($type=='L')
+        {
+          Post::findOrFail($pid)->update(['body' => $request->body, 'title'=>$request->title]);
+        }
           if(!empty($file))
           {
              $file_Exists=Content::where('post_id',$pid)->first();
@@ -80,11 +94,17 @@ class PostController extends Controller
                Content::where('post_id',$pid)->update(['content' =>$content ]);
           }
 
-
+          if($type=='P')
+          {
            return redirect()->route('allPosts',$gid); 
+          }
+          else if($type=='L')
+          {
+            return redirect()->route('allLectures',$gid); 
+          }
       }
 
-      public function delete($gid, $pid)
+      public function delete($gid , $pid)
       {
         $post=Post::findOrFail($pid)->delete();
 
@@ -93,8 +113,9 @@ class PostController extends Controller
           $file=$content->content;
           unlink(public_path('postfiles/'.$file));
           $content->delete();
-          return back();
+         
         }
+         return back();
 
       }
     

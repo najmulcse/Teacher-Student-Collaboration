@@ -21,10 +21,10 @@ class GroupController extends Controller
    public function index($id){
 
       $group = Group::findOrFail($id);
-      $lectures=Post::where('group_id',$id)->orderBy('created_at','desc')->get();
-      $user=User::findOrFail(Auth::user()->id);
+      $lec_posts = Post::where('group_id',$id)->orderBy('created_at','desc')->get();
+      $user = User::findOrFail(Auth::user()->id);
 
-   		return view('groups.index',compact('group','user','lectures'));
+   		return view('groups.index',compact('group','user','lec_posts'));
     }
 
     //Group editing view is called by this method 

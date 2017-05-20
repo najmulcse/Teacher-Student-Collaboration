@@ -19,32 +19,33 @@
               <div class="row">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                     Create a lecture
+                     Edit lecture
                     </div>
                     
                     <div class="panel-body">
                     <div class="col-sm-1"></div>
                      <div class="col-sm-10">
                    
-                      <form action="{{ route('storeLecture',['gid' => $group->id]) }}" class="form-horizontal" method="post" enctype="multipart/form-data">
+                      <form action="{{ route('updatePost',['gid' => $group->id,'pid' =>$post->id, 'type' =>'L' ])}}" class="form-horizontal" method="post" enctype="multipart/form-data">
                            {{ csrf_field() }}
+                           {{method_field('PATCH')}}
                           <div class="form-group ">     
                               <label class="control-label">Lecture Title</label>
-                              <input type="text" name="lecture_title" class="form-control" placeholder="Lecture Title" required>  
+                              <input type="text" name="title" class="form-control" value="{{$post->title}}" required>  
                           </div>
                           <div class="form-group">
                           <label class="control-label">Body</label>
-                              <textarea class="form-control" name="body" rows="5" placeholder="Write here..." required></textarea>
+                              <textarea class="form-control" name="body" rows="5" required>{{$post->body}}</textarea>
                              
                           </div>
                           <div class="form-group">
                           <label class="control-label">File</label>
-                          	<input type="file" name="file" class="form-control" accept=".doc,.ppt,.mp4,.jpeg,.png,.jpg," required>	 
+                          	<input type="file" name="file" class="form-control" accept=".doc,.ppt,.mp4,.jpeg,.png,.jpg,">	 
                           </div>
                           <div class="form-group">
 
                           	 <button type="submit" class="btn btn-sm btn-success pull-right">Upload lecture</button>	
-                             <button type="submit" class="btn btn-sm btn-primary pull-right">Cancle</button>
+                            
                           </div>
                           </form>
                       </div>

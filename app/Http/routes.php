@@ -42,8 +42,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/group/{gid}/createPost',['as' => 'createPost','uses' => 'PostController@createPost']);
     Route::post('group/{gid}/storePost',['as' =>'storePost', 'uses' =>'PostController@storePost']);
     Route::get('group/{gid}/allPosts', ['as' => 'allPosts' ,'uses' => 'PostController@allPosts']);
-    Route::get('group/{gid}/post/{pid}/edit',['as' => 'edit_post' ,'uses' => 'PostController@edit']);
-    Route::patch('group/{gid}/post/{pid}/update',['as' => 'updatePost', 'uses' =>'PostController@update']);
+    Route::get('group/{gid}/post/{type}/{pid}/edit',['as' => 'edit_post' ,'uses' => 'PostController@edit']);
+    Route::patch('group/{gid}/post/{type}/{pid}/update',['as' => 'updatePost', 'uses' =>'PostController@update']);
     Route::get('group/{gid}/post/{pid}/delete', ['as' => 'post_deleted', 'uses' => 'PostController@delete']);
 
     //PostController routes are ended 

@@ -26,7 +26,7 @@
                     <div class="col-sm-1"></div>
                      <div class="col-sm-10">
                    
-                      <form action="{{ route('updatePost',['gid' => $group->id,'pid' =>$post->id])}}" class="form-horizontal" method="post" enctype="multipart/form-data">
+                      <form action="{{ route('updatePost',['gid' => $group->id,'pid' =>$post->id, 'type'=>'P'])}}" class="form-horizontal" method="post" enctype="multipart/form-data">
                            {{ csrf_field() }}
                            {{method_field('PATCH')}}
                           

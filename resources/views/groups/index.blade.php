@@ -14,7 +14,7 @@
 
     <div class="row">
         <div class="col-sm-9">
-          @foreach ($lectures as $lecture)
+          @foreach ($lec_posts as $lec_post)
               <div class="row">
                 
                        <div class="col-sm-1">
@@ -26,7 +26,7 @@
                        <div class="col-sm-11">
                             <div>
                                         
-                                <h2>{{ $lecture->title }}</h2>
+                                <h2>{{ $lec_post->title }}</h2>
                                  <div class="pull-right">
                                      <ul class="nav navbar-nav navbar-right">
                                           <li class="dropdown">
@@ -43,12 +43,17 @@
                                             </li>
                                       </ul>
                                  </div>
-                                  <span><small>date:{{ $lecture->created_at->diffForHumans() }}
+                                  <span><small>date:{{ $lec_post->created_at->diffForHumans() }}
                                             </small>
                                         </span>
                             </div>
                             <div>
-                                   <p>{{ $lecture->body }}</p>
+                                   <p>{{ $lec_post->body }}</p>
+                                   @if($contents=$lec_post->contents->where('post_id',$lec_post->id))
+                                         @foreach($contents as $content)
+                                             <a  target="_blank" href={{url('postfiles/'.$content->content )}} >{{$content->content}} </a>
+                                         @endforeach
+                                   @endif
                             </div>
                         
                        </div>
@@ -56,7 +61,7 @@
                        <br>
                 
                 </div>
-
+                <hr>
                    @endforeach
         </div>
         <div class="col-sm-3">

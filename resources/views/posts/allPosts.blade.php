@@ -26,34 +26,33 @@
                        </div>
                        <div class="col-sm-11">
                         <div class="pull-right">
-                                              <ul class="nav navbar-nav navbar-right">
-                                                <li class="dropdown">
-                                                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                <ul class="nav navbar-nav navbar-right">
+                                     <li class="dropdown">
+                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                                        <span class=""><i class="fa fa-cog"></i></span>
-                                                  </a>
+                                            </a>
 
-                                                  <ul class="dropdown-menu" role="menu">
-                                                      <li><a href="{{ route('edit_post',['gid'=>$group->id,'pid' =>$post->id]) }}"><i class="fa fa-pencil fa-fw"></i>Edit</a></li>
+                                            <ul class="dropdown-menu" role="menu">
+                                                    <li><a href="{{ route('edit_post',['gid'=>$group->id,'pid' =>$post->id, 'type'=>'P']) }}"><i class="fa fa-pencil fa-fw"></i>Edit</a></li>
 
-                                                     <li><a onclick="return confirm('are you sure?')" href="{{ route('post_deleted',['gid' => $group->id,'pid'=>$post->id]) }}"><i class="fa fa-trash-o fa-fw"></i>Delete</a></li>
-                                                      
+                                                     <li><a onclick="return confirm('are you sure?')" href="{{ route('post_deleted',['gid' => $group->id,'pid'=>$post->id ]) }}"><i class="fa fa-trash-o fa-fw"></i>Delete</a></li>     
 
-                                                      
-
-                                                 </ul>
-                                             </li>
-                                          </ul>
+                                           </ul>
+                                      </li>
+                                </ul>
                                             </div>
-                        <span><small>date:{{ $post->created_at->diffForHumans() }}
+                        <small>date:{{ $post->created_at->diffForHumans() }}
                                             </small>
                                     <div>
                                     
                                          <p>{{ $post->body }}</p>
+                                         <div>
                                           @if($contents=$post->contents->where('post_id',$post->id))
-                                            @foreach($contents as $content)
-                                            {{$content->content}}
-                                            @endforeach
+                                                @foreach($contents as $content)
+                                                   <a  target="_blank" href={{url('postfiles/'.$content->content )}} >{{$content->content}} </a>
+                                                @endforeach
                                           @endif
+                                          </div>
                                     </div>
                         
                        </div>

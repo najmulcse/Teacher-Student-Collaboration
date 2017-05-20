@@ -55,8 +55,12 @@ class LectureController extends Controller
      }
 
 
-      return redirect()->route('id',$gid);  
+      return redirect()->route('allLectures',$gid);  
       
 
     }
+
+
+
+    
 }

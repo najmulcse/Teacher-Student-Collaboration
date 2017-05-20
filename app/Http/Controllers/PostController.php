@@ -49,9 +49,9 @@ class PostController extends Controller
      	if(!empty($file))
      	{
          $post_id=$post->id;
-     	   $content=$post_id.$file->getClientOriginalName();    	   
-     	   $file->move('postfiles',$content);
-     	   Content::create(['post_id' => $post_id ,'content' =>$content ]);
+     	   $content=$file->getClientOriginalName();    	   
+     	   $content_store=Content::create(['post_id' => $post_id ,'content' =>$content ]);
+         $file->move('postfiles',$content_store->id);
      	}
 
 
@@ -89,27 +89,27 @@ class PostController extends Controller
         {
           Post::findOrFail($pid)->update(['body' => $request->body, 'title'=>$request->title]);
         }
-          if(!empty($file))
-          {
-             $file_Exists=Content::where('post_id',$pid)->first();
-               if($file_Exists)
-               {
-                  $db_file=$file_Exists->content;
-                  unlink(public_path('postfiles/'.$db_file));
-               }
-               $content=$pid.$file->getClientOriginalName();
-               $file->move('postfiles',$content);
-               Content::where('post_id',$pid)->update(['content' =>$content ]);
-          }
+            if(!empty($file))
+            {
+               $file_Exists=Content::where('post_id',$pid)->first();
+                 if($file_Exists)
+                 {
+                    $db_file=$file_Exists->id;
+                    unlink(public_path('postfiles/'.$db_file));
+                 }
+                 $content=$file->getClientOriginalName();
+                 $file_store=Content::where('post_id',$pid)->update(['content' =>$content ]);
+                $file->move('postfiles/',$db_file);
+            }
 
-          if($type=='P')
-          {
-           return redirect()->route('allPosts',$gid); 
-          }
-          else if($type=='L')
-          {
-            return redirect()->route('allLectures',$gid); 
-          }
+                if($type=='P')
+                {
+                 return redirect()->route('allPosts',$gid); 
+                }
+                else if($type=='L')
+                {
+                  return redirect()->route('allLectures',$gid); 
+                }
       }
 
       public function delete($gid , $pid)
@@ -118,13 +118,23 @@ class PostController extends Controller
 
         $content=Content::where('post_id',$pid)->first();
         if($content){
-          $file=$content->content;
+          $file=$content->id;
           unlink(public_path('postfiles/'.$file));
           $content->delete();
          
         }
          return back();
 
+      }
+
+
+
+      public function download($fileid)
+      {
+            $content=Content::where('id',$fileid)->first();
+            $name=$content->content;
+            $file_path = public_path('postfiles/').$fileid;
+            return response()->download($file_path,$name);
       }
     
 }

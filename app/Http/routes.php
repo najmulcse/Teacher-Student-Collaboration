@@ -45,6 +45,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('group/{gid}/post/{type}/{pid}/edit',['as' => 'edit_post' ,'uses' => 'PostController@edit']);
     Route::patch('group/{gid}/post/{type}/{pid}/update',['as' => 'updatePost', 'uses' =>'PostController@update']);
     Route::get('group/{gid}/post/{pid}/delete', ['as' => 'post_deleted', 'uses' => 'PostController@delete']);
+    Route::get('download/{file}',['as' => 'download' , 'uses' => 'PostController@download']);
+
 
     //PostController routes are ended 
 

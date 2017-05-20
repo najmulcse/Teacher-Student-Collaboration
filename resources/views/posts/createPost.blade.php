@@ -36,12 +36,12 @@
                           </div>
                           <div class="form-group">
                           <label class="control-label">File</label>
-                          	<input type="file" name="file" class="form-control" accept=".doc,.ppt,.jpeg,.png,.jpg,">	 
+                          	<input type="file" name="file" class="form-control" accept=".doc,.ppt,.pdf,.jpeg,.png,.jpg,">	 
                           </div>
                           <div class="form-group">
 
-                          	 <button type="submit" class="btn btn-sm btn-success pull-right">Post</button>	
-                             <button type="submit" class="btn btn-sm btn-primary pull-right">Cancle</button>
+                          	 <button type="submit" class="btn btn-md btn-success pull-right">Post</button>	
+                             
                           </div>
                           </form>
                       </div>
@@ -63,12 +63,18 @@
                                    <!--   <a href="{{url('/create')}}" class="create_group_button">Create new group</a> -->
 
                                    @if( $user-> user_type_id == 1 && $user->id == $group->user_id)
-                                        <a href="#" class="w3-bar-item w3-button">Create a post</a>
+                                        <a href="{{route('createPost',['gid' => $group->id])}}" class="w3-bar-item w3-button">Create a post</a>
+                                          <a href="{{ route('allPosts',['gid' => $group->id])}}" class="w3-bar-item w3-button">All Posts</a>
                                           <a href="{{ route('createLecture',['id'=>$group->id]) }}" class="w3-bar-item w3-button">Lecture Upload </a>
+                                         <a href="{{ route('allLectures',['gid'=>$group->id ]) }}" class="w3-bar-item w3-button">All Lectures</a>
                                           <a href="#" class="w3-bar-item w3-button">Assignment Upload</a>
-                                    @elseif( $user->user_type_id == 2)
-                                          <a href="#" class="w3-bar-item w3-button">Create a post</a>
+
+                                    @elseif( $user->user_type_id == 2 || $user-> user_type_id == 1)
+                                          <a href="{{route('createPost',['gid' =>$group->id])}}" class="w3-bar-item w3-button">Create a post</a>
+                                          <a href="{{ route('allPosts',['gid' => $group->id])}}" class="w3-bar-item w3-button">All Posts</a>
+                                         <a href="{{ route('allLectures',['gid'=>$group->id ]) }}" class="w3-bar-item w3-button">All Lectures</a>
                                     @endif
+
                                     </div>
                                 </div>
 

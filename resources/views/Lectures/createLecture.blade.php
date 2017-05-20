@@ -39,7 +39,7 @@
                           </div>
                           <div class="form-group">
                           <label class="control-label">File</label>
-                          	<input type="file" name="file" class="form-control" accept=".doc,.ppt,.mp4,.jpeg,.png,.jpg," required>	 
+                          	<input type="file" name="file" class="form-control" accept=".doc,.ppt,.pdf,.jpeg,.png,.jpg," required>	 
                           </div>
                           <div class="form-group">
 

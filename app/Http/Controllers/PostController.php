@@ -20,6 +20,50 @@ class PostController extends Controller
     return $this->middleware('auth');
   }
 
+// Lecture related routing methods are started here 
+
+ public function createLecture( $groupid ){
+      
+      $group= Group::findOrFail( $groupid );
+      $user= User::findOrFail($group->user_id);
+      return view('lectures.createLecture',compact('group','user'));
+    }
+
+
+    public function allLectures($gid){
+
+       $group = Group::findOrFail($gid);
+       $lectures = Post::where('group_id', $gid)->where('type','L')->orderBy('created_at','desc')->get();
+       $user=User::findOrFail(Auth::user()->id);
+
+        return view('lectures.allLectures',compact('group','user','lectures'));
+     }
+
+
+    //Here all lectures will be stored in the individual group 
+    
+    public function storeLecture(Request $request , $gid){
+
+     $file= $request->file('file');
+     $user_id = Auth::user()->id;
+     $post=Post::create(['group_id'=> $gid ,'user_id'=> $user_id , 'title' => $request->lecture_title ,'body' => $request->body,'type' => 'L']);
+
+     if(!empty($file))
+     {
+        $content=time().$file->getClientOriginalName();
+        $post_id=$post->id;
+        $file_store=Content::create(['post_id' => $post_id ,'content' =>$content ]);
+        $file->move('postfiles',$file_store->id);
+     }
+
+
+      return redirect()->route('allLectures',$gid);  
+      
+
+    }
+
+
+//Post related routing methods are started here 
 
 	public function createPost($gid){
 		$group = Group::findOrFail( $gid );

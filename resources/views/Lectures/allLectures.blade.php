@@ -56,7 +56,7 @@
                                           <div>
                                           @if($contents=$lecture->contents->where('post_id',$lecture->id))
                                                 @foreach($contents as $content)
-                                                    <a target="_blank" href={{url('postfiles/'.$content->content )}} >{{$content->content}} </a>
+                                                    <a class="" href="{{url('download')}}/{{$content->id}}">{{$content->content}} </a>
                                                 @endforeach
                                           @endif
                                           </div>

@@ -33,12 +33,17 @@
                                               <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
                                                        <span class=""><i class="fa fa-cog"></i></span>
                                               </a>
-
+                                               
                                                   <ul class="dropdown-menu" role="menu">
-                                                      <li><a href="#"><i class="fa fa-pencil fa-fw"></i>Edit</a></li>
+                                                   @if(($lec_post->type)=='L')
+                                                        <li><a href="{{ route('edit_post',['gid'=>$group->id,'pid' =>$lec_post->id, 'type'=>'L']) }}"><i class="fa fa-pencil fa-fw"></i>Edit</a></li>
 
-                                                     <li><a onclick="return confirm('are you sure?')" href="#"><i class="fa fa-trash-o fa-fw"></i>Delete</a></li>
+                                                       <li><a onclick="return confirm('are you sure?')" href="{{ route('post_deleted',['gid' => $group->id,'pid'=>$lec_post->id ]) }}"><i class="fa fa-trash-o fa-fw"></i>Delete</a></li>
+                                                  @elseif($lec_post->type=='P')
+                                                       <li><a href="{{ route('edit_post',['gid'=>$group->id,'pid' =>$lec_post->id, 'type'=>'P']) }}"><i class="fa fa-pencil fa-fw"></i>Edit</a></li>
 
+                                                       <li><a onclick="return confirm('are you sure?')" href="{{ route('post_deleted',['gid' => $group->id,'pid'=>$lec_post->id ]) }}"><i class="fa fa-trash-o fa-fw"></i>Delete</a></li> 
+                                                  @endif
                                                   </ul>
                                             </li>
                                       </ul>
@@ -50,10 +55,10 @@
                             <div>
                                    <p>{{ $lec_post->body }}</p>
                                    @if($contents=$lec_post->contents->where('post_id',$lec_post->id))
-                                         @foreach($contents as $content)
-                                             <a  target="_blank" href={{url('postfiles/'.$content->content )}} >{{$content->content}} </a>
-                                         @endforeach
-                                   @endif
+                                                @foreach($contents as $content)
+                                                    <a class="" href="{{url('download')}}/{{$content->id}}">{{$content->content}} </a>
+                                                @endforeach
+                                          @endif
                             </div>
                         
                        </div>

@@ -39,10 +39,6 @@
                                                       <li><a href="{{ route('edit_post',['gid'=>$group->id,'pid' =>$lecture->id, 'type'=>'L']) }}"><i class="fa fa-pencil fa-fw"></i>Edit</a></li>
 
                                                      <li><a onclick="return confirm('are you sure?')" href="{{ route('post_deleted',['gid' => $group->id,'pid'=>$lecture->id ]) }}"><i class="fa fa-trash-o fa-fw"></i>Delete</a></li>  
-                                                      
-
-                                                      
-
                                                  </ul>
                                              </li>
                                           </ul>

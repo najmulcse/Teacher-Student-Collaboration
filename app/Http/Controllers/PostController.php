@@ -44,6 +44,9 @@ class PostController extends Controller
     
     public function storeLecture(Request $request , $gid){
 
+
+      
+
      $file= $request->file('file');
      $user_id = Auth::user()->id;
      $post=Post::create(['group_id'=> $gid ,'user_id'=> $user_id , 'title' => $request->lecture_title ,'body' => $request->body,'type' => 'L']);
@@ -67,7 +70,8 @@ class PostController extends Controller
 
 	public function createPost($gid){
 		$group = Group::findOrFail( $gid );
-		$user= User::findOrFail($group->user_id);
+    $user_id=Auth::user()->id;
+		$user= User::findOrFail($user_id);
 		return view('posts.createPost',compact('group','user'));
 
 	}
@@ -86,8 +90,8 @@ class PostController extends Controller
 	public function storePost(Request $request , $gid)
       {
      	$file= $request->file('file');
-      $user=Group::where('id',$gid)->first();
-      $user_id=$user->user_id;
+     // $user=Group::where('id',$gid)->first();
+      $user_id=Auth::user()->id;
      	$post=Post::create(['group_id'=> $gid ,'user_id' =>$user_id ,'type'=>'P','body' => $request->body]);
 
      	if(!empty($file))
@@ -145,7 +149,7 @@ class PostController extends Controller
                  }
                  $content=$file->getClientOriginalName();
                  $file_store=Content::where('post_id',$pid)->update(['content' =>$content ]);
-                $file->move('postfiles/',$db_file);
+                 $file->move('postfiles/',$db_file);
             }
 
                 if($type=='P')

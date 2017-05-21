@@ -22,7 +22,7 @@
                           <figure>
                             <img class="img-responsive" src="{{asset('img/author.jpg')}}">
                           </figure>
-                          <label>{{ $user->name }}</label>
+                          <label>{{ $post->user->where('id',$post->user_id)->first()->name }}</label>
                        </div>
                        <div class="col-sm-11">
                         <div class="pull-right">
@@ -61,6 +61,31 @@
                  
                 </div>
                <hr>
+
+          <!--modal started here -->
+
+            
+            <div class="modal fade" id="modal-id">
+              <div class="modal-dialog">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    <h4 class="modal-title">Modal title</h4>
+                  </div>
+                  <div class="modal-body">
+                    
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          <!-- modal ended -->
+
+
           @endforeach
 
         </div>
@@ -105,6 +130,21 @@
 </div>
 
 <script>
+
+
+function delete() {
+  var xhttp = new XMLHttpRequest();
+  xhttp.onreadystatechange = function() {
+    if (this.readyState == 4 && this.status == 200) {
+     document.getElementById("demo").innerHTML = this.responseText;
+    }
+  };
+  xhttp.open("GET", "ajax_info.txt", true);
+  xhttp.send();
+}
+
+
+
 function w3_open() {
     document.getElementById("mySidebar").style.display = "block";
 }

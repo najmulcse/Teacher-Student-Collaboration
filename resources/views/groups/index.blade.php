@@ -21,7 +21,7 @@
                           <figure>
                             <img class="img-responsive" src="{{asset('img/author.jpg')}}">
                           </figure>
-                          <label>{{ $user->name }}</label>
+                          <label>{{ $lec_post->user->where('id',$lec_post->user_id)->first()->name }}</label>
                        </div>
                        <div class="col-sm-11">
                             <div>

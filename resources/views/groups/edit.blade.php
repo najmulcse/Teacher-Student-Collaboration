@@ -37,7 +37,7 @@
                             <div class="form-group">
                                 <label for="title" class="col-sm-3 control-label">Group code</label>
                                 <div class="col-sm-9">
-                                  <input type="text" name="course_code" class="form-control" value="{{$group->group_code}}" required>
+                                  <input type="text" name="group_code" class="form-control" value="{{$group->group_code}}" required>
                                 </div>
                           </div>
                           <div class="form-group">

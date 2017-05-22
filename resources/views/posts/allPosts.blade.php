@@ -36,9 +36,9 @@
                                                 </a>
                                                 <ul class="dropdown-menu" role="menu">
                                                         <li><a href="{{ route('edit_post',['gid'=>$group->id,'pid' =>$post->id, 'type'=>'P']) }}"><i class="fa fa-pencil fa-fw"></i>Edit</a></li>
-                                                        <a class="btn btn-info" data-toggle="modal" href='#{{$post->id}}'> <i class="fa fa-trash-o fa-fw"></i>Delete</a>
-
-                                                       <!--  <li><a onclick="return confirm('are you sure?')" href="{{ route('post_deleted',['gid' => $group->id,'pid'=>$post->id ]) }}"><i class="fa fa-trash-o fa-fw"></i>Delete</a></li>  -->    
+                                                       <!--  <a class="btn btn-info" data-toggle="modal" href='#{{$post->id}}'> <i class="fa fa-trash-o fa-fw"></i>Delete</a>
+ -->
+                                                        <li><a onclick="return confirm('are you sure?')" href="{{ route('post_deleted',['gid' => $group->id,'pid'=>$post->id ]) }}"><i class="fa fa-trash-o fa-fw"></i>Delete</a></li>     
                                                 </ul>
                                           </li>
                                     </ul>
@@ -58,6 +58,7 @@
                                           @endif
                                           </div>
                                     </div>
+                                    <br>
                                     <div class="row">
                                           <div class="col-sm-1">
                                                <img class="img-responsive" src="{{asset('img/author.jpg')}}">
@@ -68,7 +69,7 @@
                                               
                                                 <div class="form-group">
 
-                                                  <textarea type="text" class="form-control" id="" rows="4" placeholder="Write a comment"></textarea>
+                                                  <textarea type="text" class="form-control" id="" rows="3" placeholder="Write a comment"></textarea>
                                                 </div>
                                               
                                                 <button type="submit" class="btn btn-sm btn-primary">Comment</button>

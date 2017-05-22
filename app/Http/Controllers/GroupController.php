@@ -44,8 +44,20 @@ class GroupController extends Controller
 
       //Users will able to edit their groups by this method
     public function update(Request $request,$id){
-         Group::findOrFail($id)->update(['group_name'=>$request->group_name,'course_code'=>$request->course_code,'session'=>$request->session,'short_description'=>$request->short_description]);
-        return redirect('/home');
+
+           $group_code=$request->group_code;
+          if (Group::where('group_code', '=', $group_code)->exists()) {
+             $msg= "Group code already exists ! Try another one.";
+              return redirect('/home');
+            }
+         Group::findOrFail($id)->update([
+          'group_name'        =>$request->group_name,
+          'group_code'        => $group_code ,
+          'course_code'       =>$request->course_code,
+          'session'           =>$request->session,
+          'short_description' =>$request->short_description
+          ]);
+         return redirect('/home');
     }
 
     //Group deleted method

@@ -22,7 +22,7 @@
                           <figure>
                             <img class="img-responsive" src="{{asset('img/author.jpg')}}">
                           </figure>
-                          <label>{{ $user->name }}</label>
+                         <label>{{ $lecture->user->where('id',$lecture->user_id)->first()->name }}</label>
                        </div>
                        <div class="col-sm-11">
                               <div>
@@ -60,6 +60,26 @@
                                           @endif
                                           </div>
                                     </div>
+                                    <br>
+                                    <div class="row">
+                                          <div class="col-sm-1">
+                                               <img class="img-responsive" src="{{asset('img/author.jpg')}}">
+                                               <label>{{ $lecture->user->where('id',$lecture->user_id)->first()->name }}</label>
+                                          </div>
+                                           <div class="col-sm-11">
+                                              <form action="" method="POST" role="form">
+                                              
+                                                <div class="form-group">
+
+                                                  <textarea type="text" class="form-control" id="" rows="3" placeholder="Write a comment"></textarea>
+                                                </div>
+                                              
+                                                <button type="submit" class="btn btn-sm btn-primary">Comment</button>
+                                              </form>
+                                          </div>
+                                         
+                                    </div>
+                                    
                         
                        </div>
                        

@@ -31,7 +31,7 @@
                     <div class="form-bottom">
                         <form role="form" action="{{url('/login')}}" method="post" class="login-form">
                             {{csrf_field()}}
-                            <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
+                            <div class="form-group {{ $errors->has('email') ? ' has-error' : '' }}">
 
                                 <input type="email" name="email" placeholder="Email" class="form-username form-control" id="form-username" value="{{old('email')}}">
                                 @if ($errors->has('email'))

@@ -142,9 +142,9 @@ class PostController extends Controller
             if(!empty($file))
             {
                $file_Exists=Content::where('post_id',$pid)->first();
+               $db_file=$file_Exists->id;
                  if($file_Exists)
                  {
-                    $db_file=$file_Exists->id;
                     unlink(public_path('postfiles/'.$db_file));
                  }
                  $content=$file->getClientOriginalName();
@@ -164,8 +164,8 @@ class PostController extends Controller
 
       public function delete($gid , $pid)
       {
-        $post=Post::findOrFail($pid)->delete();
 
+        $post=Post::findOrFail($pid)->delete();
         $content=Content::where('post_id',$pid)->first();
         if($content){
           $file=$content->id;

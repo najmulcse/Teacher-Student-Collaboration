@@ -25,28 +25,31 @@
                           <label>{{ $user->name }}</label>
                        </div>
                        <div class="col-sm-11">
-                                    <div>
+                              <div>
                                         
-                                           <h2>{{ $lecture->title }}</h2>
-                                            <div class="pull-right">
-                                              <ul class="nav navbar-nav navbar-right">
+                                  <h2>{{ $lecture->title }}</h2>
+                                  @if( ( ($lecture->type)=='L') && ($user->id == $lecture->user_id))
+                                      <div class="pull-right">
+                                          <ul class="nav navbar-nav navbar-right">
                                                 <li class="dropdown">
-                                                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                                       <span class=""><i class="fa fa-cog"></i></span>
-                                                  </a>
+                                                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                                           <span class=""><i class="fa fa-cog"></i></span>
+                                                      </a>
+                                                      <ul class="dropdown-menu" role="menu">
+                                                          <li><a href="{{ route('edit_post',['gid'=>$group->id,'pid' =>$lecture->id, 'type'=>'L']) }}"><i class="fa fa-pencil fa-fw"></i>Edit</a></li>
 
-                                                  <ul class="dropdown-menu" role="menu">
-                                                      <li><a href="{{ route('edit_post',['gid'=>$group->id,'pid' =>$lecture->id, 'type'=>'L']) }}"><i class="fa fa-pencil fa-fw"></i>Edit</a></li>
-
-                                                     <li><a onclick="return confirm('are you sure?')" href="{{ route('post_deleted',['gid' => $group->id,'pid'=>$lecture->id ]) }}"><i class="fa fa-trash-o fa-fw"></i>Delete</a></li>  
-                                                 </ul>
-                                             </li>
+                                                         <li><a onclick="return confirm('are you sure?')" href="{{ route('post_deleted',['gid' => $group->id,'pid'=>$lecture->id ]) }}"><i class="fa fa-trash-o fa-fw"></i>Delete</a></li>  
+                                                     </ul>
+                                                </li>
                                           </ul>
-                                            </div>
-                                            <span><small>date:{{ $lecture->created_at->diffForHumans() }}
-                                            </small>
-                                        </span>
-                                    </div>
+                                      </div>
+                                  @endif
+                                  <span>
+                                     <small>
+                                          date:{{ $lecture->created_at->diffForHumans() }}
+                                      </small>
+                                  </span>
+                               </div>
                                     <div>
                                          <p>{{ $lecture->body }}</p>
                                           <div>

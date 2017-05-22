@@ -27,27 +27,39 @@
                             <div>
                                         
                                 <h2>{{ $lec_post->title }}</h2>
-                                 <div class="pull-right">
-                                     <ul class="nav navbar-nav navbar-right">
-                                          <li class="dropdown">
-                                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                                       <span class=""><i class="fa fa-cog"></i></span>
-                                              </a>
-                                               
-                                                  <ul class="dropdown-menu" role="menu">
-                                                   @if(($lec_post->type)=='L')
-                                                        <li><a href="{{ route('edit_post',['gid'=>$group->id,'pid' =>$lec_post->id, 'type'=>'L']) }}"><i class="fa fa-pencil fa-fw"></i>Edit</a></li>
+                                @if( ( ($lec_post->type)=='P') && ($user->id == $lec_post->user_id))
+                                       <div class="pull-right">
+                                           <ul class="nav navbar-nav navbar-right">
+                                                <li class="dropdown">
+                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                                             <span class=""><i class="fa fa-cog"></i></span>
+                                                    </a>
+                                                    <ul class="dropdown-menu" role="menu">
+                                                          <li><a href="{{ route('edit_post',['gid'=>$group->id, 'pid' => $lec_post->id, 'type'=>'P']) }}"><i class="fa fa-pencil fa-fw"></i>Edit</a></li>
 
-                                                       <li><a onclick="return confirm('are you sure?')" href="{{ route('post_deleted',['gid' => $group->id,'pid'=>$lec_post->id ]) }}"><i class="fa fa-trash-o fa-fw"></i>Delete</a></li>
-                                                  @elseif($lec_post->type=='P')
-                                                       <li><a href="{{ route('edit_post',['gid'=>$group->id,'pid' =>$lec_post->id, 'type'=>'P']) }}"><i class="fa fa-pencil fa-fw"></i>Edit</a></li>
+                                                          <li><a onclick="return confirm('are you sure?')" href="{{ route('post_deleted',['gid' => $group->id,'pid'=>$lec_post->id ]) }}"><i class="fa fa-trash-o fa-fw"></i>Delete</a></li> 
+                                                      
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                       </div>
 
-                                                       <li><a onclick="return confirm('are you sure?')" href="{{ route('post_deleted',['gid' => $group->id,'pid'=>$lec_post->id ]) }}"><i class="fa fa-trash-o fa-fw"></i>Delete</a></li> 
-                                                  @endif
-                                                  </ul>
-                                            </li>
-                                      </ul>
-                                 </div>
+                                  @elseif( ( ($lec_post->type)=='L') && ($user->id == $lec_post->user_id))
+                                      <div class="pull-right">
+                                          <ul class="nav navbar-nav navbar-right">
+                                                <li class="dropdown">
+                                                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                                           <span class=""><i class="fa fa-cog"></i></span>
+                                                      </a>
+                                                      <ul class="dropdown-menu" role="menu">
+                                                          <li><a href="{{ route('edit_post',['gid'=>$group->id,'pid' => $lec_post->id, 'type'=>'L']) }}"><i class="fa fa-pencil fa-fw"></i>Edit</a></li>
+
+                                                         <li><a onclick="return confirm('are you sure?')" href="{{ route('post_deleted',['gid' => $group->id,'pid'=>$lec_post->id ]) }}"><i class="fa fa-trash-o fa-fw"></i>Delete</a></li>  
+                                                     </ul>
+                                                </li>
+                                          </ul>
+                                      </div>  
+                                  @endif
                                   <span><small>date:{{ $lec_post->created_at->diffForHumans() }}
                                             </small>
                                         </span>

@@ -21,26 +21,29 @@
                        <div class="col-sm-1">
                           <figure>
                             <img class="img-responsive" src="{{asset('img/author.jpg')}}">
-                          </figure>
+                          
                           <label>{{ $post->user->where('id',$post->user_id)->first()->name }}</label>
+                          </figure>
                        </div>
                        <div class="col-sm-11">
-                        <div class="pull-right">
-                                <ul class="nav navbar-nav navbar-right">
-                                     <li class="dropdown">
-                                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                                       <span class=""><i class="fa fa-cog"></i></span>
-                                            </a>
 
-                                            <ul class="dropdown-menu" role="menu">
-                                                    <li><a href="{{ route('edit_post',['gid'=>$group->id,'pid' =>$post->id, 'type'=>'P']) }}"><i class="fa fa-pencil fa-fw"></i>Edit</a></li>
+                       @if( ( ($post->type)=='P') && ($user->id == $post->user_id))
+                            <div class="pull-right">
+                                    <ul class="nav navbar-nav navbar-right">
+                                         <li class="dropdown">
+                                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                                           <span class=""><i class="fa fa-cog"></i></span>
+                                                </a>
+                                                <ul class="dropdown-menu" role="menu">
+                                                        <li><a href="{{ route('edit_post',['gid'=>$group->id,'pid' =>$post->id, 'type'=>'P']) }}"><i class="fa fa-pencil fa-fw"></i>Edit</a></li>
+                                                        <a class="btn btn-info" data-toggle="modal" href='#{{$post->id}}'> <i class="fa fa-trash-o fa-fw"></i>Delete</a>
 
-                                                     <li><a onclick="return confirm('are you sure?')" href="{{ route('post_deleted',['gid' => $group->id,'pid'=>$post->id ]) }}"><i class="fa fa-trash-o fa-fw"></i>Delete</a></li>     
-
-                                           </ul>
-                                      </li>
-                                </ul>
-                                            </div>
+                                                       <!--  <li><a onclick="return confirm('are you sure?')" href="{{ route('post_deleted',['gid' => $group->id,'pid'=>$post->id ]) }}"><i class="fa fa-trash-o fa-fw"></i>Delete</a></li>  -->    
+                                                </ul>
+                                          </li>
+                                    </ul>
+                              </div>
+                          @endif
                         <small>date:{{ $post->created_at->diffForHumans() }}
                                             </small>
                                     <div>
@@ -55,6 +58,26 @@
                                           @endif
                                           </div>
                                     </div>
+                                    <div class="row">
+                                          <div class="col-sm-1">
+                                               <img class="img-responsive" src="{{asset('img/author.jpg')}}">
+                                                 <label>{{ $post->user->where('id',$post->user_id)->first()->name }}</label>
+                                          </div>
+                                           <div class="col-sm-9">
+                                              <form action="" method="POST" role="form">
+                                              
+                                                <div class="form-group">
+
+                                                  <textarea type="text" class="form-control" id="" rows="5" placeholder="Write a comment"></textarea>
+                                                </div>
+                                              
+                                                <button type="submit" class="btn btn-sm btn-primary">Comment</button>
+                                              </form>
+                                          </div>
+                                          <div class="col-sm-2">
+                                            
+                                          </div>
+                                    </div>
                         
                        </div>
                       
@@ -65,7 +88,7 @@
           <!--modal started here -->
 
             
-            <div class="modal fade" id="modal-id">
+            <div class="modal fade" id="{{$post->id}}">
               <div class="modal-dialog">
                 <div class="modal-content">
                   <div class="modal-header">
@@ -73,11 +96,11 @@
                     <h4 class="modal-title">Modal title</h4>
                   </div>
                   <div class="modal-body">
-                    
+                    {{$post->id}} {{$group->id}}
                   </div>
                   <div class="modal-footer">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button type="button" data-dismiss="modal" class="btn btn-danger" id="confirm"  onclick=deletePost({{$post->id}},{{$group->id}})>Ok</button>
                   </div>
                 </div>
               </div>
@@ -132,15 +155,27 @@
 <script>
 
 
-function delete() {
+function deletePost($pid,$gid) {
+
+ 
   var xhttp = new XMLHttpRequest();
   xhttp.onreadystatechange = function() {
     if (this.readyState == 4 && this.status == 200) {
      document.getElementById("demo").innerHTML = this.responseText;
     }
-  };
-  xhttp.open("GET", "ajax_info.txt", true);
-  xhttp.send();
+  };  
+      xmlhttp.open("GET", 'group/{$gid}/post/{$pid}/delete', true);
+      xmlhttp.send();
+
+  // $.ajax({
+  //       type: "POST",
+  //       url: '.post_deleted',
+  //       data:'post_deleted'+$gid,
+  //        success: function(response){ // What to do if we succeed
+  //             if(data == "success")
+  //              alert(response); 
+  //              }
+  //   })
 }
 
 

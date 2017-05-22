@@ -131,6 +131,7 @@ class PostController extends Controller
       public function update(Request $request , $gid ,$type, $pid)
       {
         $file= $request->file('file');
+        
         if($type=='P')
         {
         Post::findOrFail($pid)->update(['body' => $request->body]);
@@ -139,17 +140,24 @@ class PostController extends Controller
         {
           Post::findOrFail($pid)->update(['body' => $request->body, 'title'=>$request->title]);
         }
+
             if(!empty($file))
             {
                $file_Exists=Content::where('post_id',$pid)->first();
-               $db_file=$file_Exists->id;
+               $content=$file->getClientOriginalName();
                  if($file_Exists)
                  {
-                    unlink(public_path('postfiles/'.$db_file));
+                    $db_file=$file_Exists->id;                  
+                    unlink(public_path('postfiles/'.$db_file));                  
+                    $file_store=Content::where('post_id',$pid)->update(['content' =>$content ]);
+                    $file->move('postfiles/',$db_file);
                  }
-                 $content=$file->getClientOriginalName();
-                 $file_store=Content::where('post_id',$pid)->update(['content' =>$content ]);
-                 $file->move('postfiles/',$db_file);
+                 else
+                 {
+                    $file_store=Content::create(['post_id' =>$pid,'content' =>$content]);
+                    $file->move('postfiles/',$file_store->id);
+                 }
+                 
             }
 
                 if($type=='P')

@@ -63,20 +63,18 @@
                                                <img class="img-responsive" src="{{asset('img/author.jpg')}}">
                                                  <label>{{ $post->user->where('id',$post->user_id)->first()->name }}</label>
                                           </div>
-                                           <div class="col-sm-9">
+                                           <div class="col-sm-11">
                                               <form action="" method="POST" role="form">
                                               
                                                 <div class="form-group">
 
-                                                  <textarea type="text" class="form-control" id="" rows="5" placeholder="Write a comment"></textarea>
+                                                  <textarea type="text" class="form-control" id="" rows="4" placeholder="Write a comment"></textarea>
                                                 </div>
                                               
                                                 <button type="submit" class="btn btn-sm btn-primary">Comment</button>
                                               </form>
                                           </div>
-                                          <div class="col-sm-2">
-                                            
-                                          </div>
+                                         
                                     </div>
                         
                        </div>

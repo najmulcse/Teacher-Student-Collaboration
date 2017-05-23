@@ -36,8 +36,8 @@ class PostController extends Controller
        $group = Group::findOrFail($gid);
        $lectures = Post::where('group_id', $gid)->where('type','L')->orderBy('created_at','desc')->get();
        $user=User::findOrFail(Auth::user()->id);
-
-        return view('lectures.allLectures',compact('group','user','lectures'));
+       $comments=Comment::where('group_id',$gid)->get();
+        return view('lectures.allLectures',compact('group','user','lectures','comments'));
      }
 
 

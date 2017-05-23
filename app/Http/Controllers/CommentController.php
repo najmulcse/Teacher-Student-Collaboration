@@ -9,7 +9,7 @@ use App\Comment;
 use Illuminate\Support\Facades\Auth;
 class CommentController extends Controller
 {
-    public function store(Request $request , $gid , $pid)
+    public function store(Request $request , $gid , $pid, $type)
     {
 
     	 $body=$request->body;
@@ -22,9 +22,15 @@ class CommentController extends Controller
     	 	'comment'     => $body
     	 	]);
     	 
-    	 if($status)
+    	 if($status && $type=='P')
     	 {
     	 	return redirect()->route('allPosts',$gid);
     	 }
+    	 else if($status && $type=='L')
+    	 {
+    	 	return redirect()->route('allLectures',$gid);
+    	 }
+    	 else
+    	 	return redirect()->route('id',$gid);
     }
 }

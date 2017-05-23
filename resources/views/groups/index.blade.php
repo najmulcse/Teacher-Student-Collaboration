@@ -14,7 +14,7 @@
 
     <div class="row">
         <div class="col-sm-9">
-          @foreach ($lec_posts as $lec_post)
+          @foreach ($lec_posts as $lec_post) <!--all posts/lectures printing foreach loop started -->
               <div class="row">
                 
                        <div class="col-sm-1">
@@ -73,32 +73,45 @@
                                           @endif
                             </div>
                             <br>
-                            <div class="row">
-                                  <div class="col-sm-1">
-                                       <img class="img-responsive" src="{{asset('img/author.jpg')}}">
-                                        <label>{{ $lec_post->user->where('id',$lec_post->user_id)->first()->name }}</label>
-                                  </div>
-                                   <div class="col-sm-11">
-                                      <form action="" method="POST" role="form">
-                                      
-                                        <div class="form-group">
-
-                                          <textarea type="text" class="form-control" id="" rows="3" placeholder="Write a comment"></textarea>
+                          <!--showing all comments in a single post/lecture started  frem here -->
+                            @foreach($lec_post->comments as $comment)
+                                  <div class="row">    
+                                          <div class="col-sm-1">
+                                                  <img class="img-responsive" src="{{asset('img/author.jpg')}}">
+                                                   <label>{{ $comment->user->name }}</label>
+                                          </div>
+                                          <div class="col-sm-11">
+                                                  <p>{{$comment->comment}}</p>
+                                          </div>         
+                                  </div>  
+                            @endforeach  
+                                         
+                          <!--for comment submission form started-->
+                                 <div class="row">
+                                        <div class="col-sm-1">
+                                               <img class="img-responsive" src="{{asset('img/author.jpg')}}">
+                                                 <label>{{ $user->name }}</label>
                                         </div>
-                                      
-                                        <button type="submit" class="btn btn-sm btn-primary">Comment</button>
-                                      </form>
+                                        <div class="col-sm-11">
+                                              <form action="{{route('post_comment',['gid' =>$group->id ,'pid' =>$lec_post->id,'type' =>'C'])}}" method="POST" role="form">
+                                               {{csrf_field()}}
+                                                <div class="form-group">
+
+                                                  <textarea type="text" class="form-control"  name="body" id="" rows="3" placeholder="Write a comment"></textarea>
+                                                </div>
+                                              
+                                                <button type="submit" class="btn btn-sm btn-primary">Comment</button>
+                                              </form>
+                                        </div>
                                   </div>
                                  
-                            </div>
-                            
+                            <!--comment submission form ended-->
                         
                        </div>
                       
-                
                 </div>
                 <hr>
-                   @endforeach
+          @endforeach <!--all posts/lectures printing foreach loop ended -->
         </div>
         <div class="col-sm-3">
 

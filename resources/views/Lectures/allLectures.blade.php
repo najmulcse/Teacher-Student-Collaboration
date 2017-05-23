@@ -15,7 +15,7 @@
 
     <div class="row">
         <div class="col-sm-9">
-          @foreach ($lectures as $lecture)
+          @foreach ($lectures as $lecture) <!-- all lectures foreach started -->
               <div class="row">
                 
                        <div class="col-sm-1">
@@ -61,33 +61,48 @@
                                           </div>
                                     </div>
                                     <br>
-                                    <div class="row">
-                                          <div class="col-sm-1">
+                       <!--for showing comments -->
+                               @foreach($lecture->comments as $comment)
+                                        <div class="row">    
+                                                  <div class="col-sm-1">
+                                                       <img class="img-responsive" src="{{asset('img/author.jpg')}}">
+                                                       <label>{{ $comment->user->name }}</label>
+                                                  </div>
+                                                  <div class="col-sm-11">
+                                                        <p>{{$comment->comment}}</p>
+                                                  </div>          
+                                         </div>  
+                               @endforeach  
+                       <!-- ended showing comments --> 
+
+                       <!--for comment submission started from here -->
+                                 <div class="row">
+                                        <div class="col-sm-1">
                                                <img class="img-responsive" src="{{asset('img/author.jpg')}}">
-                                               <label>{{ $lecture->user->where('id',$lecture->user_id)->first()->name }}</label>
-                                          </div>
-                                           <div class="col-sm-11">
-                                              <form action="" method="POST" role="form">
-                                              
+                                                 <label>{{ $user->name }}</label>
+                                        </div>
+                                        <div class="col-sm-11">
+                                              <form action="{{route('post_comment',['gid' =>$group->id ,'pid' =>$lecture->id,'type' =>'L'])}}" method="POST" role="form">
+                                               {{csrf_field()}}
                                                 <div class="form-group">
 
-                                                  <textarea type="text" class="form-control" id="" rows="3" placeholder="Write a comment"></textarea>
+                                                  <textarea type="text" class="form-control"  name="body" id="" rows="3" placeholder="Write a comment"></textarea>
                                                 </div>
                                               
                                                 <button type="submit" class="btn btn-sm btn-primary">Comment</button>
                                               </form>
-                                          </div>
-                                         
-                                    </div>
-                                    
-                        
+                                        </div>
+                                  </div>
+                                 
+                       <!--for comment submission ended -->                                             
                        </div>
                        
                 
                 </div>
                 <hr>
-                   @endforeach
+                   @endforeach  <!-- all lectures foreach ended -->
         </div>
+
         <div class="col-sm-3">
 
                 <div class="row">

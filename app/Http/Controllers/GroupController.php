@@ -9,6 +9,7 @@ use App\User;
 use App\Group;
 use App\GroupMember;
 use App\Post;
+use App\Comment;
 use Illuminate\Support\Facades\Auth;
 class GroupController extends Controller
 {
@@ -18,13 +19,13 @@ class GroupController extends Controller
 	}
 
     //All groups are shown of user home page 
-   public function index($id){
+   public function index($gid){
 
-      $group = Group::findOrFail($id);
-      $lec_posts = Post::where('group_id',$id)->orderBy('created_at','desc')->get();
+      $group = Group::findOrFail($gid);
+      $lec_posts = Post::where('group_id',$gid)->orderBy('created_at','desc')->get();
       $user = User::findOrFail(Auth::user()->id);
-
-   		return view('groups.index',compact('group','user','lec_posts'));
+      $comments=Comment::where('group_id',$gid)->get();
+   		return view('groups.index',compact('group','user','lec_posts','comments'));
     }
 
     //Group editing view is called by this method 

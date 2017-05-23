@@ -15,9 +15,9 @@
 
     <div class="row">
         <div class="col-sm-9">
-        @foreach ($posts as $post)
+        @foreach ($posts as $post) <!--For Printing all post foreach loop started hro here  -->
               <div class="row">
-                  @foreach($comments as $comment)
+                  
                        <div class="col-sm-1">
                           <figure>
                             <img class="img-responsive" src="{{asset('img/author.jpg')}}">
@@ -44,7 +44,8 @@
                                     </ul>
                               </div>
                           @endif
-                              <small>  <!-- For showing posts-->
+                          <!-- For showing single post started here-->
+                              <small>  
                                   date:{{ $post->created_at->diffForHumans() }}
                               </small>
                               <div>                                   
@@ -58,32 +59,32 @@
                                           @endif
                                       </div>
                               </div>
+                               <!-- For showing single post ended here-->
                               <br>
                               <!-- For showing comments-->
-                              <div class="row">
-                            @if($comment->$post->id==$post_id)  
-                                @if($commentObjects=$comment->comments->where('post_id',$post->id))
-                                     @foreach($commentObjects as $commentObject)
+                            @foreach($post->comments as $comment)
+                              <div class="row">    
+                                    
                                           <div class="col-sm-1">
                                                  <img class="img-responsive" src="{{asset('img/author.jpg')}}">
-                                                   <label>{{ $commentObject->user->where('id',$commentObject->user_id)->first()->name }}</label>
+                                                   <label>{{ $comment->user->name }}</label>
                                           </div>
                                           <div class="col-sm-11">
                                               
-                                                  <p>{{$commentObject->comment}}</p>
-                                                  </div>
-                                                
-                                                
+                                                  <p>{{$comment->comment}}</p>
                                           </div>
-                                    @endforeach
-                                @endif
-                            @endif  
+                                                
+                                  </div>  
+                               @endforeach  
+                                         
+                                        <!--for comment submission form-->
+                                 <div class="row">
                                         <div class="col-sm-1">
                                                <img class="img-responsive" src="{{asset('img/author.jpg')}}">
-                                                 <label>{{ $post->user->where('id',$post->user_id)->first()->name }}</label>
+                                                 <label>{{ $user->name }}</label>
                                         </div>
                                         <div class="col-sm-11">
-                                              <form action="{{route('post_comment',['gid' =>$group->id ,'pid' =>$post->id])}}" method="POST" role="form">
+                                              <form action="{{route('post_comment',['gid' =>$group->id ,'pid' =>$post->id,'type' =>'P'])}}" method="POST" role="form">
                                                {{csrf_field()}}
                                                 <div class="form-group">
 
@@ -93,13 +94,12 @@
                                                 <button type="submit" class="btn btn-sm btn-primary">Comment</button>
                                               </form>
                                         </div>
-                                         
+                                  </div>   <!-- comment submission form ended-->
+                                 
                               </div>
-                        @endforeach
+                      
                        </div>
                       
-                 
-                </div>
                <hr>
 
           <!--modal started here -->

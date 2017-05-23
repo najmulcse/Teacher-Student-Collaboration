@@ -53,7 +53,7 @@ Route::group(['middleware' => ['web']], function () {
 
     //PostController routes are ended 
 
-
+    Route::post('group/{gid}/post/{pid}/comment/store',['as' => 'post_comment' ,'uses' =>'CommentController@store']);
 
 
 //unused till now

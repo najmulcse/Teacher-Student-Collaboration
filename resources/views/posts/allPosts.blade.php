@@ -17,7 +17,7 @@
         <div class="col-sm-9">
         @foreach ($posts as $post)
               <div class="row">
-                  
+                  @foreach($comments as $comment)
                        <div class="col-sm-1">
                           <figure>
                             <img class="img-responsive" src="{{asset('img/author.jpg')}}">
@@ -44,40 +44,58 @@
                                     </ul>
                               </div>
                           @endif
-                        <small>date:{{ $post->created_at->diffForHumans() }}
-                                            </small>
-                                    <div>
-                                    
-                                         <p>{{ $post->body }}</p>
-                                         <div>
+                              <small>  <!-- For showing posts-->
+                                  date:{{ $post->created_at->diffForHumans() }}
+                              </small>
+                              <div>                                   
+                                      <p>{{ $post->body }}</p>
+                                      <div>
                                           @if($contents=$post->contents->where('post_id',$post->id))
                                                 @foreach($contents as $content)
                                                 
                                                    <a  href="{{url('download')}}/{{$content->id}}">{{$content->content}} </a>
                                                 @endforeach
                                           @endif
-                                          </div>
-                                    </div>
-                                    <br>
-                                    <div class="row">
+                                      </div>
+                              </div>
+                              <br>
+                              <!-- For showing comments-->
+                              <div class="row">
+                            @if($comment->$post->id==$post_id)  
+                                @if($commentObjects=$comment->comments->where('post_id',$post->id))
+                                     @foreach($commentObjects as $commentObject)
                                           <div class="col-sm-1">
+                                                 <img class="img-responsive" src="{{asset('img/author.jpg')}}">
+                                                   <label>{{ $commentObject->user->where('id',$commentObject->user_id)->first()->name }}</label>
+                                          </div>
+                                          <div class="col-sm-11">
+                                              
+                                                  <p>{{$commentObject->comment}}</p>
+                                                  </div>
+                                                
+                                                
+                                          </div>
+                                    @endforeach
+                                @endif
+                            @endif  
+                                        <div class="col-sm-1">
                                                <img class="img-responsive" src="{{asset('img/author.jpg')}}">
                                                  <label>{{ $post->user->where('id',$post->user_id)->first()->name }}</label>
-                                          </div>
-                                           <div class="col-sm-11">
-                                              <form action="" method="POST" role="form">
-                                              
+                                        </div>
+                                        <div class="col-sm-11">
+                                              <form action="{{route('post_comment',['gid' =>$group->id ,'pid' =>$post->id])}}" method="POST" role="form">
+                                               {{csrf_field()}}
                                                 <div class="form-group">
 
-                                                  <textarea type="text" class="form-control" id="" rows="3" placeholder="Write a comment"></textarea>
+                                                  <textarea type="text" class="form-control"  name="body" id="" rows="3" placeholder="Write a comment"></textarea>
                                                 </div>
                                               
                                                 <button type="submit" class="btn btn-sm btn-primary">Comment</button>
                                               </form>
-                                          </div>
+                                        </div>
                                          
-                                    </div>
-                        
+                              </div>
+                        @endforeach
                        </div>
                       
                  

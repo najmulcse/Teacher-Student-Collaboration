@@ -9,6 +9,7 @@ use App\Group;
 use App\user;
 use App\Post;
 use App\Content;
+use App\Comment;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -84,7 +85,9 @@ class PostController extends Controller
 		$posts = Post::where('group_id', $gid)->where('type','P')->orderBy('created_at','desc')->get();
 		$group =Group::findOrFail($gid);
 		$user= Auth::user();
-		return view('posts.allPosts',compact('group','posts','user'));
+    $comments=Comment::where('group_id',$gid)->get();
+
+		return view('posts.allPosts',compact('group','posts','user','comments'));
 	}
 
 	public function storePost(Request $request , $gid)
@@ -145,18 +148,18 @@ class PostController extends Controller
             {
                $file_Exists=Content::where('post_id',$pid)->first();
                $content=$file->getClientOriginalName();
-                 if($file_Exists)
-                 {
-                    $db_file=$file_Exists->id;                  
-                    unlink(public_path('postfiles/'.$db_file));                  
-                    $file_store=Content::where('post_id',$pid)->update(['content' =>$content ]);
-                    $file->move('postfiles/',$db_file);
-                 }
-                 else
-                 {
-                    $file_store=Content::create(['post_id' =>$pid,'content' =>$content]);
-                    $file->move('postfiles/',$file_store->id);
-                 }
+                   if($file_Exists)
+                   {
+                      $db_file=$file_Exists->id;                  
+                      unlink(public_path('postfiles/'.$db_file));                  
+                      $file_store=Content::where('post_id',$pid)->update(['content' =>$content ]);
+                      $file->move('postfiles/',$db_file);
+                   }
+                   else
+                   {
+                      $file_store=Content::create(['post_id' =>$pid,'content' =>$content]);
+                      $file->move('postfiles/',$file_store->id);
+                   }
                  
             }
 

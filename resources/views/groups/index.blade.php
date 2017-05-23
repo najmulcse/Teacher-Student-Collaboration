@@ -81,6 +81,22 @@
                                                    <label>{{ $comment->user->name }}</label>
                                           </div>
                                           <div class="col-sm-11">
+                                           @if( $user->id == $comment->user_id)
+                                                <div class="pull-right">
+                                                      <ul class="nav navbar-nav navbar-right">
+                                                            <li class="dropdown">
+                                                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                                                      <span class=""><i class="fa fa-cog"></i></span>
+                                                                       </a>
+                                                              <ul class="dropdown-menu" role="menu">
+                                                                         <li><a href="#"><i class="fa fa-pencil fa-fw"></i>Edit</a></li>
+                                                      
+                                                                         <li><a onclick="return confirm('are you sure?')" href="#"><i class="fa fa-trash-o fa-fw"></i>Delete</a></li>     
+                                                                </ul>
+                                                           </li>
+                                                    </ul>
+                                              </div>
+                                              @endif
                                                   <p>{{$comment->comment}}</p>
                                           </div>         
                                   </div>  
@@ -97,7 +113,7 @@
                                                {{csrf_field()}}
                                                 <div class="form-group">
 
-                                                  <textarea type="text" class="form-control"  name="body" id="" rows="3" placeholder="Write a comment"></textarea>
+                                                  <textarea type="text" class="form-control"  name="body" id="" rows="3" placeholder="Write a comment" required></textarea>
                                                 </div>
                                               
                                                 <button type="submit" class="btn btn-sm btn-primary">Comment</button>

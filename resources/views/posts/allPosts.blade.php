@@ -102,11 +102,20 @@
                                                  <label>{{ $user->name }}</label>
                                         </div>
                                         <div class="col-sm-11">
+                                         
                                               <form action="{{route('post_comment',['gid' =>$group->id ,'pid' =>$post->id,'type' =>'P'])}}" method="POST" role="form">
                                                {{csrf_field()}}
-                                                <div class="form-group">
+                                                <div class="form-group ">
 
-                                                  <textarea type="text" class="form-control"  name="body" id="" rows="3" placeholder="Write a comment" required></textarea>
+                                                  <textarea type="text" class="form-control" name="body" id="" rows="3" placeholder="Write a comment">{{old('body')}}</textarea>
+                                                  
+                                                  @if(count($errors)>0)
+                                                    <div class="alert alert-danger">
+                                                        @foreach($errors->all() as $error)
+                                                            <li>{{$error}}</li>
+                                                        @endforeach
+                                                    </div>
+                                                  @endif
                                                 </div>
                                               
                                                 <button type="submit" class="btn btn-sm btn-primary">Comment</button>

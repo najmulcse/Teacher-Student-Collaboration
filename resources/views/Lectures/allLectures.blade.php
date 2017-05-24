@@ -99,11 +99,12 @@
                                                  <label>{{ $user->name }}</label>
                                         </div>
                                         <div class="col-sm-11">
+                                        
                                               <form action="{{route('post_comment',['gid' =>$group->id ,'pid' =>$lecture->id,'type' =>'L'])}}" method="POST" role="form">
                                                {{csrf_field()}}
                                                 <div class="form-group">
 
-                                                  <textarea type="text" class="form-control"  name="body" id="" rows="3" placeholder="Write a comment" required></textarea>
+                                                  <textarea type="text" class="form-control"  name="body" id="" rows="3" placeholder="Write a comment"></textarea>
                                                 </div>
                                               
                                                 <button type="submit" class="btn btn-sm btn-primary">Comment</button>

@@ -9,9 +9,17 @@ use App\Comment;
 use Illuminate\Support\Facades\Auth;
 class CommentController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth');
+    }
+
     public function store(Request $request , $gid , $pid, $type)
     {
-
+        $rules=[
+         'body' =>'required |min:10'
+        ];
+         $this->validate($request,$rules);
     	 $body=$request->body;
     	 $user_id=Auth::user()->id;
     	 $status=Comment::create([

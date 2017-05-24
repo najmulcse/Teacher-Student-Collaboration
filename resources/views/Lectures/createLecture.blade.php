@@ -25,21 +25,27 @@
                     <div class="panel-body">
                     <div class="col-sm-1"></div>
                      <div class="col-sm-10">
-                   
+                      @if(count($errors)>0)
+                        <div class="alert alert-danger">
+                            @foreach($errors->all() as $error)
+                                <li>{{$error}}</li>
+                            @endforeach
+                        </div>
+                      @endif
                       <form action="{{ route('storeLecture',['gid' => $group->id]) }}" class="form-horizontal" method="post" enctype="multipart/form-data">
                            {{ csrf_field() }}
                           <div class="form-group ">     
                               <label class="control-label">Lecture Title</label>
-                              <input type="text" name="lecture_title" class="form-control" placeholder="Lecture Title" required>  
+                              <input type="text" name="lecture_title" class="form-control" placeholder="Lecture Title" value="{{old('lecture_title')}}">  
                           </div>
                           <div class="form-group">
                           <label class="control-label">Body</label>
-                              <textarea class="form-control" name="body" rows="5" placeholder="Write here..." required></textarea>
+                              <textarea class="form-control" name="body" rows="5" placeholder="Write here...">{{ old('body') }}</textarea>
                              
                           </div>
                           <div class="form-group">
                           <label class="control-label">File</label>
-                          	<input type="file" name="file" class="form-control" accept=".doc,.ppt,.pdf,.jpeg,.png,.jpg," required>	 
+                          	<input type="file" name="file" class="form-control" accept=".doc,.ppt,.pdf,.jpeg,.png,.jpg," value="{{ old('file') }}">	 
                           </div>
                           <div class="form-group">
 

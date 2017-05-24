@@ -10,6 +10,7 @@ use App\user;
 use App\Post;
 use App\Content;
 use App\Comment;
+use App\Http\Requests\PostsFormRequest;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -37,7 +38,7 @@ class PostController extends Controller
        $lectures = Post::where('group_id', $gid)->where('type','L')->orderBy('created_at','desc')->get();
        $user=User::findOrFail(Auth::user()->id);
        $comments=Comment::where('group_id',$gid)->get();
-        return view('lectures.allLectures',compact('group','user','lectures','comments'));
+       return view('lectures.allLectures',compact('group','user','lectures','comments'));
      }
 
 
@@ -46,7 +47,14 @@ class PostController extends Controller
     public function storeLecture(Request $request , $gid){
 
 
-      
+      $rules=[
+
+          'lecture_title'  => 'required',
+          'body'           => 'required',
+          'file'           => 'required'
+           ];
+
+     $this->validate($request,$rules);
 
      $file= $request->file('file');
      $user_id = Auth::user()->id;
@@ -90,7 +98,7 @@ class PostController extends Controller
 		return view('posts.allPosts',compact('group','posts','user','comments'));
 	}
 
-	public function storePost(Request $request , $gid)
+	public function storePost(PostsFormRequest $request, $gid)
       {
      	$file= $request->file('file');
      // $user=Group::where('id',$gid)->first();

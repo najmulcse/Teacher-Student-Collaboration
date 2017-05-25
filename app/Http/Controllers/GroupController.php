@@ -108,7 +108,8 @@ class GroupController extends Controller
       public function checkGroupForJoining(Request $request)
       {
            $rq_code=$request->group_code;
-           $group=Group::where('group_code',$rq_code)->first();
+           $group=Group::where('group_code',$rq_code)
+                        ->first();
 
            if($group)
               {
@@ -116,7 +117,9 @@ class GroupController extends Controller
                      $group_owner_id = $group->user_id;
                      $groupMember = new GroupMember;
                      $user_id = Auth::user()->id;
-                     $check = GroupMember::where('user_id',$user_id)->where('group_id',$group_id)->first();
+                     $check = GroupMember::where('user_id',$user_id)
+                                          ->where('group_id',$group_id)
+                                          ->first();
                      if($check || $group_owner_id == $user_id)
                        {
                           $msg = "Already you are a member of this group!"; 
@@ -138,6 +141,25 @@ class GroupController extends Controller
            return redirect('/joinGroup')->with('status', $msg);
      }
 
+
+
+      //for leaving from a group 
+
+     public function leftGroup($gid, $mid){
+
+          $group=GroupMember::where('group_id',$gid)
+                             ->where('user_id',$mid)     
+                             ->delete();
+          $post=Post::where('group_id',$gid)
+                     ->where('user_id',$mid)
+                     ->delete(); 
+          $comment=Comment::where('group_id',$gid)
+                           ->where('user_id',$mid)
+                           ->delete();  
+
+
+          return back();
+     }
        
       
 }

@@ -120,7 +120,7 @@
 
                                                   <ul class="dropdown-menu" role="menu">
                                                      
-                                                      <li><a href="#"><span class=""><i class="fa fa-minus fa-fw"></i></span>Left group</a></li>
+                                                      <li><a onclick="return confirm('are you sure?')" href="{{ route('left_group',['gid'=>$groupJ->id,'mid' =>$user_id]) }}" ><i class="fa fa-minus fa-fw"></i></span>Left group</a></li>
 
                                                       
 

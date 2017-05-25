@@ -29,24 +29,12 @@ class HomeController extends Controller
     public function index()
     {
         
-
-
-       $user_id=Auth::user()->id;
-       $joinedGroups=User::findOrFail($user_id)->joinedGroups;
-        $countJ=count($joinedGroups);
-
-       
-       // return $groups=Group::with('user','members','members.user')->get();
-
-          // $member=GroupMember::with(['user','groups'])->first();
-          // $member->user->name;
-         // $user_id=Auth::user()->id;
-         $myGroups=User::findOrFail($user_id)->myGroups;
-        //  $user= User::find(3);
-        // return  $user->groups;
-         //$groups=Group::all()->where('user_id',$user_id);
-         
+         $user_id=Auth::user()->id;
+         $joinedGroups=User::findOrFail($user_id)->joinedGroups;
+         $countJ=count($joinedGroups);
+         $myGroups=User::findOrFail($user_id)->myGroups;        
          $countM=count($myGroups);
-         return view('home',compact('joinedGroups','myGroups','countJ','countM'));
+
+         return view('home',compact('joinedGroups','myGroups','countJ','countM','user_id'));
     }
 }

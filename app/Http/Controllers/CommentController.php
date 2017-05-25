@@ -17,7 +17,7 @@ class CommentController extends Controller
     public function store(Request $request , $gid , $pid, $type)
     {
         $rules=[
-         'body' =>'required |min:10'
+         'body' =>'required'
         ];
          $this->validate($request,$rules);
     	 $body=$request->body;
@@ -40,5 +40,22 @@ class CommentController extends Controller
     	 }
     	 else
     	 	return redirect()->route('id',$gid);
+    }
+
+
+
+    public function test1($id)
+    {
+       return view('blank');
+    }
+    public function test2(Request $request)
+    {
+        $rules= [
+            'name' => 'required|min:5'
+        ];
+
+        $this->validate($request,$rules);
+
+        return "Ok";
     }
 }

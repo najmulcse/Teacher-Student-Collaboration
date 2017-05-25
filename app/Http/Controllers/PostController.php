@@ -37,6 +37,8 @@ class PostController extends Controller
        $group = Group::findOrFail($gid);
        $lectures = Post::where('group_id', $gid)->where('type','L')->orderBy('created_at','desc')->get();
        $user=User::findOrFail(Auth::user()->id);
+       if($user->user_type_id=='2')
+        return redirect('/pagenotfound');
        $comments=Comment::where('group_id',$gid)->get();
        return view('lectures.allLectures',compact('group','user','lectures','comments'));
      }
@@ -44,12 +46,11 @@ class PostController extends Controller
 
     //Here all lectures will be stored in the individual group 
     
-    public function storeLecture(Request $request , $gid){
-
+    public function storeLecture(Request $request , $gid ){
 
       $rules=[
 
-          'lecture_title'  => 'required',
+          'lecture_title'  => 'required ',
           'body'           => 'required',
           'file'           => 'required'
            ];
@@ -58,7 +59,13 @@ class PostController extends Controller
 
      $file= $request->file('file');
      $user_id = Auth::user()->id;
-     $post=Post::create(['group_id'=> $gid ,'user_id'=> $user_id , 'title' => $request->lecture_title ,'body' => $request->body,'type' => 'L']);
+     $post=Post::create([
+      'group_id'  => $gid ,
+      'user_id'   => $user_id , 
+      'title'     => $request->lecture_title ,
+      'body'      => $request->body,
+      'type'      => 'L'
+                      ]);
 
      if(!empty($file))
      {

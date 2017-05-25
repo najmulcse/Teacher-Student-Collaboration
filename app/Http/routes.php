@@ -34,7 +34,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('group/{id}/delete',['as'=>'group_deleted_id','uses'=>'GroupController@delete']);
     Route::get('/joinGroup',['as' => 'joinGroupid', 'uses' => 'GroupController@joinGroup']);
     Route::post('/checkGroup' , [ 'as' => 'checkGroup','uses' => 'GroupController@checkGroupForJoining']);
-
+    Route::get('leftgroup/{gid}/{mid}',['as' => 'left_group', 'uses' => 'GroupController@leftGroup' ]);
 
 
     //PostController routes are started here
@@ -48,8 +48,8 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('download/{file}',['as' => 'download' , 'uses' => 'PostController@download']);
 
     Route::get('group/{gid}/allLectures',['as' => 'allLectures' , 'uses' => 'PostController@allLectures']);
-     Route::get('group/{id}/createLecture',['as' => 'createLecture','uses' => 'PostController@createLecture']);
-    Route::post('group/{gid}/store',['as' => 'storeLecture','uses' => 'PostController@storeLecture']);
+    Route::get('group/{gid}/createLecture',['as' => 'createLecture','uses' => 'PostController@createLecture']);
+    Route::post('group/{gid}/storeLecture',['as' => 'storeLecture','uses' => 'PostController@storeLecture']);
 
     //PostController routes are ended 
 
@@ -71,8 +71,13 @@ Route::group(['middleware' => ['web']], function () {
 });
 
 
+//The purpose of these routes is for testing some features 
+Route::get('test1/{id}',['as' => 'test1' ,'uses' => 'CommentController@test1']);
+Route::post('test2',['as' =>'test2' ,'uses' => 'CommentController@test2']);
 //Teacher activities ...
-
+Route::get('/pagenotfound',function(){
+    return view('errors.empty');
+});
 
 Route::get('teacher/',function (){
         return view('teachers.indexTeacher');

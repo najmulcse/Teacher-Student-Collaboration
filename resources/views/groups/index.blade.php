@@ -73,7 +73,7 @@
                                           @endif
                             </div>
                             <br>
-                          <!--showing all comments in a single post/lecture started  frem here -->
+                          <!--showing all comments in a single post/lecture started  from here -->
                             @foreach($lec_post->comments as $comment)
                                   <div class="row">    
                                           <div class="col-sm-1">
@@ -102,22 +102,32 @@
                                   </div>  
                             @endforeach  
                                          
-                          <!--for comment submission form started-->
+                          <!--for comment submission form, started-->
+
                                  <div class="row">
                                         <div class="col-sm-1">
                                                <img class="img-responsive" src="{{asset('img/author.jpg')}}">
                                                  <label>{{ $user->name }}</label>
                                         </div>
                                         <div class="col-sm-11">
-                                              <form action="{{route('post_comment',['gid' =>$group->id ,'pid' =>$lec_post->id,'type' =>'C'])}}" method="POST" role="form">
+                                            <form action="{{route('post_comment',['gid' =>$group->id ,'pid' =>$lec_post->id,'type' =>'C'])}}" method="POST" role="form">
                                                {{csrf_field()}}
+
                                                 <div class="form-group">
 
-                                                  <textarea type="text" class="form-control"  name="body" id="" rows="3" placeholder="Write a comment" required></textarea>
+                                                   <textarea type="text" class="form-control"  name="body" id="" rows="3" placeholder="Write a comment"></textarea>
+                                                  
                                                 </div>
-                                              
-                                                <button type="submit" class="btn btn-sm btn-primary">Comment</button>
+                                                <div class="form-group">
+                                                    <button type="submit" class="btn btn-sm btn-primary">Comment</button>
+                                                </div>
                                               </form>
+                                              @if(count($errors))
+
+                                                @foreach($errors->all() as $error)
+                                                    <li>{{$error}}</li>
+                                                @endforeach
+                                              @endif
                                         </div>
                                   </div>
                                  
@@ -130,39 +140,9 @@
           @endforeach <!--all posts/lectures printing foreach loop ended -->
         </div>
         <div class="col-sm-3">
-
-                <div class="row">
-                       <div class="col-sm-12">
-                                 <div class="right_sidebar">
-                                <!-- Sidebar -->
-                                    <div class="w3-sidebar w3-bar-block w3-card-2" style="width:18%;right:0;padding-top: 0px;">
-                                   <!--   <a href="{{url('/create')}}" class="create_group_button">Create new group</a> -->
-                                 
-                                   @if( $user-> user_type_id == 1 && $user->id == $group->user_id)
-                                        <a href="{{route('createPost',['gid' => $group->id])}}" class="w3-bar-item w3-button">Create a post</a>
-                                          <a href="{{ route('allPosts',['gid' => $group->id])}}" class="w3-bar-item w3-button">All Posts</a>
-                                          <a href="{{ route('createLecture',['id'=>$group->id]) }}" class="w3-bar-item w3-button">Lecture Upload </a>
-                                          <a href="{{ route('allLectures',['gid'=>$group->id ]) }}" class="w3-bar-item w3-button">All Lectures</a>
-                                          
-                                          <a href="#" class="w3-bar-item w3-button">Assignment Upload</a>
-
-                                    @elseif( $user->user_type_id == 2 || $user-> user_type_id == 1)
-                                          <a href="{{route('createPost',['gid' =>$group->id])}}" class="w3-bar-item w3-button">Create a post</a>
-                                          <a href="{{ route('allPosts',['gid' => $group->id])}}" class="w3-bar-item w3-button">All Posts</a>
-                                          <a href="{{ route('allLectures',['gid'=>$group->id ]) }}" class="w3-bar-item w3-button">All Lectures</a>
-                                    @endif
-
-
-                                    </div>
-                                </div>
-
-
-
-                            </div>
-                     </div>
-                </div>
+                 @include('layouts.rightsidebar') <!--this page is extended from layouts -->   
         </div>
-    </div>
+  </div>
 
 
 </section>

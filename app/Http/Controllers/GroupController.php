@@ -73,15 +73,24 @@ class GroupController extends Controller
     public function store(Request $request){
 
 /* I want to write the code like this  */
+
+        $rules =[
+        'group_name'    => 'required' ,
+        'group_code'    => 'required' ,
+        // 'course_code'   =>'required' ,
+
+        ];
+
+        $this->validate($request,$rules);
         $group_code=$request->group_code;
         if (Group::where('group_code', '=', $group_code)->exists()) {
-           $msg= "Group code already exists ! Try another one.";
-            return redirect('/create')->with('status', $msg);
-       }else
+            $msg= "Group code already exists ! Try another one.";
+            return back()->with('status', $msg)->withInput();
+       }else{
          $rq=$request->user()->myGroups()->create(['group_name'=>$request->group_name, 'group_code' => $request->group_code , 'course_code'=>$request->course_code,'session'=>$request->session,'short_description'=>$request->short_description]);
-
+       
         return redirect()->route( 'id' , [$rq->id ]);
-
+        }
 
     	
       }
@@ -107,6 +116,12 @@ class GroupController extends Controller
       //Here joining group will check which the searching group exists or not , also check  the requested user is group admin or not.  
       public function checkGroupForJoining(Request $request)
       {
+           $rules=[
+                 'group_code'     => 'required'
+                  ];
+
+           $this->validate($request, $rules);
+
            $rq_code=$request->group_code;
            $group=Group::where('group_code',$rq_code)
                         ->first();

@@ -12,7 +12,8 @@ use App\Content;
 use App\Comment;
 use App\Http\Requests\PostsFormRequest;
 use Illuminate\Support\Facades\Auth;
-
+use Validator;
+use Illuminate\Session\Middleware\StartSession;
 
 class PostController extends Controller
 {
@@ -38,7 +39,7 @@ class PostController extends Controller
        $lectures = Post::where('group_id', $gid)->where('type','L')->orderBy('created_at','desc')->get();
        $user=User::findOrFail(Auth::user()->id);
        if($user->user_type_id=='2')
-        return redirect('/pagenotfound');
+            return redirect('/pagenotfound');
        $comments=Comment::where('group_id',$gid)->get();
        return view('lectures.allLectures',compact('group','user','lectures','comments'));
      }
@@ -46,7 +47,7 @@ class PostController extends Controller
 
     //Here all lectures will be stored in the individual group 
     
-    public function storeLecture(Request $request , $gid ){
+    public function storeLecture(Request $request ){
 
       $rules=[
 
@@ -54,9 +55,9 @@ class PostController extends Controller
           'body'           => 'required',
           'file'           => 'required'
            ];
-
+     $gid=$request->gid;
      $this->validate($request,$rules);
-
+     
      $file= $request->file('file');
      $user_id = Auth::user()->id;
      $post=Post::create([
@@ -107,6 +108,10 @@ class PostController extends Controller
 
 	public function storePost(PostsFormRequest $request, $gid)
       {
+
+       $rules = [
+              'body'    => 'required'
+                ]; 
      	$file= $request->file('file');
      // $user=Group::where('id',$gid)->first();
       $user_id=Auth::user()->id;

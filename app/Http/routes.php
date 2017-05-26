@@ -14,7 +14,7 @@
 
 
 
-Route::group(['middleware' => ['web']], function () {
+Route::group(['middlewaregroups' => ['web']], function () {
 
     Route::get('/', function () {
         if (Auth::check()) {
@@ -39,7 +39,7 @@ Route::group(['middleware' => ['web']], function () {
 
     //PostController routes are started here
 
-    Route::get('/group/{gid}/createPost',['as' => 'createPost','uses' => 'PostController@createPost']);
+    Route::get('group/{gid}/createPost',['as' => 'createPost','uses' => 'PostController@createPost']);
     Route::post('group/{gid}/storePost',['as' =>'storePost', 'uses' =>'PostController@storePost']);
     Route::get('group/{gid}/allPosts', ['as' => 'allPosts' ,'uses' => 'PostController@allPosts']);
     Route::get('group/{gid}/post/{type}/{pid}/edit',['as' => 'edit_post' ,'uses' => 'PostController@edit']);
@@ -49,11 +49,18 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('group/{gid}/allLectures',['as' => 'allLectures' , 'uses' => 'PostController@allLectures']);
     Route::get('group/{gid}/createLecture',['as' => 'createLecture','uses' => 'PostController@createLecture']);
-    Route::post('group/{gid}/storeLecture',['as' => 'storeLecture','uses' => 'PostController@storeLecture']);
+    Route::post('group/Lecture/store',['as' => 'storeLecture','uses' => 'PostController@storeLecture']);
 
     //PostController routes are ended 
 
     Route::post('group/{gid}/post/{pid}/comment/{type}/store',['as' => 'post_comment' ,'uses' =>'CommentController@store']);
+
+
+    //EmailController routes are started from here
+
+    Route::get('emailCreate',['as' => 'emailCreate', 'uses' => 'EmailController@emailCreate']);
+    Route::post('send',['as' => 'send', 'uses' => 'EmailController@send']);
+
 
 
 //unused till now

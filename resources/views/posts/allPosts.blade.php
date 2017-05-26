@@ -109,7 +109,7 @@
 
                                                   <textarea type="text" class="form-control" name="body" id="" rows="3" placeholder="Write a comment">{{old('body')}}</textarea>
                                                   
-                                                  @if(count($errors)>0)
+                                                  @if(count($errors)>0 )
                                                     <div class="alert alert-danger">
                                                         @foreach($errors->all() as $error)
                                                             <li>{{$error}}</li>

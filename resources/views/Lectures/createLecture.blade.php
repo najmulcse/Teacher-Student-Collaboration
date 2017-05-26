@@ -10,7 +10,6 @@
 @endsection
 @section('group_body')
 
-
     <div class="row">
         <div class="col-sm-9">
             <div class="row">
@@ -23,32 +22,37 @@
                        
                      </div>
                      <div class="col-sm-10">
-                        
-                           
-                               <form action="{{route('storeLecture',['gid' =>$group->id])}}" method="POST" enctype="multipart/form-data">
+                          
+                              <!--  
+                                @foreach($errors->all() as $error)
+                                      <li>{{$error}}</li>
+                                @endforeach -->
+                          
+                     
+                               <form action="{{route('storeLecture')}}" method="POST" enctype="multipart/form-data">
                                       {{ csrf_field() }}
                                             
-                                            @if(count($errors))
-
-                                                  @foreach($errors->all() as $error)
-                                                        <li>{{$error}}</li>
-                                                  @endforeach
-                                            @endif
-                                      <div class="form-group ">     
+                                          
+                                            <input type="hidden" name="gid" value="{{$group->id}}" >
+                                      <div class="form-group @if ($errors->has('lecture_title')) has-error @endif">     
                                            <label class="control-label">Lecture Title</label>
                                            <input type="text" name="lecture_title" class="form-control" placeholder="Lecture Title" value="{{old('lecture_title')}}">  
+                                           
+                                           {!!$errors->first('lecture_title','<span class="help-block">:message</span>')!!}
                                      </div>
-                                     <div class="form-group">
+                                     <div class="form-group @if ($errors->has('body')) has-error @endif">
                                             <label class="control-label">Body</label>
                                             <textarea class="form-control" name="body" rows="5" placeholder="Write here...">{{ old('body') }}</textarea>
+                                            {!!$errors->first('body','<span class="help-block">:message</span>')!!}
                                       </div>
-                                     <div class="form-group">
+                                     <div class="form-group @if ($errors->has('file')) has-error @endif">
                                            <label class="control-label">File</label>
-                                        	 <input type="file" name="file" class="form-control" accept=".doc,.ppt,.pdf,.jpeg,.png,.jpg," value="{{ old('file') }}">	 
+                                        	 <input type="file" name="file" class="form-control" accept=".doc,.ppt,.pdf,.jpeg,.png,.jpg," value="{{ old('file') }}">	
+                                            {!!$errors->first('file','<span class=" help-block">:message</span>')!!} 
                                      </div>
                                      <div class="form-group">
 
-                              	          <button type="submit" class="btn btn-sm btn-success pull-right">Upload lecture</button>	
+                              	          <button type="submit" class="btn btn-lg btn-success pull-right">Upload lecture</button>	
                                     </div>
                            </form>
                              
@@ -62,7 +66,6 @@
                   </div>
                  </div>
        
-
         </div>
         <div class="col-sm-3">
 
@@ -77,5 +80,6 @@ function w3_open() {
 function w3_close() {
     document.getElementById("mySidebar").style.display = "none";
 }
+
 </script>
 @endsection

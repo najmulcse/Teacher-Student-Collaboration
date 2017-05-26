@@ -19,18 +19,26 @@
                                 <h3 class="panel-title">Create a Group</h3>
                           </div>
                           <div class="panel-body">
+                          @if (session('status'))
+                              <div class="alert alert-danger text-center">
+                                  {{ session('status') }}
+                              </div>
+                          @endif</small>
                                  <form action="{{url('/store')}}" method="post" class="form-horizontal" >
                                       {{ csrf_field() }}
-                                     <div class="form-group">
+                                     <div class="form-group @if($errors->has('group_name')) has-error @endif">
                                          <label for="exampleInputEmail1" class="col-sm-3 control-label">Group Name</label>
                                          <div class="col-sm-9">
-                                         <input type="text" name="group_name" class="form-control" placeholder="Group Name" required>
+                                         <input type="text" name="group_name" class="form-control" placeholder="Group Name" value="{{ old('group_name')}}">
+                                         {!!$errors->first('group_name','<span class="help-block">:message</span>')!!}
                                          </div>
                                      </div> 
-                                <div class="form-group">
+                                <div class="form-group  @if($errors->has('group_code')) has-error @endif">
                                      <label for="title" class="col-sm-3 control-label">Group code</label>
                                      <div class="col-sm-9">
-                                       <input type="text" name="group_code" placeholder="Choice a unique Code(Example:group123)" class="form-control" required>
+                                       <input type="text" name="group_code" placeholder="Choice a unique Code(Example:group123)" class="form-control" value="{{ old('group_code')}}">
+
+                                       {!! $errors->first( 'group_code','<span class="help-block" >:message </span>')!!}
                                      </div>
                                </div>
                                <div class="form-group">

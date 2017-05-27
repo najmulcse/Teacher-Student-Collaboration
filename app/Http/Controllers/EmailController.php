@@ -23,8 +23,8 @@ class EmailController extends Controller
     	        $email=$request->email;
     	        $title = " Group Membership ";
     	        $content = "Testing";
-
-    	        Mail::send('emails.emailCreate', ['title' => $title, 'content' => $content], function ($message) use ($email)
+                
+    	       $m= Mail::send('emails.emailCreate', ['title' => $title, 'content' => $content], function ($message) use ($email)
     	        {
 
     	            $message->from('najmul2022@gmail.com', 'najmul');
@@ -32,7 +32,12 @@ class EmailController extends Controller
     	            $message->to($email);
 
     	        });
-
+             if($m){       
     	       return "Invitation sent successfully";
+               }
+               else 
+               {
+                return "Failed to send";
+               }
     }
 }

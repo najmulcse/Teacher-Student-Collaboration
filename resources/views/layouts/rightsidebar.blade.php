@@ -1,4 +1,5 @@
-<div class="row">
+          
+          <div class="row">
                        <div class="col-sm-12">
                                  <div class="right_sidebar">
                                 <!-- Sidebar -->
@@ -29,7 +30,5 @@
                                     </div>
                                 </div>
 
-
-
-                            </div>
-                     </div>
+                   </div>
+          </div>

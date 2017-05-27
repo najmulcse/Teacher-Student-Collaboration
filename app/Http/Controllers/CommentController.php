@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Comment;
 use Illuminate\Support\Facades\Auth;
+use Validator;
 class CommentController extends Controller
 {
 
@@ -17,9 +18,15 @@ class CommentController extends Controller
     public function store(Request $request , $gid , $pid, $type)
     {
         $rules=[
-         'body' =>'required'
+         'body'         =>'required|min:4',
         ];
-         $this->validate($request,$rules);
+         $p_id=$request->p_comment_id;
+         //$this->validate($request,$rules);
+         $validate=Validator::make($request->all(),$rules);
+         if($validate->fails())
+         {
+            return back()->withErrors($validate)->withInput()->with('p_id',$p_id);
+         }
     	 $body=$request->body;
     	 $user_id=Auth::user()->id;
     	 $status=Comment::create([

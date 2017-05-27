@@ -8,14 +8,9 @@
 @endsection
 @section('group_body')
 
-
-<section>
-
-
-
     <div class="row">
         <div class="col-sm-9">
-        @foreach ($posts as $post) <!--For Printing all post foreach loop started hro here  -->
+          @foreach ($posts as $post) <!--For Printing all post foreach loop started hro here  -->
               <div class="row">
                   
                        <div class="col-sm-1">
@@ -64,8 +59,6 @@
                               <!-- For showing comments-->
                             @foreach($post->comments as $comment)
                               <div class="row">    
-                                          
-
                                           <div class="col-sm-1">
                                                  <img class="img-responsive" src="{{asset('img/author.jpg')}}">
                                                    <label>{{ $comment->user->name }}</label>
@@ -94,7 +87,7 @@
                                                 
                                   </div>  
                                @endforeach  
-                                         
+                                        
                                         <!--for comment submission form-->
                                  <div class="row">
                                         <div class="col-sm-1">
@@ -105,30 +98,28 @@
                                          
                                               <form action="{{route('post_comment',['gid' =>$group->id ,'pid' =>$post->id,'type' =>'P'])}}" method="POST" role="form">
                                                {{csrf_field()}}
-                                                <div class="form-group ">
 
-                                                  <textarea type="text" class="form-control" name="body" id="" rows="3" placeholder="Write a comment">{{old('body')}}</textarea>
+                                                <input type="hidden" name="p_comment_id" value="{{$post->id}}">
+
+                                                <div class="form-group @if($errors->has('body') && ($post->id == 41 )) has-error @endif" >
+                                                 
+                                                        <textarea type="text" class="form-control" name="body" id="" rows="3" placeholder="Write a comment">{{old('body')}}</textarea>
+                                                      {!!$errors->first('body','<span class="help-block">:message </span>')!!}
+                                                  </div>
+                                                <div class="form-group">
                                                   
-                                                  @if(count($errors)>0 )
-                                                    <div class="alert alert-danger">
-                                                        @foreach($errors->all() as $error)
-                                                            <li>{{$error}}</li>
-                                                        @endforeach
-                                                    </div>
-                                                  @endif
+                                                        <button type="submit" class="btn btn-sm btn-primary">Comment</button>
                                                 </div>
-                                              
-                                                <button type="submit" class="btn btn-sm btn-primary">Comment</button>
                                               </form>
                                         </div>
                                   </div>   <!-- comment submission form ended-->
                                  
-                              </div>
+                  </div>
                       
-                       </div>
+            </div>
                       
                <hr>
-
+{{-- 
           <!--modal started here -->
 
             
@@ -152,45 +143,17 @@
 
           <!-- modal ended -->
 
-
+ --}}
           @endforeach
 
         </div>
-        <div class="col-sm-3">
+         <div class="col-sm-3">
 
                  @include('layouts.rightsidebar') <!--this page is extended from layouts -->
-      </div>
+       </div>
   </div>
 
-</section>
-
 <script>
-
-
-function deletePost($pid,$gid) {
-
- 
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-     document.getElementById("demo").innerHTML = this.responseText;
-    }
-  };  
-      xmlhttp.open("GET", 'group/{$gid}/post/{$pid}/delete', true);
-      xmlhttp.send();
-
-  // $.ajax({
-  //       type: "POST",
-  //       url: '.post_deleted',
-  //       data:'post_deleted'+$gid,
-  //        success: function(response){ // What to do if we succeed
-  //             if(data == "success")
-  //              alert(response); 
-  //              }
-  //   })
-}
-
-
 
 function w3_open() {
     document.getElementById("mySidebar").style.display = "block";
@@ -198,7 +161,34 @@ function w3_open() {
 function w3_close() {
     document.getElementById("mySidebar").style.display = "none";
 }
+
+// function deletePost($pid,$gid) {
+
+ 
+//   var xhttp = new XMLHttpRequest();
+//   xhttp.onreadystatechange = function() {
+//     if (this.readyState == 4 && this.status == 200) {
+//      document.getElementById("demo").innerHTML = this.responseText;
+//     }
+//   };  
+//       xmlhttp.open("GET", 'group/{$gid}/post/{$pid}/delete', true);
+//       xmlhttp.send();
+
+//   // $.ajax({
+//   //       type: "POST",
+//   //       url: '.post_deleted',
+//   //       data:'post_deleted'+$gid,
+//   //        success: function(response){ // What to do if we succeed
+//   //             if(data == "success")
+//   //              alert(response); 
+//   //              }
+//   //   })
+// }
+
+
+
 </script>
+
 @endsection
 
 

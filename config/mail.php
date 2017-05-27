@@ -68,7 +68,7 @@ return [
     |
     */
 
-    'encryption' => env('MAIL_ENCRYPTION', 'tls'),
+    'encryption' => env('MAIL_ENCRYPTION', ''),
 
     /*
     |--------------------------------------------------------------------------
@@ -94,7 +94,7 @@ return [
     |
     */
 
-    'password' => env('MAIL_PASSWORD','nishiratbakacadgmail'),
+    'password' => env('MAIL_PASSWORD',''),
 
     /*
     |--------------------------------------------------------------------------

@@ -4,5 +4,6 @@
 Homestead.yaml
 Homestead.json
 .env
+/config/mail.php
 composer.lock
 public/postfiles/*

@@ -94,7 +94,7 @@ return [
     |
     */
 
-    'password' => env('MAIL_PASSWORD','nishiratbakacadgmail'),
+    'password' => env('MAIL_PASSWORD',''),
 
     /*
     |--------------------------------------------------------------------------

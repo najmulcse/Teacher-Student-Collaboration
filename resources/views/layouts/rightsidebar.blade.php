@@ -14,7 +14,7 @@
                                           
                                           <a href="#" class="w3-bar-item w3-button">Assignment Upload</a>
 
-                                          <a href="{{route('emailCreate')}}" class="w3-bar-item w3-button">Add member</a>
+                                          <a href="{{route('emailCreate',['gid'=>$group->id])}}" class="w3-bar-item w3-button">Add member</a>
 
                                     @elseif( $user-> user_type_id == 1 )
                                           <a href="{{route('createPost',['gid' =>$group->id])}}" class="w3-bar-item w3-button">Create a post</a>

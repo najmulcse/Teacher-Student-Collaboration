@@ -58,7 +58,7 @@ Route::group(['middlewaregroups' => ['web']], function () {
 
     //EmailController routes are started from here
 
-    Route::get('emailCreate',['as' => 'emailCreate', 'uses' => 'EmailController@emailCreate']);
+    Route::get('emailCreate/{gid}',['as' => 'emailCreate', 'uses' => 'EmailController@emailCreate']);
     Route::post('send',['as' => 'send', 'uses' => 'EmailController@send']);
 
 

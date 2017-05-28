@@ -4,13 +4,19 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Mail;
+use App\Group;
+use App\User;
 use App\Http\Requests;
 use EmailValidator;
+use Illuminate\Support\Facades\Auth;
 class EmailController extends Controller
 {
-    public function emailCreate()
+    public function emailCreate($gid)
     {
-    	return view('emails.emailCreate');
+        $group= Group::findOrFail( $gid );
+        $user= User::findOrFail($group->user_id);
+        return view('emails.emailCreate',compact('group','user'));
+    	
     }
 
     public function send(Request $request)
@@ -21,19 +27,19 @@ class EmailController extends Controller
 
                 $this->validate($request,$rules);
     	        $email=$request->email;
-
+                $gid=$request->gid;
+                $group= Group::findOrFail( $gid );
 
                 if( EmailValidator::verify($email)->isValid()[0] ){
 
-                            $title = " Group Membership ";
-                            $content = "Testing";
-                              
-                           $m= Mail::send('emails.test', ['title' => $title, 'content' => $content], function ($message) use ($email)
+                            $name=Auth::user()->name;
+                            $group_code=$group->group_code;  
+                            $m= Mail::send('emails.emailContent', ['name' => $name, 'group_code' => $group_code], function ($message) use ($email)
                             {
 
-                                $message->from('najmul.ru.cse@gmail.com', 'Najmul Ahmed');
+                                $message->from('najmul.ru.cse@gmail.com', 'Collaboration Group');
 
-                                $message->to($email,'')->subject('Group Membership');
+                                $message->to($email,'abc')->subject('Group Membership');
 
                             });
 

@@ -15,9 +15,9 @@
                           Group member invitation
                     </div>
                     <div class="panel-body">
-                            @if (session('status'))
+                            @if (session('message'))
                                 <div class="alert alert-danger text-center">
-                                    {{ session('status') }}
+                                    {{ session('message') }}
                                 </div>
                             @endif</small>
                           <div class="col-sm-8 col-sm-offset-2">                          

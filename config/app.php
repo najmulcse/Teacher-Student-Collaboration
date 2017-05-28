@@ -156,6 +156,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        Unicodeveloper\EmailValidator\EmailValidatorServiceProvider::class,
 
     ],
 
@@ -202,6 +203,7 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        'EmailValidator' => Unicodeveloper\EmailValidator\EmailValidatorFacade::class,
 
     ],
 

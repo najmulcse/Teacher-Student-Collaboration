@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Mail;
 use App\Http\Requests;
-
+use EmailValidator;
 class EmailController extends Controller
 {
     public function emailCreate()
@@ -21,23 +21,35 @@ class EmailController extends Controller
 
                 $this->validate($request,$rules);
     	        $email=$request->email;
-    	        $title = " Group Membership ";
-    	        $content = "Testing";
-                
-    	       $m= Mail::send('emails.emailCreate', ['title' => $title, 'content' => $content], function ($message) use ($email)
-    	        {
 
-    	            $message->from('najmul2022@gmail.com', 'najmul');
 
-    	            $message->to($email);
+                if( EmailValidator::verify($email)->isValid()[0] ){
 
-    	        });
-             if($m){       
-    	       return "Invitation sent successfully";
-               }
-               else 
-               {
-                return "Failed to send";
-               }
+                            $title = " Group Membership ";
+                            $content = "Testing";
+                              
+                           $m= Mail::send('emails.test', ['title' => $title, 'content' => $content], function ($message) use ($email)
+                            {
+
+                                $message->from('najmul.ru.cse@gmail.com', 'Najmul Ahmed');
+
+                                $message->to($email,'')->subject('Group Membership');
+
+                            });
+
+                           if($m){       
+                           return back()->with('message','Invitation sent successfully.');
+                             }
+                             else 
+                             {
+                               return back()->with('message','Something wrong!.');
+                             }
+                }
+                else
+                {
+                    return back()->with('message','Email ID is not valid');
+                }
+                // return  strlen($email);
+    	        
     }
 }

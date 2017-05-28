@@ -9,7 +9,9 @@
         "laravel/framework": "5.2.*",
         "fzaninotto/faker": "^1.6",
         "teepluss/console": "^2.0",
-        "doctrine/dbal": "^2.5"
+        "doctrine/dbal": "^2.5",
+        "guzzlehttp/guzzle": "^6.2",
+        "unicodeveloper/laravel-email-validator": "^1.0"
     },
     "require-dev": {
         "mockery/mockery": "0.9.*",

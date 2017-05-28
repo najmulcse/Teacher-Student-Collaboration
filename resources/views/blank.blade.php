@@ -1,5 +1,5 @@
 
-@extends('layouts.homeLayout')
+{{-- @extends('layouts.homeLayout')
 
 @section('group_heading')
               <h2 class="page-header">
@@ -55,5 +55,7 @@
         <div class="col-sm-3">
         </div>
         </div>
-       @endsection
+       @endsection --}}
        
+
+       {{phpinfo()}}

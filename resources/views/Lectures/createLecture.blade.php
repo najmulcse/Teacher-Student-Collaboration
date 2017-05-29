@@ -23,10 +23,7 @@
                      </div>
                      <div class="col-sm-10">
                           
-                              <!--  
-                                @foreach($errors->all() as $error)
-                                      <li>{{$error}}</li>
-                                @endforeach -->
+                             
                           
                      
                                <form action="{{route('storeLecture')}}" method="POST" enctype="multipart/form-data">

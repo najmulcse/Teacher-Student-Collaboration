@@ -53,6 +53,7 @@ Route::group(['middlewaregroups' => ['web']], function () {
 
     //PostController routes are ended 
 
+    //CommentController routes are started from here
     Route::post('group/{gid}/post/{pid}/comment/{type}/store',['as' => 'post_comment' ,'uses' =>'CommentController@store']);
 
 
@@ -62,7 +63,12 @@ Route::group(['middlewaregroups' => ['web']], function () {
     Route::post('send',['as' => 'send', 'uses' => 'EmailController@send']);
 
 
+   //HomeController routes are started from here
 
+    Route::auth();
+
+    Route::get('/home', ['as'=>'home', 'uses'=>'HomeController@index'] );
+    
 //unused till now
     Route::get('/admin/grouphome', function () {
         return view('admin.grouphome');
@@ -71,9 +77,7 @@ Route::group(['middlewaregroups' => ['web']], function () {
         return view('admin.Adminindex');
     });
 
-    Route::auth();
-
-    Route::get('/home', ['as'=>'home', 'uses'=>'HomeController@index'] );
+    
 
 });
 

@@ -25,12 +25,12 @@
                                    {{ csrf_field() }}                              
                                     <div class="form-group @if($errors->has('body')) has-error @endif">
                                           <label class="control-label">Body</label>
-                                          <textarea class="form-control" name="body" rows="5" placeholder="Write here..."></textarea>
+                                          <textarea class="form-control" name="body" rows="5" placeholder="Write here...">{{old('body')}}</textarea>
                                           {!! $errors->first('body','<span class="help-block">:message </span>') !!}
                                     </div>
                                     <div class="form-group">
                                           <label class="control-label">File</label>
-                                  	      <input type="file" name="file" class="form-control" accept=".doc,.ppt,.pdf,.jpeg,.png,.jpg,">	 
+                                  	      <input type="file" name="file" class="form-control" accept=".doc,.ppt,.pdf,.jpeg,.png,.jpg," value="{{old('file')}}">	 
                                     </div>
                                   <div class="form-group">
                                   	 <button type="submit" class="btn btn-md btn-success pull-right">Post</button>	   

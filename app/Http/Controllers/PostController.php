@@ -36,7 +36,11 @@ class PostController extends Controller
     public function allLectures($gid){
 
        $group = Group::findOrFail($gid);
-       $lectures = Post::where('group_id', $gid)->where('type','L')->orderBy('created_at','desc')->get();
+       $lectures = Post::where('group_id', $gid)
+                        ->where('type','L')
+                        ->orderBy('created_at','desc')
+                        ->get();
+
        $user=User::findOrFail(Auth::user()->id);
        if($user->user_type_id=='2')
             return redirect('/pagenotfound');
@@ -61,18 +65,22 @@ class PostController extends Controller
      $file= $request->file('file');
      $user_id = Auth::user()->id;
      $post=Post::create([
-      'group_id'  => $gid ,
-      'user_id'   => $user_id , 
-      'title'     => $request->lecture_title ,
-      'body'      => $request->body,
-      'type'      => 'L'
+          'group_id'  => $gid ,
+          'user_id'   => $user_id , 
+          'title'     => $request->lecture_title ,
+          'body'      => $request->body,
+          'type'      => 'L'
                       ]);
 
      if(!empty($file))
      {
         $content=time().$file->getClientOriginalName();
         $post_id=$post->id;
-        $file_store=Content::create(['post_id' => $post_id ,'content' =>$content ]);
+        $file_store=Content::create([
+                    'post_id' => $post_id ,
+                    'content' =>$content 
+                                   ]);
+
         $file->move('postfiles',$file_store->id);
      }
 
@@ -98,7 +106,11 @@ class PostController extends Controller
 
 	public function allPosts($gid)
 	{
-		$posts = Post::where('group_id', $gid)->where('type','P')->orderBy('created_at','desc')->get();
+		$posts = Post::where('group_id', $gid)
+                  ->where('type','P')
+                  ->orderBy('created_at','desc')
+                  ->get();
+
 		$group =Group::findOrFail($gid);
 		$user= Auth::user();
     $comments=Comment::where('group_id',$gid)->get();
@@ -110,18 +122,28 @@ class PostController extends Controller
       {
 
        $rules = [
-              'body'    => 'required'
+              'body'    => 'bail|required'
                 ]; 
+      $this->validate($request,$rules);
+             
      	$file= $request->file('file');
      // $user=Group::where('id',$gid)->first();
       $user_id=Auth::user()->id;
-     	$post=Post::create(['group_id'=> $gid ,'user_id' =>$user_id ,'type'=>'P','body' => $request->body]);
+     	$post=Post::create([
+                'group_id'  => $gid ,
+                'user_id'   =>$user_id ,
+                'type'      =>'P',
+                'body'      => $request->body
+                        ]);
 
      	if(!empty($file))
      	{
          $post_id=$post->id;
      	   $content=$file->getClientOriginalName();    	   
-     	   $content_store=Content::create(['post_id' => $post_id ,'content' =>$content ]);
+     	   $content_store=Content::create([
+                  'post_id' => $post_id ,
+                  'content' =>$content 
+                  ]);
          $file->move('postfiles',$content_store->id);
      	}
 
@@ -161,7 +183,10 @@ class PostController extends Controller
         }
         else if($type=='L')
         {
-          Post::findOrFail($pid)->update(['body' => $request->body, 'title'=>$request->title]);
+          Post::findOrFail($pid)->update([
+              'body'   => $request->body,
+              'title'  => $request->title
+              ]);
         }
 
             if(!empty($file))

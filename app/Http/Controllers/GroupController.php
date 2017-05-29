@@ -46,17 +46,25 @@ class GroupController extends Controller
       //Users will able to edit their groups by this method
     public function update(Request $request,$id){
 
+           $rules=[
+           'group_name'    => 'required',
+           'group_code'    => 'required'
+           ]; 
+
+           $v=$this->validate($request,$rules);
            $group_code=$request->group_code;
-          if (Group::where('group_code', '=', $group_code)->exists()) {
-             $msg= "Group code already exists ! Try another one.";
-              return redirect('/home');
+           $group=Group::findOrFail($id);
+          if (Group::where('group_code', '=', $group_code)->exists() && $group_code !=$group->group_code) {
+             $msg= "Group code already existed ! Try another one.";
+             return back()->with('message',$msg);
             }
-         Group::findOrFail($id)->update([
-          'group_name'        =>$request->group_name,
+       
+        Group::findOrFail($id)->update([
+          'group_name'        => $request->group_name,
           'group_code'        => $group_code ,
-          'course_code'       =>$request->course_code,
-          'session'           =>$request->session,
-          'short_description' =>$request->short_description
+          'course_code'       => $request->course_code,
+          'session'           => $request->session,
+          'short_description' => $request->short_description
           ]);
          return redirect('/home');
     }

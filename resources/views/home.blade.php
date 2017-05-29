@@ -51,7 +51,7 @@
                                                       <li><a href="{{ route('group_id',['id'=>$group->id]) }}"><i class="fa fa-pencil fa-fw"></i>Edit</a></li>
 
                                                      <li><a onclick="return confirm('are you sure?')" href="{{ route('group_deleted_id',['id'=>$group->id]) }}"><i class="fa fa-trash-o fa-fw"></i>Delete</a></li>
-                                                      <li><a href="#"><span class=""><i class="fa fa-plus fa-fw"></i></span>Add member</a></li>
+                                                      <li><a href="{{route('emailCreate',['gid' =>$group->id])}}"><span class=""><i class="fa fa-plus fa-fw"></i></span>Add member</a></li>
 
                                                       
 

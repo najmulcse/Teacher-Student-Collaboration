@@ -6,7 +6,7 @@
 @endsection
 @section('group_heading')
               <h2 class="page-header">
-                    Create Group
+                    Edit Group
                     <small></small>
              </h2>
 @endsection
@@ -25,19 +25,24 @@
                     <div class="panel panel-info">
                       
                         <div class="panel-body">
+                        @if (session('message'))
+                            <div class="alert alert-danger text-center">
+                                {{ session('message') }}
+                            </div>
+                        @endif
                             <form action="{{route('update',['id'=>$group->id])}}" method="post" class="form-horizontal" >
                                  {{ csrf_field() }}
                                  {{method_field('PATCH')}}
                                 <div class="form-group">
                                     <label for="exampleInputEmail1" class="col-sm-3 control-label">Group Name</label>
                                     <div class="col-sm-9">
-                                    <input type="text" name="group_name" class="form-control" value='{{ $group->group_name}}' required>
+                                    <input type="text" name="group_name" class="form-control" value='{{ $group->group_name}}'>
                                     </div>
                                 </div> 
                             <div class="form-group">
                                 <label for="title" class="col-sm-3 control-label">Group code</label>
                                 <div class="col-sm-9">
-                                  <input type="text" name="group_code" class="form-control" value="{{$group->group_code}}" required>
+                                  <input type="text" name="group_code" class="form-control" value="{{$group->group_code}}">
                                 </div>
                           </div>
                           <div class="form-group">

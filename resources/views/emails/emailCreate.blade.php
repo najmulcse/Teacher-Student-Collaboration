@@ -25,7 +25,7 @@
                                 <div class="alert alert-danger text-center">
                                     {{ session('message') }}
                                 </div>
-                            @endif</small>
+                            @endif
                           <div class="col-sm-8 col-sm-offset-2">                          
                                <form action="{{route('send')}}" method="POST" enctype="multipart/form-data">
                                       {{ csrf_field() }} 

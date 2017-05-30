@@ -52,8 +52,11 @@ Route::group(['middlewaregroups' => ['web']], function () {
     Route::post('group/Lecture/store',['as' => 'storeLecture','uses' => 'PostController@storeLecture']);
 
 
+    
+    Route::get('group/{gid}/allAssignments',['as' => 'allAssignments' , 'uses' => 'PostController@allAssignments']);
     Route::get('group/{gid}/createAssignment',['as' => 'createAssignment' ,'uses' =>'PostController@createAssignment']);
     Route::post('group/{gid}/storeAssignment',['as' => 'storeAssignment' ,'uses' =>'PostController@storeAssignment']);
+    // Route::post('group/{gid}/Assignment/{type}/{pid}/edit',['as' => 'storeAssignment' ,'uses' =>'PostController@store']);
 
     //PostController routes are ended 
 

@@ -24,6 +24,14 @@ class Post extends Model
     {
             return $this->hasMany('App\Comment');
     }
+    public function assignment()
+    {
+           return $this->hasOne('App\Assignment');
+    }
+    public function assignments()
+    {
+           return $this->hasMany('App\Assignment');
+    }
 
     
 }

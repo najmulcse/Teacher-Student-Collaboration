@@ -10,6 +10,7 @@ use App\user;
 use App\Post;
 use App\Content;
 use App\Comment;
+use App\Assignment;
 use App\Http\Requests\PostsFormRequest;
 use Illuminate\Support\Facades\Auth;
 use Validator;
@@ -155,7 +156,7 @@ class PostController extends Controller
       }
 
 
-          public function allAssignment($gid)
+          public function allAssignments($gid)
           {
             $assignments = Post::where('group_id', $gid)
                           ->where('type','A')
@@ -169,6 +170,7 @@ class PostController extends Controller
           }
 
         public function createAssignment($gid){
+
           $group = Group::findOrFail( $gid );
           $user_id=Auth::user()->id;
           $user= User::findOrFail($user_id);
@@ -193,6 +195,7 @@ class PostController extends Controller
                       'group_id'  => $gid ,
                       'user_id'   => $user_id ,
                       'type'      =>'A',
+                      'title'     => $request->assignment_title,
                       'body'      => $request->body
                               ]);
             $post_id=$post->id;
@@ -214,7 +217,7 @@ class PostController extends Controller
 
 
 
-             return redirect()->route('allAssignment',$gid);  
+             return redirect()->route('allAssignments',$gid);  
 
              
             }
@@ -225,22 +228,52 @@ class PostController extends Controller
       public function edit($gid,$type, $pid)
       {
       
-  		  $post = Post::findOrFail($pid); 		 
+  		  $post  = Post::findOrFail($pid); 		 
   		  $group = Group::findOrFail($gid);
+        $date  = Assignment::where('post_id',$pid)->get();
+       // return $post->assignments;
         $user = $group->user;   
         if($type=='P')
         {        
   		      return view('posts.editPost',compact('post','user','group'));
         }
-        else if($type='L')
+        else if($type=='L')
         {
             return view('lectures.editLecture',compact('post','user','group'));
+        }
+        else if($type=='A')
+        {
+            
+            return view('assignments.editAssignment',compact('post','user','group','date'));
         }
 
       }
       
       public function update(Request $request , $gid ,$type, $pid)
       {
+        // $rules1=
+        // [
+        //   'assignment_title'  => 'required' ,
+        //   'last_date'         => 'required'
+        // ];
+
+        // $rules2=
+        // [
+        //   'body'   => 'required'
+        // ];
+        // if($type=='A')
+        //   {
+        //     $v=Validator::make([$request,$rules1]);
+        //     if($v->fails())
+        //     {
+        //       return back()->withInput();
+        //     }
+        //   }
+        //  else if($type =='P')
+        //  {
+        //   $this->validate($request,$rules2);
+        //  } 
+
         $file= $request->file('file');
         
         if($type=='P')
@@ -253,6 +286,16 @@ class PostController extends Controller
               'body'   => $request->body,
               'title'  => $request->title
               ]);
+        }
+        else if($type=='A')
+        {
+          Post::findOrFail($pid)->update([
+              'body'   => $request->body,
+              'title'  => $request->title
+              ]);
+          Assignment::where('post_id',$pid)->update([
+                'last_submit_date' =>$request->last_date
+                ]);
         }
 
             if(!empty($file))
@@ -282,12 +325,17 @@ class PostController extends Controller
                 {
                   return redirect()->route('allLectures',$gid); 
                 }
+                else if($type=='A')
+                {
+                  return redirect()->route('allAssignments',$gid); 
+                }
       }
-
+//Assignment,post, lecture deletion method 
       public function delete($gid , $pid)
       {
 
         $post=Post::findOrFail($pid)->delete();
+        $assignment=Assignment::where('post_id',$pid)->delete();
         $content=Content::where('post_id',$pid)->first();
         if($content){
           $file=$content->id;

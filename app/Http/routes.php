@@ -51,6 +51,10 @@ Route::group(['middlewaregroups' => ['web']], function () {
     Route::get('group/{gid}/createLecture',['as' => 'createLecture','uses' => 'PostController@createLecture']);
     Route::post('group/Lecture/store',['as' => 'storeLecture','uses' => 'PostController@storeLecture']);
 
+
+    Route::get('group/{gid}/createAssignment',['as' => 'createAssignment' ,'uses' =>'PostController@createAssignment']);
+    Route::post('group/{gid}/storeAssignment',['as' => 'storeAssignment' ,'uses' =>'PostController@storeAssignment']);
+
     //PostController routes are ended 
 
     //CommentController routes are started from here

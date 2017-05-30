@@ -155,6 +155,72 @@ class PostController extends Controller
       }
 
 
+          public function allAssignment($gid)
+          {
+            $assignments = Post::where('group_id', $gid)
+                          ->where('type','A')
+                          ->orderBy('created_at','desc')
+                          ->get();
+
+            $group =Group::findOrFail($gid);
+            $user= Auth::user();
+
+            return view('assignments.allAssignments',compact('group','assignments','user'));
+          }
+
+        public function createAssignment($gid){
+          $group = Group::findOrFail( $gid );
+          $user_id=Auth::user()->id;
+          $user= User::findOrFail($user_id);
+          return view('assignments.createAssignment',compact('group','user'));
+
+        }
+
+        //Assignment store method 
+        public function storeAssignment(Request $request, $gid)
+            {
+
+             $rules = [
+                    'assignment_title'     => 'required',
+                    'last_date' => 'required'
+                      ]; 
+            $this->validate($request,$rules);
+                   
+            $file= $request->file('file');
+           // $user=Group::where('id',$gid)->first();
+            $user_id=Auth::user()->id;
+            $post=Post::create([
+                      'group_id'  => $gid ,
+                      'user_id'   => $user_id ,
+                      'type'      =>'A',
+                      'body'      => $request->body
+                              ]);
+            $post_id=$post->id;
+            $assignment=Assignment::create([
+                      'post_id'          => $post_id,
+                      'last_submit_date' => $request->last_date 
+                          ]);
+
+            if(!empty($file))
+            {
+               
+               $content=$file->getClientOriginalName();        
+               $content_store=Content::create([
+                        'post_id' => $post_id ,
+                        'content' =>$content 
+                        ]);
+               $file->move('postfiles',$content_store->id);
+            }
+
+
+
+             return redirect()->route('allAssignment',$gid);  
+
+             
+            }
+
+
+
 // Posts and lectures both are edit ,update,deletable in these methods . 
       public function edit($gid,$type, $pid)
       {

@@ -12,7 +12,7 @@
                                           <a href="{{ route('createLecture',['id'=>$group->id]) }}" class="w3-bar-item w3-button">Lecture Upload </a>
                                           <a href="{{ route('allLectures',['gid'=>$group->id ]) }}" class="w3-bar-item w3-button">All Lectures</a>
                                           
-                                          <a href="#" class="w3-bar-item w3-button">Assignment Upload</a>
+                                          <a href="{{ route('createAssignment',['gid' =>$group->id])}}" class="w3-bar-item w3-button">Assignment Upload</a>
 
                                           <a href="{{route('emailCreate',['gid'=>$group->id])}}" class="w3-bar-item w3-button">Add member</a>
                                     @elseif( $user->user_type_id == 2 && $user->id == $group->user_id)

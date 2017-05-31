@@ -29,7 +29,8 @@
                                           <a href="{{route('createPost',['gid' =>$group->id])}}" class="w3-bar-item w3-button">Create a post</a>
                                           <a href="{{ route('allPosts',['gid' => $group->id])}}" class="w3-bar-item w3-button">All Posts</a>
                                           <a href="{{ route('allAssignments',['gid' => $group->id])}}" class="w3-bar-item w3-button">All Assignments</a>
-                                          <a href="{{ route('submitAssignment',['gid' => $group->id])}}" class="w3-bar-item w3-button">Submit Assignment</a>
+                                          <a href="{{ route('submitAssignment',['gid' => $group->id,'type'=>'I','pid'=>'null'])}}" class="w3-bar-item w3-button">Submit Assignment</a>
+                                         {{--  <a href="{{ route('allreadysubmittedAssignment',['gid' => $group->id])}}" class="w3-bar-item w3-button">Submit Assignment</a> --}}
 
                                           
                                     @endif

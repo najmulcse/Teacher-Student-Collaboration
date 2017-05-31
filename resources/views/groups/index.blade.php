@@ -26,7 +26,6 @@
                        <div class="col-sm-11">
                             <div>
                                         
-                                <h2>{{ $lec_post->title }}</h2>
                                 @if( ( ($lec_post->type)=='P') && ($user->id == $lec_post->user_id))
                                        <div class="pull-right">
                                            <ul class="nav navbar-nav navbar-right">
@@ -76,11 +75,21 @@
                                               </ul>
                                           </div> 
                                           @elseif( ( $lec_post->type=='A') && ($user->user_type_id == 2))
-                                              <div class="pull-right">
-                                                  <a href="#" type="button" class="btn btn-primary">Submit</a>
+                                              <div class="pull-right inline-block">
+                                                 @if($lec_post->upload)
+                                                  <h4 style="color:red ;"><small>Last date was: {{$lec_post->assignment->last_submit_date}}</small></h4>
+                                                  <a href="#" type="button" class="btn btn-primary" disabled="disabled" >Submitted</a><i class="fa-x glyphicon glyphicon-ok" ></i>
+                                                  @else
+                                                  <h4 style="color:red ;">Last date: {{$lec_post->assignment->last_submit_date}}</h4>
+                                                  <a href="{{route('submitAssignment',['gid'=>$group->id,'type'=>'D','pid'=>$lec_post->id])}}" type="button" class="btn btn-success">Submit now </a>
+
+                                                  @endif
+
                                               </div>   
                                   @endif
-                                  <span><small>date:{{ $lec_post->created_at->diffForHumans() }}
+                                        <h2>{{ $lec_post->title }}</h2>
+                                        <span>
+                                            <small>date:{{ $lec_post->created_at->diffForHumans() }}
                                             </small>
                                         </span>
                             </div>
@@ -94,6 +103,7 @@
                             </div>
                             <br>
                           <!--showing all comments in a single post/lecture started  from here -->
+                           @if($lec_post->type !='A')
                             @foreach($lec_post->comments as $comment)
                                   <div class="row">    
                                           <div class="col-sm-1">
@@ -149,7 +159,7 @@
                                               @endif
                                         </div>
                                   </div>
-                                 
+                                 @endif
                             <!--comment submission form ended-->
                         
                        </div>

@@ -58,4 +58,4 @@
        @endsection --}}
        
 
-       {{phpinfo()}}
+       

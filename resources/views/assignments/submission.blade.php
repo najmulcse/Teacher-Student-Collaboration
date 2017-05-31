@@ -19,35 +19,35 @@
                      @endif
                 </small>   <!--For alert message end-->
               <form class="horizontal" method="POST" action="{{route('submitByStudent')}}" enctype="multipart/form-data">
-              {{csrf_field()}}
-              <input type="hidden" name="gid" value="{{$group->id}}">
-              <div class="form-group col-sm-3">
-                <label class="label-control">Assignment Title</label>
-              </div>
-              <div class="form-group col-sm-9 @if( $errors->has('assignment_title')) has-error  @endif" >
-                    <select class="form-control" name="assignment_title" >
-                        
-                        
-                        <option value="">Select Assignment</option>
-                        @foreach( $assignments as $assignment)
-                            <option value="{{$assignment->id}}" class="form-control">{{$assignment->title}} </option>
-                        
-                        @endforeach
-                       
-                    </select>
-                    {!!$errors->first('assignment_title','<span class="help-block">:message</span>')!!}  
-              </div>        
-              <div class="form-group col-sm-3">
-                <label class="label-control">File</label>
-              </div>
-              <div class="form-group col-sm-9 @if($errors->has('file')) has-error @endif">
-                 <input class="form-control" type="file" name="file" value="{{old('file')}}">
-                 {!! $errors->first('file','<span class="help-block"> :message </span>')!!}
-              </div>
+                    {{csrf_field()}}
+                    <input type="hidden" name="gid" value="{{$group->id}}">
+                    <div class="form-group col-sm-3">
+                      <label class="label-control">Assignment Title</label>
+                    </div>
+                    <div class="form-group col-sm-9 @if( $errors->has('assignment_title')) has-error  @endif" >
+                          <select class="form-control" name="assignment_title" >    
+                                     <option value="">Select Assignment</option>
+                              @foreach( $assignments as $assignment)
+                                  @if($type=='D'&& $pid==$assignment->id)
+                                      <option value="{{$assignment->id}}" selected>{{$assignment->title}}</option>
+                                  @else
+                                      <option value="{{$assignment->id}}" class="form-control">{{$assignment->title}} </option>
+                                  @endif
+                              @endforeach
+                          </select>
+                          {!!$errors->first('assignment_title','<span class="help-block">:message</span>')!!}  
+                    </div>        
+                    <div class="form-group col-sm-3">
+                          <label class="label-control">File</label>
+                    </div>
+                    <div class="form-group col-sm-9 @if($errors->has('file')) has-error @endif">
+                          <input class="form-control" type="file" name="file" value="{{old('file')}}">
+                       {!! $errors->first('file','<span class="help-block"> :message </span>')!!}
+                    </div>
 
-              <div class="col-sm-9 col-sm-offset-3">
-                <button class="form-control btn btn-success">Submit</button>
-              </div>
+                    <div class="col-sm-9 col-sm-offset-3">
+                          <button class="form-control btn btn-success">Submit</button>
+                    </div>
               </form>
             </div>
         </div>

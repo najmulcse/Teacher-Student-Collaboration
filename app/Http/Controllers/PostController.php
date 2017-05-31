@@ -352,7 +352,7 @@ class PostController extends Controller
 
 //Assignment submission by student
 
-      public function submitAssignment($gid){
+      public function submitAssignment($gid,$type,$pid){
 
         $group = Group::findOrFail( $gid );
         $user_id=Auth::user()->id;
@@ -361,7 +361,7 @@ class PostController extends Controller
                       ->where('type','A')
                       ->orderBy('created_at','desc')
                       ->get();
-        return view('assignments.submission',compact('group','user','assignments'));
+        return view('assignments.submission',compact('group','user','assignments','type','pid'));
 
       }
 
@@ -409,6 +409,10 @@ class PostController extends Controller
                }
             }
          return back()->with('status',$msg);   
+      }
+
+      public function allreadysubmittedAssignment($gid){
+        
       }
 
 

@@ -24,10 +24,9 @@
                        </div>
                        <div class="col-sm-11">
                               <div>
-                                        
-                                  <h2>{{ $assignment->title }}</h2>
                                   @if( ( ($assignment->type)=='A') && ($user->id == $assignment->user_id))
                                       <div class="pull-right">
+                                      <h4 style="color:red ;"><small>Last date : {{$assignment->assignment->last_submit_date}}</small></h4>
                                           <ul class="nav navbar-nav navbar-right">
                                                 <li class="dropdown">
                                                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -42,10 +41,18 @@
                                           </ul>
                                       </div>
                                    @elseif( ( $assignment->type=='A') && ($user->user_type_id == 2))
-                                              <div class="pull-right">
-                                                  <a href="#" type="button" class="btn btn-primary">Submit</a>
+                                              <div class="pull-right inline-block">
+                                                  
+                                                  @if($assignment->upload)
+                                                  <h4 style="color:red ;"><small>Last date was: {{$assignment->assignment->last_submit_date}}</small></h4>
+                                                  <a href="#" type="button" class="btn btn-primary" disabled="disabled" >Submitted</a><i class="fa-x glyphicon glyphicon-ok" ></i>
+                                                  @else
+                                                  <h4 style="color:red ;">Last date: {{$assignment->assignment->last_submit_date}}</h4>
+                                                  <a href="{{route('submitAssignment',['gid'=>$group->id,'type'=>'D','pid'=>$assignment->id])}}" type="button" class="btn btn-success">Submit now </a>
+                                                  @endif
                                               </div>    
                                   @endif
+                                  <h2>{{ $assignment->title }}</h2>
                                   <span>
                                      <small>
                                           date:{{ $assignment->created_at->diffForHumans() }}

@@ -57,8 +57,10 @@ Route::group(['middlewaregroups' => ['web']], function () {
     Route::get('group/{gid}/allAssignments',['as' => 'allAssignments' , 'uses' => 'PostController@allAssignments']);
     Route::get('group/{gid}/createAssignment',['as' => 'createAssignment' ,'uses' =>'PostController@createAssignment']);
     Route::post('group/{gid}/storeAssignment',['as' => 'storeAssignment' ,'uses' =>'PostController@storeAssignment']);
-    Route::get('group/{gid}/assignment/submit',['as' => 'submitAssignment' ,'uses' =>'PostController@submitAssignment']);
+    Route::get('group/{gid}/{type}/{pid}/assignment/submit',['as' => 'submitAssignment' ,'uses' =>'PostController@submitAssignment']);
     Route::post('group/assignment/store',['as' =>'submitByStudent','uses' => 'PostController@assignmentSubmitByStudent']);
+    // Route::get('group/submittedAssinment/{gid}/show',['as'=> 'allreadysubmittedAssignment','uses' => 'PostController@allreadysubmittedAssignment']);
+
     //PostController routes are ended 
 
 

@@ -7,3 +7,4 @@ Homestead.json
 /config/mail.php
 composer.lock
 public/postfiles/* 
+public/assignments/*

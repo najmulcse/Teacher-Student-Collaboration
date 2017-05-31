@@ -59,6 +59,26 @@
                                                 </li>
                                           </ul>
                                       </div>  
+
+                                      @elseif( ( ($lec_post->type)=='A') && ($user->id == $lec_post->user_id))
+                                          <div class="pull-right">
+                                              <ul class="nav navbar-nav navbar-right">
+                                                    <li class="dropdown">
+                                                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                                               <span class=""><i class="fa fa-cog"></i></span>
+                                                          </a>
+                                                          <ul class="dropdown-menu" role="menu">
+                                                              <li><a href="{{ route('edit_post',['gid'=>$group->id,'pid' => $lec_post->id, 'type'=>'A']) }}"><i class="fa fa-pencil fa-fw"></i>Edit</a></li>
+
+                                                             <li><a onclick="return confirm('are you sure?')" href="{{ route('post_deleted',['gid' => $group->id,'pid'=>$lec_post->id ]) }}"><i class="fa fa-trash-o fa-fw"></i>Delete</a></li>  
+                                                         </ul>
+                                                    </li>
+                                              </ul>
+                                          </div> 
+                                          @elseif( ( $lec_post->type=='A') && ($user->user_type_id == 2))
+                                              <div class="pull-right">
+                                                  <a href="#" type="button" class="btn btn-primary">Submit</a>
+                                              </div>   
                                   @endif
                                   <span><small>date:{{ $lec_post->created_at->diffForHumans() }}
                                             </small>
@@ -103,7 +123,6 @@
                             @endforeach  
                                          
                           <!--for comment submission form, started-->
-
                                  <div class="row">
                                         <div class="col-sm-1">
                                                <img class="img-responsive" src="{{asset('img/author.jpg')}}">

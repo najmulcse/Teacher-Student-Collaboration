@@ -11,6 +11,8 @@ use App\Post;
 use App\Content;
 use App\Comment;
 use App\Assignment;
+use App\Student;
+use App\Upload;
 use App\Http\Requests\PostsFormRequest;
 use Illuminate\Support\Facades\Auth;
 use Validator;
@@ -178,12 +180,12 @@ class PostController extends Controller
 
         }
 
-        //Assignment store method 
+        //Assignment store method (by teacher)
         public function storeAssignment(Request $request, $gid)
             {
 
              $rules = [
-                    'assignment_title'     => 'required',
+                    'assignment_title'     => 'required |max:80',
                     'last_date' => 'required'
                       ]; 
             $this->validate($request,$rules);
@@ -345,6 +347,68 @@ class PostController extends Controller
         }
          return back();
 
+      }
+
+
+//Assignment submission by student
+
+      public function submitAssignment($gid){
+
+        $group = Group::findOrFail( $gid );
+        $user_id=Auth::user()->id;
+        $user= User::findOrFail($user_id);
+        $assignments = Post::where('group_id', $gid)
+                      ->where('type','A')
+                      ->orderBy('created_at','desc')
+                      ->get();
+        return view('assignments.submission',compact('group','user','assignments'));
+
+      }
+
+      public function assignmentSubmitByStudent(Request $request)
+      {
+        $rules =[
+        'assignment_title'  => 'required',
+        'file'  => 'required'
+        ];
+        $this->validate($request,$rules);
+        $file=$request->file('file');
+        $post_id=$request->assignment_title;
+         if(!empty($file))
+            {
+               $user_id=Auth::user()->id;
+               $link=$file->getClientOriginalName(); 
+
+               if(Upload::where('post_id',$post_id)->where('user_id',$user_id)->exists())
+               {
+                   $msg="Already assignment is submitted";
+               }
+               else{  
+                      $check=Assignment::where('post_id',$post_id)->first();
+                      $last_date=$check->last_submit_date;
+                      $date= \Carbon\Carbon::now();
+                      $currentDate=$date->toDateTimeString();
+                      if( $last_date >= $currentDate)
+                      {
+                           $link_store=Upload::create([
+                                    'post_id'      => $post_id ,
+                                    'user_id'   => $user_id,
+                                    'link'         => $link 
+                                    ]);
+                           $check=$file->move('assignments',$link_store->id);
+
+                               if($check && $link_store)
+                               {
+                                  $msg="Assignment submitted Successfully ";
+                               }
+                     }
+                     else
+                     {
+                      $msg="This assignment submission date is over";
+                     }
+               }
+            }
+         return back()->with('status',$msg);   
       }
 
 

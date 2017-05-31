@@ -52,13 +52,16 @@ Route::group(['middlewaregroups' => ['web']], function () {
     Route::post('group/Lecture/store',['as' => 'storeLecture','uses' => 'PostController@storeLecture']);
 
 
-    
+    //Assignments related routes are here
+
     Route::get('group/{gid}/allAssignments',['as' => 'allAssignments' , 'uses' => 'PostController@allAssignments']);
     Route::get('group/{gid}/createAssignment',['as' => 'createAssignment' ,'uses' =>'PostController@createAssignment']);
     Route::post('group/{gid}/storeAssignment',['as' => 'storeAssignment' ,'uses' =>'PostController@storeAssignment']);
-    // Route::post('group/{gid}/Assignment/{type}/{pid}/edit',['as' => 'storeAssignment' ,'uses' =>'PostController@store']);
-
+    Route::get('group/{gid}/assignment/submit',['as' => 'submitAssignment' ,'uses' =>'PostController@submitAssignment']);
+    Route::post('group/assignment/store',['as' =>'submitByStudent','uses' => 'PostController@assignmentSubmitByStudent']);
     //PostController routes are ended 
+
+
 
     //CommentController routes are started from here
     Route::post('group/{gid}/post/{pid}/comment/{type}/store',['as' => 'post_comment' ,'uses' =>'CommentController@store']);

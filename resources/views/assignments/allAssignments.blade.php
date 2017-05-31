@@ -12,6 +12,7 @@
 <section>
     <div class="row">
         <div class="col-sm-9">
+       @if(count($assignments)>0)
           @foreach ($assignments as $assignment) <!-- all lectures foreach started -->
               <div class="row">
                 
@@ -40,6 +41,10 @@
                                                 </li>
                                           </ul>
                                       </div>
+                                   @elseif( ( $assignment->type=='A') && ($user->user_type_id == 2))
+                                              <div class="pull-right">
+                                                  <a href="#" type="button" class="btn btn-primary">Submit</a>
+                                              </div>    
                                   @endif
                                   <span>
                                      <small>
@@ -64,6 +69,10 @@
                 </div>
                 <hr>
                    @endforeach  <!-- all lectures foreach ended -->
+
+           @else
+           <h2>Currently empty!!!</h2>
+           @endif        
         </div>
 
         <div class="col-sm-3">

@@ -18,7 +18,7 @@ class CommentController extends Controller
     public function store(Request $request , $gid , $pid, $type)
     {
         $rules=[
-         'body'         =>'required|min:4',
+         'body'         =>'required',
         ];
          $p_id=$request->p_comment_id;
          //$this->validate($request,$rules);

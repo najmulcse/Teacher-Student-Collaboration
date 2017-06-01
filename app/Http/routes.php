@@ -59,7 +59,7 @@ Route::group(['middlewaregroups' => ['web']], function () {
     Route::post('group/{gid}/storeAssignment',['as' => 'storeAssignment' ,'uses' =>'PostController@storeAssignment']);
     Route::get('group/{gid}/{type}/{pid}/assignment/submit',['as' => 'submitAssignment' ,'uses' =>'PostController@submitAssignment']);
     Route::post('group/assignment/store',['as' =>'submitByStudent','uses' => 'PostController@assignmentSubmitByStudent']);
-    // Route::get('group/submittedAssinment/{gid}/show',['as'=> 'allreadysubmittedAssignment','uses' => 'PostController@allreadysubmittedAssignment']);
+    Route::get('group/submittedAssinment/{gid}/show',['as'=> 'submittedAssignments','uses' => 'PostController@submittedAssignments']);
 
     //PostController routes are ended 
 
@@ -73,6 +73,8 @@ Route::group(['middlewaregroups' => ['web']], function () {
 
     Route::get('emailCreate/{gid}',['as' => 'emailCreate', 'uses' => 'EmailController@emailCreate']);
     Route::post('send',['as' => 'send', 'uses' => 'EmailController@send']);
+   
+    //EmailController routes ended
 
 
    //HomeController routes are started from here
@@ -81,6 +83,7 @@ Route::group(['middlewaregroups' => ['web']], function () {
 
     Route::get('/home', ['as'=>'home', 'uses'=>'HomeController@index'] );
     
+  //HomeController routes ended
 //unused till now
     Route::get('/admin/grouphome', function () {
         return view('admin.grouphome');

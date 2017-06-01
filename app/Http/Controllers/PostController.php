@@ -45,8 +45,6 @@ class PostController extends Controller
                         ->get();
 
        $user=User::findOrFail(Auth::user()->id);
-       if($user->user_type_id=='2')
-            return redirect('/pagenotfound');
        $comments=Comment::where('group_id',$gid)->get();
        return view('lectures.allLectures',compact('group','user','lectures','comments'));
      }
@@ -225,6 +223,20 @@ class PostController extends Controller
             }
 
 
+         public function submittedAssignments($gid)
+         {
+               $assignments = Upload::where('group_id', $gid)
+                                    ->where('type','A')
+                                    ->orderBy('created_at','desc')
+                                    ->get();
+
+                $group =Group::findOrFail($gid);
+                $user= Auth::user();
+
+                return view('assignments.allAssignments',compact('group','assignments','user'));
+         }   
+
+
 
 // Posts and lectures both are edit ,update,deletable in these methods . 
       public function edit($gid,$type, $pid)
@@ -373,6 +385,7 @@ class PostController extends Controller
         ];
         $this->validate($request,$rules);
         $file=$request->file('file');
+        $gid=$request->gid;
         $post_id=$request->assignment_title;
          if(!empty($file))
             {
@@ -392,7 +405,8 @@ class PostController extends Controller
                       {
                            $link_store=Upload::create([
                                     'post_id'      => $post_id ,
-                                    'user_id'   => $user_id,
+                                    'group_id'     => $gid,
+                                    'user_id'      => $user_id,
                                     'link'         => $link 
                                     ]);
                            $check=$file->move('assignments',$link_store->id);

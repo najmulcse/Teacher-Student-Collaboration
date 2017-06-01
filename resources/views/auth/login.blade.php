@@ -49,7 +49,18 @@
                                     </span>
                                 @endif
                             </div>
+                            <div class="form-group">
+                            <div class="col-sm-6">
+                                <div class="checkbox">
+                                    <label style="color:white;">
+                                        <input type="checkbox" name="remember"> Remember Me
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                            <div class="form-group">
                             <button type="submit" class="btn signin_button">Sign in!</button>
+                            </div>
                         </form>
                     </div>
                 </div>

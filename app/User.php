@@ -39,4 +39,9 @@ class User extends Authenticatable
     // {
     //     return $this->hasMany('App\Lecture');
     // }
+
+    // public function group()
+    // {
+    //  return $this->
+    // }
 }

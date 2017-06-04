@@ -12,10 +12,10 @@ class StudentsTableSeeder extends Seeder
     public function run()
     {
         $faker=Faker\Factory::create();
-        for ($i=0;$i<5;$i++){
+        for ($i=3;$i<=10;$i++){
         DB::table('students')->insert([
 
-            'user_id'       => $faker->unique()->randomDigit,
+            'user_id'       => $i,
             'roll'          => random_int(00005400,90905490),
             'year'          => $faker->randomElement($array = array('1st','2nd','3rd','4th')),
             'semester'      => $faker->randomElement($array = array('1st','2nd')),

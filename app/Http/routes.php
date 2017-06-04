@@ -92,7 +92,7 @@ Route::group(['middlewaregroups' => ['web']], function () {
         return view('admin.Adminindex');
     });
 
-    
+    Route::post('ajaxReq','PostController@ajaxReq');
 
 });
 

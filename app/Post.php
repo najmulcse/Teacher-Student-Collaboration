@@ -33,8 +33,9 @@ class Post extends Model
            return $this->hasMany('App\Assignment');
     }
 
-    public function upload(){
-        return $this->hasOne('App\Upload');
+    public function uploads(){
+        
+           return $this->hasMany('App\Upload');
     }
 
     

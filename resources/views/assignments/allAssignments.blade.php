@@ -26,7 +26,9 @@
                               <div>
                                   @if( ( ($assignment->type)=='A') && ($user->id == $assignment->user_id))
                                       <div class="pull-right">
+                                      @if($assignment->assignment)
                                       <h4 style="color:red ;"><small>Last date : {{$assignment->assignment->last_submit_date}}</small></h4>
+                                      @endif
                                           <ul class="nav navbar-nav navbar-right">
                                                 <li class="dropdown">
                                                       <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -40,10 +42,10 @@
                                                 </li>
                                           </ul>
                                       </div>
-                                   @elseif( ( $assignment->type=='A') && ($user->user_type_id == 2))
+                                   @elseif( ( $assignment->type =='A') && ($user->user_type_id == 2))
                                               <div class="pull-right inline-block">
                                                   
-                                                  @if($assignment->upload)
+                                                  @if($assignment->uploads->where('user_id',$user->id)->first())
                                                   <h4 style="color:red ;"><small>Last date was: {{$assignment->assignment->last_submit_date}}</small></h4>
                                                   <a href="#" type="button" class="btn btn-primary" disabled="disabled" >Submitted</a><i class="fa-x glyphicon glyphicon-ok" ></i>
                                                   @else

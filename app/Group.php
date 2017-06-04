@@ -14,7 +14,7 @@ class Group extends Model
     }
 
     public function users(){
-        return $this->belongToMany('App\User');
+        return $this->belongsToMany('App\User');
     }
     
     public function posts(){
@@ -23,6 +23,10 @@ class Group extends Model
     
     public function contents(){
        return $this->hasMany('App\Content');
+    }
+    public function members()
+    {
+       return $this->hasMany('App\GroupMember');
     }
 
     

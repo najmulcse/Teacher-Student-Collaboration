@@ -222,18 +222,18 @@ class PostController extends Controller
              
             }
 
-
+    //teacher will see  all assignments which is submitted by students
          public function submittedAssignments($gid)
          {
-               $assignments = Upload::where('group_id', $gid)
-                                    ->where('type','A')
-                                    ->orderBy('created_at','desc')
-                                    ->get();
+              $assignments = Post::where('group_id', $gid)
+                          ->where('type','A')
+                          ->orderBy('created_at','desc')
+                          ->get();
 
                 $group =Group::findOrFail($gid);
                 $user= Auth::user();
 
-                return view('assignments.allAssignments',compact('group','assignments','user'));
+                return view('assignments.submittedAssignments',compact('group','assignments','user'));
          }   
 
 
@@ -438,6 +438,14 @@ class PostController extends Controller
             $name=$content->content;
             $file_path = public_path('postfiles/').$fileid;
             return response()->download($file_path,$name);
+      }
+
+
+
+      public function ajaxReq(Request $request)
+      {
+        return  $pid=$request->id;
+        // return view('assignments.submittedAssignments',compact('pid'));
       }
     
 }

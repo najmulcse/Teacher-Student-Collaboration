@@ -61,6 +61,9 @@
 
                                       @elseif( ( ($lec_post->type)=='A') && ($user->id == $lec_post->user_id))
                                           <div class="pull-right">
+                                          @if($lec_post->assignment)
+                                           <h4 style="color:red ;"><small>Last date : {{$lec_post->assignment->last_submit_date}}</small></h4>
+                                           @endif
                                               <ul class="nav navbar-nav navbar-right">
                                                     <li class="dropdown">
                                                           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -74,9 +77,9 @@
                                                     </li>
                                               </ul>
                                           </div> 
-                                          @elseif( ( $lec_post->type=='A') && ($user->user_type_id == 2))
+                                          @elseif( ( $lec_post->type=='A') && ( $user->user_type_id == 2))
                                               <div class="pull-right inline-block">
-                                                 @if($lec_post->upload)
+                                                 @if($lec_post->uploads->where('user_id',$user->id)->first() )
                                                   <h4 style="color:red ;"><small>Last date was: {{$lec_post->assignment->last_submit_date}}</small></h4>
                                                   <a href="#" type="button" class="btn btn-primary" disabled="disabled" >Submitted</a><i class="fa-x glyphicon glyphicon-ok" ></i>
                                                   @else

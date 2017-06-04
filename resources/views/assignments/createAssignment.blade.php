@@ -48,7 +48,7 @@
                                             
                                      </div>
                                      <div class="form-group @if ($errors->has('last_date')) has-error @endif">
-                                           <label class="control-label">Last date</label>
+                                           <label class="control-label">Last date to submit</label>
                                            <input type="date" name="last_date" class="form-control" value="{{ old('last_date') }}">  
                                             {!!$errors->first('last_date','<span class=" help-block">:message</span>')!!} 
                                      </div>

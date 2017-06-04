@@ -41,7 +41,7 @@ class UsersTableSeeder extends Seeder
 
        //for students
 
-      for ($i=0;$i<10;$i++){
+      for ($i=3;$i<=10;$i++){
        DB::table('users')->insert([
 
           'name'          => $faker->name,

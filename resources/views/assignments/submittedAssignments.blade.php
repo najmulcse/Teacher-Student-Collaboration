@@ -38,7 +38,7 @@
                        <td>{{$member->student->roll}}</td>
                        <td>{{$member->user->name}}</td>
                     @if($m=$member->upload()->where('post_id',13)->first())
-                       <td><a href="#">{{$m->link}}</a></td>
+                       <td><a href="{{url('downloadA')}}/{{$m->id}}">{{$m->link}}</a></td>
                        <td><a type="button" class="btn btn-sm btn-success">Submitted</a></td>
                     @else
                        <td></td>

@@ -61,6 +61,7 @@ Route::group(['middlewaregroups' => ['web']], function () {
     Route::post('group/assignment/store',['as' =>'submitByStudent','uses' => 'PostController@assignmentSubmitByStudent']);
     Route::get('group/submittedAssinment/{gid}/show',['as'=> 'submittedAssignments','uses' => 'PostController@submittedAssignments']);
 
+    Route::get('downloadA/{file}',['as' => 'downloadA' , 'uses' => 'PostController@downloadA']);
     //PostController routes are ended 
 
 
@@ -84,6 +85,8 @@ Route::group(['middlewaregroups' => ['web']], function () {
     Route::get('/home', ['as'=>'home', 'uses'=>'HomeController@index'] );
     
   //HomeController routes ended
+
+
 //unused till now
     Route::get('/admin/grouphome', function () {
         return view('admin.grouphome');
@@ -92,7 +95,7 @@ Route::group(['middlewaregroups' => ['web']], function () {
         return view('admin.Adminindex');
     });
 
-    Route::post('ajaxReq','PostController@ajaxReq');
+    Route::post('/ajaxReq','PostController@ajaxReq');
 
 });
 

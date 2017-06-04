@@ -440,6 +440,13 @@ class PostController extends Controller
             return response()->download($file_path,$name);
       }
 
+      public function downloadA($fileid)
+      {
+            $content=Upload::where('id',$fileid)->first();
+            $name=$content->link;
+            $file_path = public_path('assignments/').$fileid;
+            return response()->download($file_path,$name);
+      }
 
 
       public function ajaxReq(Request $request)

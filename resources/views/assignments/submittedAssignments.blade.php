@@ -80,7 +80,7 @@ function selectAssignment(id){
       url    : '/ajaxReq',
       data   :{'id' :id},
       success:function(data){
-                  $("#assignment_id").html(data.assignment_id);
+                  $("#pid").html(data);
                }
 
     });

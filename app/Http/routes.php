@@ -26,7 +26,7 @@ Route::group(['middlewaregroups' => ['web']], function () {
 
     // For group controlling , all the methods are defined in the GroupController 
 
-    Route::get('/group/{id}', ['as'=>'id','uses'=>'GroupController@index']);
+    Route::get('/group/{id}', ['as'=>'id','middleware'=>'group','uses'=>'GroupController@index']);
     Route::get('/group/{id}/edit',['as'=>'group_id','uses'=>'GroupController@edit']);
     Route::patch('/group/{id}/update',['as'=>'update','uses'=>'GroupController@update']);
     Route::get('/create',['as'=>'create','uses'=>'GroupController@create']);
@@ -44,7 +44,7 @@ Route::group(['middlewaregroups' => ['web']], function () {
     Route::get('group/{gid}/allPosts', ['as' => 'allPosts' ,'uses' => 'PostController@allPosts']);
     Route::get('group/{gid}/post/{type}/{pid}/edit',['as' => 'edit_post' ,'uses' => 'PostController@edit']);
     Route::patch('group/{gid}/post/{type}/{pid}/update',['as' => 'updatePost', 'uses' =>'PostController@update']);
-    Route::get('group/{gid}/post/{pid}/delete', ['as' => 'post_deleted', 'uses' => 'PostController@delete']);
+    Route::get('group/{gid}/post/{pid}/{type}/delete', ['as' => 'post_deleted', 'uses' => 'PostController@delete']);
     Route::get('download/{file}',['as' => 'download' , 'uses' => 'PostController@download']);
 
     Route::get('group/{gid}/allLectures',['as' => 'allLectures' , 'uses' => 'PostController@allLectures']);

@@ -42,7 +42,18 @@
                                     <input type="email" name="email" placeholder="Email" class="form-username form-control" id="form-username" value="{{old('email')}}">
 
                                 </div>
-                               
+                                <div id="user_type" class="form-group{{ $errors->has('select_radio') ? ' has-error' : '' }}">
+                                    <label  class="radio-inline">
+                                      <input id="student" type="radio" name="optradio" checked>Student
+                                    </label>
+                                    <label  class="radio-inline">
+                                      <input type="radio" name="optradio">Teacher
+                                    </label>
+
+                                </div id="std_id">
+                                <div>
+                                    
+                                </div>
                                 <div class="form-group{{ $errors->has('select_radio') ? ' has-error' : '' }}">
 
                                     <input type="password" name="password" placeholder="Password" class="form-password form-control" id="form-password">
@@ -70,14 +81,12 @@
 
 <script type="text/javascript">
     
-    // $("#user_type").css("color","white");
+    $("#user_type").css("color","white");
 
-    // document.getElementById("student").onclick=function(){
-    //     document.getElementById("std_id").innerHTML=document.getElementById("user_type").innerHTML;
+    document.getElementById("student").onclick=function(){
         
-    // };
+        
+    };
 </script>
-
-
 
 @endsection

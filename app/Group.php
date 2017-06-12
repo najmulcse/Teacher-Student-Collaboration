@@ -28,6 +28,10 @@ class Group extends Model
     {
        return $this->hasMany('App\GroupMember');
     }
+     public function member()
+    {
+       return $this->hasOne('App\GroupMember');
+    }
 
     
 

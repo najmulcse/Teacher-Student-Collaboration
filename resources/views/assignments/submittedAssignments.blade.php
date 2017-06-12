@@ -12,13 +12,13 @@
 <section>
     <div class="row">
         <div class="col-sm-9">
-        <select class="form-control" id="catId" name="assign" onchange="selectAssignment(this.value)">    
-                    <option value="">Select Assignment</option>
-              @foreach( $assignments as $assignment)
-                    <option value="{{$assignment->id}}" class="form-control">{{$assignment->title}} 
-                    </option>    
-              @endforeach
-        </select>
+           <select class="form-control" id="catId" name="assign" onchange="selectAssignment(this.value)">    
+               <option value="">Select Assignment</option>
+                  @foreach( $assignments as $assignment)
+                  <option value="{{$assignment->id}}" class="form-control">{{$assignment->title}}
+                  </option>    
+                  @endforeach
+           </select>
         {!!$errors->first('assignment_title','<span class="help-block">:message</span>')!!}
         <div id="pid">
        @if(count($assignments)>0)

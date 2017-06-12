@@ -7,21 +7,17 @@
 
     @yield('title')
 
-    <!-- <link rel="stylesheet" href="{{asset('css/app.css')}}">
-    <link rel="stylesheet" href="{{asset('css/libs.css')}}">
-    <link rel="stylesheet" href="{{asset('css/sb-admin.css')}}"> -->
-
- <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="css/mystyle.css" rel="stylesheet" type="text/css" >
-    <link href="css/sbadmin.css" rel="stylesheet">
-    <link href="css/style.css" rel="stylesheet" type="text/css" >
-    <link href="css/formelements.css" rel="stylesheet" type="text/css" >
+    <link href="{{ asset('css/mystyle.css')}}" rel="stylesheet" type="text/css" >
+    <link href="{{asset('css/sbadmin.css')}}" rel="stylesheet">
+    <link href="{{asset('css/style.css')}}" rel="stylesheet" type="text/css" >
+    <link href="{{asset('css/formelements.css')}}" rel="stylesheet" type="text/css" >
 
     <!-- Custom Fonts -->
-    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-  <!-- <link rel="stylesheet" type="text/css" href="{{asset('css/formelements.css')}}"> -->
+    <link href="{{asset('font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
+    <script src="{{asset('js/jquery.js')}}"></script>
 
 
 </head>
@@ -61,7 +57,8 @@
                     <!-- Authentication Links -->
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Login</a></li>
-                        <li><a href="{{ url('/register') }}">Sign up</a></li>
+                        <li><a href="{{ url('/register') }}">Sign up as Teacher</a></li>
+                        <li><a href="#">Sign up as Student</a></li>
                     @else
 
                         <li><a href="{{ url('/home') }}">Home</a></li>
@@ -105,8 +102,8 @@
 
 
 
-       <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.js"></script>
+    
+    <script src="{{asset('js/bootstrap.min.js')}}"></script>
         
 </body>
 

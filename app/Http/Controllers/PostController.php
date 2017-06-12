@@ -13,10 +13,12 @@ use App\Comment;
 use App\Assignment;
 use App\Student;
 use App\Upload;
+use App\GroupMember;
 use App\Http\Requests\PostsFormRequest;
 use Illuminate\Support\Facades\Auth;
 use Validator;
 use Illuminate\Session\Middleware\StartSession;
+use App\Http\Controllers\GroupController;
 
 class PostController extends Controller
 {
@@ -26,27 +28,73 @@ class PostController extends Controller
     return $this->middleware('auth');
   }
 
+// User accessing groups can be checked by this method
+public function checkUsers($gid){
+       $id=Auth::id();
+       $group = Group::findOrFail($gid);
+       $member=GroupMember::where('group_id',$gid)->where('user_id',$id)->first();
+          if($group->user_id == $id || $member)
+          {
+            return "accepted";
+          }
+          else{
+            return "rejected";
+          }
+
+    }
+
+    public function checkPostsAccessing($gid ,$pid,$type)
+    {
+
+      
+          $post = Post::where('id',$pid)
+                      ->where('user_id',Auth::id())
+                      ->where('group_id',$gid)
+                      ->where('type',$type)
+                      ->first();
+          if($post)
+          {
+            return "accepted";
+          }
+          else
+          {
+            return "rejected" ;
+          }
+      
+
+    }
+
 // Lecture related routing methods are started here 
 
- public function createLecture( $groupid ){
-      
-      $group= Group::findOrFail( $groupid );
-      $user= User::findOrFail($group->user_id);
-      return view('lectures.createLecture',compact('group','user'));
+ public function createLecture( $gid ){
+      $check = $this->checkUsers($gid);
+      if($check == "accepted"){
+          $group= Group::findOrFail( $gid );
+          $user= User::findOrFail($group->user_id);
+          return view('lectures.createLecture',compact('group','user'));
+        }else{
+           return redirect()->route('home');
+        }
     }
 
 
     public function allLectures($gid){
 
-       $group = Group::findOrFail($gid);
-       $lectures = Post::where('group_id', $gid)
-                        ->where('type','L')
-                        ->orderBy('created_at','desc')
-                        ->get();
+       $check = $this->checkUsers($gid);
+       if($check == "accepted"){
+           $group = Group::findOrFail($gid);
+           $lectures = Post::where('group_id', $gid)
+                            ->where('type','L')
+                            ->orderBy('created_at','desc')
+                            ->get();
 
-       $user=User::findOrFail(Auth::user()->id);
-       $comments=Comment::where('group_id',$gid)->get();
-       return view('lectures.allLectures',compact('group','user','lectures','comments'));
+           $user=User::findOrFail(Auth::user()->id);
+           $comments=Comment::where('group_id',$gid)->get();
+           return view('lectures.allLectures',compact('group','user','lectures','comments'));
+          }
+         else{
+              return redirect()->route('home');
+            }
      }
 
 
@@ -94,30 +142,45 @@ class PostController extends Controller
 
 //Post related routing methods are started here 
 
+
+  
 	public function createPost($gid){
-		$group = Group::findOrFail( $gid );
-    $user_id=Auth::user()->id;
-		$user= User::findOrFail($user_id);
-		return view('posts.createPost',compact('group','user'));
 
-	}
+        $check = $this->checkUsers($gid);
+        if($check == "accepted"){
+        		$group = Group::findOrFail( $gid );
+            $user_id=Auth::user()->id;
+        		$user= User::findOrFail($user_id);
+        		return view('posts.createPost',compact('group','user'));
+          }else{
+            return redirect()->route('home');
+          }
+  	}
 
-	//here posts are stored through storePost method
+	
 
-
+// View all posts 
 	public function allPosts($gid)
 	{
-		$posts = Post::where('group_id', $gid)
-                  ->where('type','P')
-                  ->orderBy('created_at','desc')
-                  ->get();
+    $check = $this->checkUsers($gid);
+    if($check == "accepted"){
+    		$posts = Post::where('group_id', $gid)
+                      ->where('type','P')
+                      ->orderBy('created_at','desc')
+                      ->get();
 
-		$group =Group::findOrFail($gid);
-		$user= Auth::user();
-    $comments=Comment::where('group_id',$gid)->get();
+    		$group =Group::findOrFail($gid);
+    		$user= Auth::user();
+        $comments=Comment::where('group_id',$gid)->get();
 
-		return view('posts.allPosts',compact('group','posts','user','comments'));
-	}
+    		return view('posts.allPosts',compact('group','posts','user','comments'));
+	 }else{
+        return redirect()->route('home');
+   }
+
+  }
+
+//here posts are stored through storePost method
 
 	public function storePost(PostsFormRequest $request, $gid)
       {
@@ -148,33 +211,41 @@ class PostController extends Controller
          $file->move('postfiles',$content_store->id);
      	}
 
-
-
-     	 return redirect()->route('allPosts',$gid);  
-
-     	 
+     	 return redirect()->route('allPosts',$gid);   
       }
 
 
           public function allAssignments($gid)
           {
-            $assignments = Post::where('group_id', $gid)
-                          ->where('type','A')
-                          ->orderBy('created_at','desc')
-                          ->get();
+            $check = $this->checkUsers($gid);
+            if($check == "accepted"){
+                $assignments = Post::where('group_id', $gid)
+                              ->where('type','A')
+                              ->orderBy('created_at','desc')
+                              ->get();
 
-            $group =Group::findOrFail($gid);
-            $user= Auth::user();
+                $group =Group::findOrFail($gid);
+                $user= Auth::user();
 
-            return view('assignments.allAssignments',compact('group','assignments','user'));
+                return view('assignments.allAssignments',compact('group','assignments','user'));
+            }
+            else{
+               return redirect()->route('home');
+            }
           }
 
         public function createAssignment($gid){
 
-          $group = Group::findOrFail( $gid );
-          $user_id=Auth::user()->id;
-          $user= User::findOrFail($user_id);
-          return view('assignments.createAssignment',compact('group','user'));
+          $check = $this->checkUsers($gid);
+          if($check == "accepted"){
+                $group = Group::findOrFail( $gid );
+                $user_id=Auth::user()->id;
+                $user= User::findOrFail($user_id);
+                return view('assignments.createAssignment',compact('group','user'));
+              }
+              else{
+                return redirect()->route('home');
+              }
 
         }
 
@@ -225,15 +296,22 @@ class PostController extends Controller
     //teacher will see  all assignments which is submitted by students
          public function submittedAssignments($gid)
          {
-              $assignments = Post::where('group_id', $gid)
-                          ->where('type','A')
-                          ->orderBy('created_at','desc')
-                          ->get();
+             $check = $this->checkUsers($gid);
+              if($check == "accepted"){
+                  $assignments = Post::where('group_id', $gid)
+                              ->where('type','A')
+                              ->orderBy('created_at','desc')
+                              ->get();
 
-                $group =Group::findOrFail($gid);
-                $user= Auth::user();
+                    $group =Group::findOrFail($gid);
+                    $user= Auth::user();
 
-                return view('assignments.submittedAssignments',compact('group','assignments','user'));
+                    return view('assignments.submittedAssignments',compact('group','assignments','user'));
+                  }
+                  else
+                  {
+                     return redirect()->route('home');
+                  }
          }   
 
 
@@ -241,53 +319,34 @@ class PostController extends Controller
 // Posts and lectures both are edit ,update,deletable in these methods . 
       public function edit($gid,$type, $pid)
       {
-      
-  		  $post  = Post::findOrFail($pid); 		 
-  		  $group = Group::findOrFail($gid);
-        $date  = Assignment::where('post_id',$pid)->get();
-       // return $post->assignments;
-        $user = $group->user;   
-        if($type=='P')
-        {        
-  		      return view('posts.editPost',compact('post','user','group'));
+        $check= $this->checkPostsAccessing($gid ,$pid ,$type);
+        if($check=="accepted"){
+        		  $post  = Post::findOrFail($pid); 		 
+        		  $group = Group::findOrFail($gid);
+              $date  = Assignment::where('post_id',$pid)->get();
+             // return $post->assignments;
+              $user = $group->user;   
+                    if($type=='P')
+                    {        
+              		      return view('posts.editPost',compact('post','user','group'));
+                    }
+                    else if($type=='L')
+                    {
+                        return view('lectures.editLecture',compact('post','user','group'));
+                    }
+                    else if($type=='A')
+                    {
+                        
+                        return view('assignments.editAssignment',compact('post','user','group','date'));
+                    }
+        }else{
+          return redirect()->route('home');
         }
-        else if($type=='L')
-        {
-            return view('lectures.editLecture',compact('post','user','group'));
-        }
-        else if($type=='A')
-        {
-            
-            return view('assignments.editAssignment',compact('post','user','group','date'));
-        }
-
       }
       
       public function update(Request $request , $gid ,$type, $pid)
       {
-        // $rules1=
-        // [
-        //   'assignment_title'  => 'required' ,
-        //   'last_date'         => 'required'
-        // ];
-
-        // $rules2=
-        // [
-        //   'body'   => 'required'
-        // ];
-        // if($type=='A')
-        //   {
-        //     $v=Validator::make([$request,$rules1]);
-        //     if($v->fails())
-        //     {
-        //       return back()->withInput();
-        //     }
-        //   }
-        //  else if($type =='P')
-        //  {
-        //   $this->validate($request,$rules2);
-        //  } 
-
+        
         $file= $request->file('file');
         
         if($type=='P')
@@ -345,20 +404,24 @@ class PostController extends Controller
                 }
       }
 //Assignment,post, lecture deletion method 
-      public function delete($gid , $pid)
+      public function delete($gid , $pid,$type)
       {
-
-        $post=Post::findOrFail($pid)->delete();
-        $assignment=Assignment::where('post_id',$pid)->delete();
-        $content=Content::where('post_id',$pid)->first();
-        if($content){
-          $file=$content->id;
-          unlink(public_path('postfiles/'.$file));
-          $content->delete();
+        $check= $this->checkPostsAccessing($gid , $pid,$type);
+        if($check=="accepted"){
+              $post=Post::findOrFail($pid)->delete();
+              $assignment=Assignment::where('post_id',$pid)->delete();
+              $content=Content::where('post_id',$pid)->first();
+              if($content){
+                $file=$content->id;
+                unlink(public_path('postfiles/'.$file));
+                $content->delete();
+                }
          
+        }else{
+              return redirect()->route('home');
         }
-         return back();
 
+         return back();
       }
 
 
@@ -425,10 +488,6 @@ class PostController extends Controller
          return back()->with('status',$msg);   
       }
 
-      public function allreadysubmittedAssignment($gid){
-        
-      }
-
 
 //Posts and lectures contents can download by this method 
 
@@ -451,7 +510,8 @@ class PostController extends Controller
 
       public function ajaxReq(Request $request)
       {
-        return  $pid=$request->id;
+        $id=$request->id;
+        return  response()->with('id',$id);
         // return view('assignments.submittedAssignments',compact('pid'));
       }
     

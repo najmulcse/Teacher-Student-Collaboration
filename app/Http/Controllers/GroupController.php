@@ -10,31 +10,62 @@ use App\Group;
 use App\GroupMember;
 use App\Post;
 use App\Comment;
+
 use Illuminate\Support\Facades\Auth;
 class GroupController extends Controller
 {
 
 	public function __construct(){
 		$this->middleware('auth');
+    $this->middleware('group');
 	}
+
+
+
+    public function checkUsers($gid){
+       $id=Auth::id();
+       $group = Group::findOrFail($gid);
+       $member=GroupMember::where('group_id',$gid)->where('user_id',$id)->first();
+        if($group->user_id == $id || $member)
+        {
+          return "accepted";
+        }
+        else{
+          return "rejected";
+        }
+
+    }
 
     //All groups are shown of user home page 
    public function index($gid){
+      
+      $check = $this->checkUsers($gid);
+      if($check == "accepted")
+      {   $group = Group::findOrFail($gid);
+          $lec_posts = Post::where('group_id',$gid)->orderBy('created_at','desc')->get();
+          $user = User::findOrFail(Auth::user()->id);
+          $comments=Comment::where('group_id',$gid)->get();
+          return view('groups.index',compact('group','user','lec_posts','comments'));
+      }else
+      {
+         return redirect()->route('home');
+      }
 
-      $group = Group::findOrFail($gid);
-      $lec_posts = Post::where('group_id',$gid)->orderBy('created_at','desc')->get();
-      $user = User::findOrFail(Auth::user()->id);
-      $comments=Comment::where('group_id',$gid)->get();
-   		return view('groups.index',compact('group','user','lec_posts','comments'));
+      
     }
 
     //Group editing view is called by this method 
-    public function edit($id)
+    public function edit($gid)
     {
-
-    $group= Group::findOrFail($id);
-     //return $group=user()->groups()->get();
+    $id=Auth::id();
+    $group= Group::findOrFail($gid);
+    if($group->user_id == $id)
+     {
       return view('groups.edit',compact('group'));
+     }
+     else{
+      return redirect()->route('home');
+     }
     }
 
     //Group creation view is called by this method
@@ -70,10 +101,13 @@ class GroupController extends Controller
     }
 
     //Group deleted method
-    public function delete($id)
+    public function delete($gid)
     {
-      Group::findOrFail($id)->delete();
-      GroupMember::where('group_id',$id)->delete();
+      $check = $this->checkUsers($gid);
+      if($check == "accepted"){
+        Group::findOrFail($gid)->delete();
+        GroupMember::where('group_id',$gid)->delete();
+      }
       return redirect('/home');
     }
 

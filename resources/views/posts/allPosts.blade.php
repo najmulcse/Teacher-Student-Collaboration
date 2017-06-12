@@ -33,7 +33,7 @@
                                                         <li><a href="{{ route('edit_post',['gid'=>$group->id,'pid' =>$post->id, 'type'=>'P']) }}"><i class="fa fa-pencil fa-fw"></i>Edit</a></li>
                                                        <!--  <a class="btn btn-info" data-toggle="modal" href='#{{$post->id}}'> <i class="fa fa-trash-o fa-fw"></i>Delete</a>
  -->
-                                                        <li><a onclick="return confirm('are you sure?')" href="{{ route('post_deleted',['gid' => $group->id,'pid'=>$post->id ]) }}"><i class="fa fa-trash-o fa-fw"></i>Delete</a></li>     
+                                                        <li><a onclick="return confirm('are you sure?')" href="{{ route('post_deleted',['gid' => $group->id,'pid'=>$post->id , 'type'=>'P']) }}"><i class="fa fa-trash-o fa-fw"></i>Delete</a></li>     
                                                 </ul>
                                           </li>
                                     </ul>

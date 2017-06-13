@@ -87,17 +87,24 @@ Route::group(['middlewaregroups' => ['web']], function () {
   //HomeController routes ended
 
 
+
+
+
 //unused till now
-    Route::get('/admin/grouphome', function () {
-        return view('admin.grouphome');
-    });
-    Route::get('/admin/index', function () {
-        return view('admin.Adminindex');
-    });
+    
 
     Route::post('/ajaxReq','PostController@ajaxReq');
 
 });
+
+
+
+//AdminController routes are started ...
+
+
+Route::group(['middleware' => ['auth','isAdmin']],function(){
+        Route::get('admin',['as' => 'admin' , 'uses' => 'AdminController@index']);
+    });
 
 
 //The purpose of these routes is for testing some features 

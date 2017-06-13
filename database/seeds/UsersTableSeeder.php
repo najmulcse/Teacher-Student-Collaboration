@@ -15,6 +15,19 @@ class UsersTableSeeder extends Seeder
       
       $faker = Faker\Factory::create();
       
+      //for admin
+
+      DB::table('users')->insert([
+
+         'name'          => 'Admin1',
+         'email'         => 'admin1@gmail.com',
+         'password'      => bcrypt('admin1'),
+         'user_type_id'  => 3,
+         'gender'        => $faker->randomElement($array = array ('Male','Female')),
+         'created_at'    => \Carbon\Carbon::now(),
+         'updated_at'    => \Carbon\Carbon::now()
+
+      ]);
       //for teachers
        DB::table('users')->insert([
 

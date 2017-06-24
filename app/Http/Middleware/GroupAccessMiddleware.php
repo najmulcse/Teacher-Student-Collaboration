@@ -15,10 +15,7 @@ class GroupAccessMiddleware
      * @return mixed
      */
     public function handle($request, Closure $next)
-    {
-       
-        $group = Group::find($request->gid);
-        
+    { 
         return $next($request);
     }
 }

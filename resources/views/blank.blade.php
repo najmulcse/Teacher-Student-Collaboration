@@ -1,5 +1,5 @@
 
-{{-- @extends('layouts.homeLayout')
+@extends('layouts.homeLayout')
 
 @section('group_heading')
               <h2 class="page-header">
@@ -8,54 +8,86 @@
              </h2>
                                 
 @endsection
-@section('group_body')
-    <div class="row">
-        <div class="col-sm-9">
-              <div class="row">
-                     <div class="col-sm-1">
-                       
-                     </div>
-                     <div class="col-sm-10">
-<div class="panel panel-primary">
-	<div class="panel-heading">
-		<h3 class="panel-title">Panel title</h3>
-	</div>
-	<div class="panel-body">
-	
-<form action="{{route('test2')}}" method="POST" role="form">
-  {{csrf_field()}}
-	<legend>Form title</legend>
-                       @if(count($errors))
-
-                         @foreach($errors->all() as $error)
-                             <li>{{$error}}</li>
-                         @endforeach
-                       @endif
-	<div class="form-group">
-		<label for="">label</label>
-		<input type="text" class="form-control" id="" name="name" placeholder="Input field">
-	</div>
-   
-
-	<button type="submit" class="btn btn-primary">Submit</button>
-</form>
   
-	</div>
-</div>
-</div>
-                   <div class="col-sm-1">
-                     
-                   </div>
-                
-                  
-                 </div>
-       
+@section('group_body')
 
-        </div>
-        <div class="col-sm-3">
-        </div>
-        </div>
-       @endsection --}}
-       
+   <h3>Pick A Make/Model</h3>
 
-       
+     <form ic-post-to="/form">
+       <div class="form-group">
+         <label class="control-label">Make</label>
+         <select class="form-control" name="make" ic-post-to="/models" ic-target="#models" ic-indicator="#model-ind">
+           <option value="audi">Audi</option>
+           <option value="toyota">Toyota</option>
+           <option value="bmw">BMW</option>
+         </select>
+       </div>
+       <div class="form-group">
+         <label class="control-label">Model <i id="model-ind" class="fa fa-spinner fa-spin" style="display: none"></i></label>
+         <select id="models" class="form-control" name="model">
+           <option value="a1">A1</option>
+           <option value="a3">A3</option>
+           <option value="a6">A6</option>
+         </select>
+       </div>
+
+       <button class="btn btn-default">Submit</button>
+     </form>
+
+   <script type="text/javascript" >
+
+     //========================================================================
+    // Mock Server-Side HTTP End Point 
+    //========================================================================
+    // $.ajax({
+    //   url: "/form",
+    //   response: function (settings) {
+    //     this.responseText = formTemplate();
+    //   }
+    // });
+
+    $.mockjax({
+      url: "/models",
+      responseTime: 450 ,
+      response: function (settings) {
+        var params = parseParams(settings.data);
+        var make = dataStore.findMake(params['make']);
+        this.responseText = modelOptions(make['models']);
+      }
+    });
+
+    //========================================================================
+    // Mock Server-Side Templates
+    //========================================================================
+
+    var originalForm = $('form').html();
+    function formTemplate() {
+      return originalForm;
+    }
+
+    function modelOptions(make) {
+      return $.map(make, function(val) {
+        return "<option value='" + val + "'>" + val +"</option>";
+      });
+    }
+
+    //========================================================================
+    // Mock Data Store
+    //========================================================================
+    var dataStore = function(){
+      var data = {
+        audi : { models : ["A1", "A4", "A6"] },
+        toyota : { models : ["Landcruiser", "Landcruiser", "Landcruiser"] },
+        bmw : { models : ["325i", "325ix", "X5"] }
+      };
+      return {
+        findMake : function(make) {
+          return data[make];
+        }
+      }
+    }()
+    
+     
+   </script>
+
+@endsection

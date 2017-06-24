@@ -12,7 +12,7 @@
 */
 
 
-
+//---------------------------------------------------//
 
 Route::group(['middlewaregroups' => ['web']], function () {
 
@@ -23,7 +23,7 @@ Route::group(['middlewaregroups' => ['web']], function () {
 
         return view('welcome');
     });
-
+//---------------------------------------------------------------//
     // For group controlling , all the methods are defined in the GroupController 
 
     Route::get('/group/{id}', ['as'=>'id','middleware'=>'group','uses'=>'GroupController@index']);
@@ -36,7 +36,7 @@ Route::group(['middlewaregroups' => ['web']], function () {
     Route::post('/checkGroup' , [ 'as' => 'checkGroup','uses' => 'GroupController@checkGroupForJoining']);
     Route::get('leftgroup/{gid}/{mid}',['as' => 'left_group', 'uses' => 'GroupController@leftGroup' ]);
 
-
+//-----------------------------------------------------------//
     //PostController routes are started here
 
     Route::get('group/{gid}/createPost',['as' => 'createPost','uses' => 'PostController@createPost']);
@@ -51,7 +51,7 @@ Route::group(['middlewaregroups' => ['web']], function () {
     Route::get('group/{gid}/createLecture',['as' => 'createLecture','uses' => 'PostController@createLecture']);
     Route::post('group/Lecture/store',['as' => 'storeLecture','uses' => 'PostController@storeLecture']);
 
-
+//-----------------------------------------------------------------------//
     //Assignments related routes are here
 
     Route::get('group/{gid}/allAssignments',['as' => 'allAssignments' , 'uses' => 'PostController@allAssignments']);
@@ -62,14 +62,16 @@ Route::group(['middlewaregroups' => ['web']], function () {
     Route::get('group/submittedAssinment/{gid}/show',['as'=> 'submittedAssignments','uses' => 'PostController@submittedAssignments']);
 
     Route::get('downloadA/{file}',['as' => 'downloadA' , 'uses' => 'PostController@downloadA']);
+  
     //PostController routes are ended 
 
-
+//------------------------------------------------//
 
     //CommentController routes are started from here
     Route::post('group/{gid}/post/{pid}/comment/{type}/store',['as' => 'post_comment' ,'uses' =>'CommentController@store']);
 
-
+    //CommentController routes are ended 
+//------------------------------------------------//
     //EmailController routes are started from here
 
     Route::get('emailCreate/{gid}',['as' => 'emailCreate', 'uses' => 'EmailController@emailCreate']);
@@ -77,7 +79,7 @@ Route::group(['middlewaregroups' => ['web']], function () {
    
     //EmailController routes ended
 
-
+//-----------------------------------------------------//
    //HomeController routes are started from here
 
     Route::auth();
@@ -87,18 +89,18 @@ Route::group(['middlewaregroups' => ['web']], function () {
   //HomeController routes ended
 
 
-
+//-----------------------------------------------------//
 
 
 //unused till now
     
 
-    Route::post('/ajaxReq','PostController@ajaxReq');
+    Route::get('/assignmentFilter/{id?}',['as'=>'ajaxReq','PostController@assignmentFilter']);
 
 });
 
 
-
+//-----------------------------------------------------//
 //AdminController routes are started ...
 
 
@@ -106,7 +108,7 @@ Route::group(['middleware' => ['auth','isAdmin']],function(){
         Route::get('admin',['as' => 'admin' , 'uses' => 'AdminController@index']);
     });
 
-
+//-----------------------------------------------------//
 //The purpose of these routes is for testing some features 
 Route::get('test1/{id}',['as' => 'test1' ,'uses' => 'CommentController@test1']);
 Route::post('test2',['as' =>'test2' ,'uses' => 'CommentController@test2']);
@@ -118,6 +120,13 @@ Route::get('/pagenotfound',function(){
 Route::get('teacher/',function (){
         return view('teachers.indexTeacher');
 });
-Route::get('blank/',function(){
+Route::get('/blank',function(){
         return view('blank');
+});
+
+Route::post('/models',function(){
+    if(Request::ajax())
+    {
+        return "ok";
+    }
 });

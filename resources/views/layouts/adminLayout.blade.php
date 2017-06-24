@@ -142,7 +142,7 @@
                         <li><a href="{{ url('/login') }}">Login</a></li>
                         <li><a href="{{ url('/register') }}">Register</a></li>
                     @else
-                        @if(Auth::user()->email =='najmul2022@gmail.com')
+                        @if(Auth::user()->isAdmin())
                         <li><a href="{{ url('/admin')}}">Admin</a></li>
                         @endif
                         <li class="dropdown">

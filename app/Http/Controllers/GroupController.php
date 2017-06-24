@@ -59,13 +59,13 @@ class GroupController extends Controller
     {
     $id=Auth::id();
     $group= Group::findOrFail($gid);
-    if($group->user_id == $id)
-     {
-      return view('groups.edit',compact('group'));
-     }
-     else{
-      return redirect()->route('home');
-     }
+      if($group->user_id == $id)
+       {
+        return view('groups.edit',compact('group'));
+       }
+       else{
+        return redirect()->route('home');
+       }
     }
 
     //Group creation view is called by this method
@@ -129,7 +129,7 @@ class GroupController extends Controller
             $msg= "Group code already exists ! Try another one.";
             return back()->with('status', $msg)->withInput();
        }else{
-         $rq=$request->user()->myGroups()->create(['group_name'=>$request->group_name, 'group_code' => $request->group_code , 'course_code'=>$request->course_code,'session'=>$request->session,'short_description'=>$request->short_description]);
+            $rq=$request->user()->myGroups()->create(['group_name'=>$request->group_name, 'group_code' => $request->group_code , 'course_code'=>$request->course_code,'session'=>$request->session,'short_description'=>$request->short_description]);
        
         return redirect()->route( 'id' , [$rq->id ]);
         }
@@ -204,13 +204,13 @@ class GroupController extends Controller
 
      public function leftGroup($gid, $mid){
 
-          $group=GroupMember::where('group_id',$gid)
+          $group = GroupMember::where('group_id',$gid)
                              ->where('user_id',$mid)     
                              ->delete();
-          $post=Post::where('group_id',$gid)
+          $post = Post::where('group_id',$gid)
                      ->where('user_id',$mid)
                      ->delete(); 
-          $comment=Comment::where('group_id',$gid)
+          $comment = Comment::where('group_id',$gid)
                            ->where('user_id',$mid)
                            ->delete();  
 

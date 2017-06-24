@@ -123,7 +123,7 @@ public function checkUsers($gid){
 
      if(!empty($file))
      {
-        $content=time().$file->getClientOriginalName();
+        $content=$file->getClientOriginalName();
         $post_id=$post->id;
         $file_store=Content::create([
                     'post_id' => $post_id ,
@@ -508,11 +508,11 @@ public function checkUsers($gid){
       }
 
 
-      public function ajaxReq(Request $request)
-      {
-        $id=$request->id;
-        return  response()->with('id',$id);
-        // return view('assignments.submittedAssignments',compact('pid'));
+      public function assignmentFilter($id)
+      { 
+       
+        
+      return Response::json($id);
       }
     
 }

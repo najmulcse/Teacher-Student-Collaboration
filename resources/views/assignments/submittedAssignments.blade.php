@@ -5,6 +5,7 @@
                    <a href="{{ route('id',['id' => $group->id]) }}">{{ $group->group_name }}</a> 
                    <small> >>Submitted Assignments </small>
              </h2>
+             <p id="aa"></p>
 @endsection
 @section('group_body')
 
@@ -12,7 +13,7 @@
 <section>
     <div class="row">
         <div class="col-sm-9">
-           <select class="form-control" id="catId" name="assign" onchange="selectAssignment(this.value)">    
+           <select class="form-control" id="catId" name="assign" onchange="assignment(this.value)">    
                <option value="">Select Assignment</option>
                   @foreach( $assignments as $assignment)
                   <option value="{{$assignment->id}}" class="form-control">{{$assignment->title}}
@@ -68,25 +69,33 @@
 <script>
 
 
-function selectAssignment(id){
+       // $.get('/assignmentFilter/'+id, function(data){
+            
+       // console.log(data); run again
+       // });
+//Selecting the assignment id by this ajax request 
 
-    // var a=document.getElementById("catId").value ;// = document.getElementById("catId").value ;
-    // document.getElementById("pid").value=a;
-   // document.write(id);
+    function assignment(id)
+    {
+      var i = Number(id);
 
-    $.ajax({
+      $.ajax({
+        type :'GET',
+        url :'/assignmentFilter/'+i,
+        dataType: 'json',
+        headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        },
+        success : function(data){ 
+                console.log(data);
+        },
+         error: function (err) {
+                 console.log(err); 
+                }
+       });
 
-      method :'POST',
-      url    : '/ajaxReq',
-      data   :{'id' :id},
-      success:function(data){
-                  $("#pid").html(data);
-               }
+    }
 
-    });
-
-// return;
-}
 
 
 

@@ -15,8 +15,7 @@ class Kernel extends HttpKernel
      */
     protected $middleware = [
         \Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode::class,
-        \App\Http\Middleware\GroupAccessMiddleware::class,
-    ];
+            ];
 
     /**
      * The application's route middleware groups.

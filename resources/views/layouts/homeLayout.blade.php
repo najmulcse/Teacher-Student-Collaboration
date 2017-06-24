@@ -1,3 +1,8 @@
+<script>
+window.Laravel = <?php echo json_encode([
+'csrfToken' => csrf_token(),
+]); ?>
+</script>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -5,13 +10,19 @@
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="intercoolerjs:use-data-prefix" content="true"/>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <meta name="description" content="">
     <meta name="author" content="">
 
     <title>Home | TS-Group</title>
 
     <!-- Bootstrap Core CSS -->
+   <script type="text/javascript" src="{{asset('js/jqueryn.js')}}"></script>
+  {{--  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script> --}}
+    <script src="{{asset('js/intercooler.min.js')}}"></script>
     <link href="{{asset('css/mystyle.css')}}" rel="stylesheet" type="text/css" >
     <link href="{{asset('css/bootstrap.min.css')}}" rel="stylesheet">
     <!-- Custom CSS -->
@@ -69,6 +80,7 @@
                         </li>
                     </ul>
                 </li>
+                <li><a href="{{ url('/home') }}">Home</a></li>
                     <!-- Authentication Links -->
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Login</a></li>
@@ -77,7 +89,6 @@
                         @if(Auth::user()->isAdmin())
                         <li><a href="{{ url('/admin')}}">Admin</a></li>
                         @endif
-                        <li><a href="{{ url('/home') }}">Home</a></li>
 
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -168,9 +179,10 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="{{ asset('js/jquery.js') }}"></script>
+    
 
     <!-- Bootstrap Core JavaScript -->
+    <meta name="_token" content="{!! csrf_token() !!}" />
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
 
 </body>

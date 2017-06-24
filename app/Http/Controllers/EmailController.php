@@ -8,15 +8,41 @@ use App\Group;
 use App\User;
 use App\Http\Requests;
 use EmailValidator;
+use App\GroupMember;
 use Illuminate\Support\Facades\Auth;
 class EmailController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
+    public function checkUsers($gid){
+           $id=Auth::id();
+           $group = Group::findOrFail($gid);
+           $member=GroupMember::where('group_id',$gid)
+                                ->where('user_id',$id)
+                                ->first();
+              if($group->user_id == $id || $member)
+              {
+                return "accepted";
+              }
+              else{
+                return "rejected";
+              }
+
+        }
     public function emailCreate($gid)
     {
-        $group= Group::findOrFail( $gid );
-        $user= User::findOrFail($group->user_id);
-        return view('emails.emailCreate',compact('group','user'));
-    	
+         $check = $this->checkUsers($gid);
+         if($check == "accepted"){
+            $group= Group::findOrFail( $gid );
+            $user= User::findOrFail($group->user_id);
+            return view('emails.emailCreate',compact('group','user'));
+    	}else{
+                return redirect()->route('home');
+        }
     }
 
     public function send(Request $request)

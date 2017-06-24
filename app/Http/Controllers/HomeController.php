@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Group;
 use App\GroupMember;
 use App\User;
+use App\Post;
 class HomeController extends Controller
 {
     /**
@@ -36,5 +37,33 @@ class HomeController extends Controller
          $countM=count($myGroups);
 
          return view('home',compact('joinedGroups','myGroups','countJ','countM','user_id'));
+    }
+
+
+
+
+
+
+    //-------------------------------------------//
+
+
+
+
+
+    public function myform()
+    {
+        $posts =Post::all();
+        return view('test',compact('posts'));
+    }
+
+    /**
+     * Get Ajax Request and restun Data
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function myformAjax($id)
+    {
+        $post =Post::find($id)->first();
+        return json_encode($post);
     }
 }

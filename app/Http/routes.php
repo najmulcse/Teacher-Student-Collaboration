@@ -95,7 +95,7 @@ Route::group(['middlewaregroups' => ['web']], function () {
 //unused till now
     
 
-    Route::get('/assignmentFilter/{id?}',['as'=>'ajaxReq','PostController@assignmentFilter']);
+    Route::get('/assignmentFilter/{id}',['as'=>'ajaxReq','uses' =>'PostController@assignmentFilter']);
 
 });
 
@@ -130,3 +130,6 @@ Route::post('/models',function(){
         return "ok";
     }
 });
+
+Route::get('test',array('as'=>'myform','uses'=>'HomeController@myform'));
+Route::get('test/ajax/{id}',array('as'=>'myform.ajax','uses'=>'HomeController@myformAjax'));

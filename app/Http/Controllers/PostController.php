@@ -510,9 +510,9 @@ public function checkUsers($gid){
 
       public function assignmentFilter($id)
       { 
-       
-        
-      return Response::json($id);
+           
+        return  json_encode($id);
+
       }
     
 }

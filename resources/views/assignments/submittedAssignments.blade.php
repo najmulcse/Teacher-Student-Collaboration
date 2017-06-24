@@ -13,7 +13,7 @@
 <section>
     <div class="row">
         <div class="col-sm-9">
-           <select class="form-control" id="catId" name="assign" onchange="assignment(this.value)">    
+           <select class="form-control" id="catId" name="assign" >    
                <option value="">Select Assignment</option>
                   @foreach( $assignments as $assignment)
                   <option value="{{$assignment->id}}" class="form-control">{{$assignment->title}}
@@ -21,7 +21,7 @@
                   @endforeach
            </select>
         {!!$errors->first('assignment_title','<span class="help-block">:message</span>')!!}
-        <div id="pid">
+      <div id="pid" name="pid">
        @if(count($assignments)>0)
          <div class="table-responsive">
            <table class="table ">
@@ -75,28 +75,46 @@
        // });
 //Selecting the assignment id by this ajax request 
 
-    function assignment(id)
-    {
-      var i = Number(id);
+    // function assignment(id)
+    // {
+    //   var i = Number(id);
 
-      $.ajax({
-        type :'GET',
-        url :'/assignmentFilter/'+i,
-        dataType: 'json',
-        headers: {
-        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        },
-        success : function(data){ 
-                console.log(data);
-        },
-         error: function (err) {
-                 console.log(err); 
-                }
-       });
+    //   $.ajax({
+    //     type :'GET',
+    //     url :'/assignmentFilter/'+i,
+    //     dataType: 'json',
+    //     headers: {
+    //     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    //     },
+    //     success : function(data){ 
+    //             console.log(data);
+    //     },
+    //      error: function (err) {
+    //              console.log(err); 
+    //             }
+    //    });
 
-    }
+    // }
 
 
+ $(document).ready(function() {
+
+        $('select[name="assign"]').on('change', function() {
+            var assignID = $(this).val();
+            if(assignID) {
+                $.ajax({
+                    url: '/assignmentFilter/'+assignID,
+                    type: "GET",
+                    dataType: "json",
+                    success:function(data) {
+                      console.log(data);
+                    // $('#pid').children().css('visibility','hidden');
+                      $('#pid').text(data);     
+                    }
+                });
+            }
+        });
+    });
 
 
 function w3_open() {

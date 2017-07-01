@@ -101,15 +101,28 @@ Route::group(['middlewaregroups' => ['web']], function () {
 
 
 //-----------------------------------------------------//
+
 //AdminController routes are started ...
 
 
 Route::group(['middleware' => ['auth','isAdmin']],function(){
+
         Route::get('admin',['as' => 'admin' , 'uses' => 'AdminController@index']);
+        Route::get('admin/allgroups',['as'=> 'adminAllGroups','uses' =>'AdminController@allGroups']);
+        Route::get('admin/allPosts',['as'=> 'adminGroupPosts','uses' =>'AdminController@groupPosts']);
+        Route::get('admin/allComments',['as'=> 'adminGroupComments','uses' =>'AdminController@groupComments']);        
+
     });
 
+
+
 //-----------------------------------------------------//
+
+
+
+
 //The purpose of these routes is for testing some features 
+
 Route::get('test1/{id}',['as' => 'test1' ,'uses' => 'CommentController@test1']);
 Route::post('test2',['as' =>'test2' ,'uses' => 'CommentController@test2']);
 //Teacher activities ...

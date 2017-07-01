@@ -29,8 +29,12 @@
                                         <i class="fa fa-comments fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">26</div>
-                                        <div>New Comments!</div>
+                                    @if($p = count($posts))
+                                        <div class="huge">{{$p}}</div>
+                                        <div>Total Posts!</div>
+                                     @else 
+                                        <div>Empty!</div>
+                                    @endif
                                     </div>
                                 </div>
                             </div>
@@ -51,8 +55,12 @@
                                         <i class="fa fa-tasks fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">12</div>
-                                        <div>New Tasks!</div>
+                                    @if($a = count($assignments))
+                                        <div class="huge">{{$a}}</div>
+                                        <div>Total Assignments!</div>
+                                     @else
+                                        <div>Empty!</div> 
+                                     @endif     
                                     </div>
                                 </div>
                             </div>
@@ -73,8 +81,12 @@
                                         <i class="fa fa-shopping-cart fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">124</div>
-                                        <div>New Orders!</div>
+                                     @if($l = count($lectures))
+                                        <div class="huge">{{$l}}</div>
+                                        <div>Total Lectures!</div>
+                                     @else
+                                        <div>Empty!</div>
+                                     @endif     
                                     </div>
                                 </div>
                             </div>
@@ -95,8 +107,14 @@
                                         <i class="fa fa-support fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                        <div class="huge">13</div>
-                                        <div>Support Tickets!</div>
+                                    @if( $c =count($comments))
+                                        <div class="huge">{{$c}}</div>
+                                        <div>Total Comments!</div>
+                                    @else
+                                        <div>Empty!</div>
+
+                                    @endif                      
+
                                     </div>
                                 </div>
                             </div>

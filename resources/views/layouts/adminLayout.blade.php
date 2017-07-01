@@ -164,8 +164,19 @@
                     <li class="active">
                         <a href="#"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
-                    <li>
-                        <a href="#"><i class="fa fa-fw fa-bar-chart-o"></i> Charts</a>
+                   <li>
+                        <a href="javascript:;" data-toggle="collapse" data-target="#posts"> <i class="fa fa-th-large" aria-hidden="true"></i>   Groups <i class="fa fa-chevron-circle-down pull-right" aria-hidden="true"></i></a>
+                        <ul id="posts" class="collapse">
+                            <li>
+                                <a href="{{route('adminAllGroups')}}"><i class="fa fa-globe" aria-hidden="true"></i>  All Groups</a>
+                            </li>
+                            <li>
+                                <a  href="{{ route('adminGroupPosts')}}"><i class="fa fa-plus-circle" aria-hidden="true"></i> All Posts</a>
+                            </li>
+                            <li>
+                                <a  href="{{ route('adminGroupComments')}}"><i class="fa fa-plus-circle" aria-hidden="true"></i> All Comments</a>
+                            </li>
+                        </ul>
                     </li>
                     <li>
                         <a href="#"><i class="fa fa-fw fa-table"></i> Tables</a>
@@ -222,11 +233,11 @@
     <!-- Bootstrap Core JavaScript -->
     <script src="{{asset('js/bootstrap.min.js')}}"></script>
 
-    <!-- Morris Charts JavaScript -->
+  {{--   <!-- Morris Charts JavaScript -->
     <script src="{{asset('js/plugins/morris/raphael.min.js')}}"></script>
     <script src="{{asset('js/plugins/morris/morris.min.js')}}"></script>
     <script src="{{asset('js/plugins/morris/morris-data.js')}}"></script>
-
+ --}}
 </body>
 
 </html>

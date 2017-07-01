@@ -33,6 +33,11 @@ class Group extends Model
        return $this->hasOne('App\GroupMember');
     }
 
+    public function usertype(){
+
+        return $this->hasOne('App\UserType');
+    }
+
     
 
     

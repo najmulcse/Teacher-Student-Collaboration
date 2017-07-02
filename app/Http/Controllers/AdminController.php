@@ -37,4 +37,39 @@ class AdminController extends Controller
     public function groupComments(){
     	return view('admins.groups.allComments');
     }
+
+
+
+
+    //ajax calling 
+
+    public function searchGroup(Request $request){
+
+       $search = $request->id;
+
+               if (empty($search))
+               {
+                  return view('admins.groups.allGroups');         
+               }
+               else
+               {
+                   $groups = Group::where('group_name','LIKE',"%{$search}%")
+                                  ->orWhere('course_code','LIKE',"%{$search}%")
+                                  ->orWhere('group_code','LIKE',"%{$search}%")
+                                  ->orWhere('session','LIKE',"%{$search}%")
+                                  ->get();
+
+                   return view('admins.groups.ajaxSearch',compact('groups'));
+               }
+
+    }
+
+    public function deleteGroup(Request $request){
+        $gid = $request->id ;
+        if($request->ajax()){
+            $status = Group::findOrFail($gid)->delete();
+            return response(['msg' => 'Product deleted', 'status' => 'success']);
+        }
+        
+    }
 }

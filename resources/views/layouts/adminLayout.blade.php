@@ -22,6 +22,10 @@
 
     <!-- Custom Fonts -->
     <link href="{{asset('font-awesome/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css">
+    <script src="{{asset('js/jquery.js')}}"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{{asset('js/bootstrap.min.js')}}"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -228,10 +232,7 @@
     <!-- /#wrapper -->
 
     <!-- jQuery -->
-    <script src="{{asset('js/jquery.js')}}"></script>
-
-    <!-- Bootstrap Core JavaScript -->
-    <script src="{{asset('js/bootstrap.min.js')}}"></script>
+   
 
   {{--   <!-- Morris Charts JavaScript -->
     <script src="{{asset('js/plugins/morris/raphael.min.js')}}"></script>

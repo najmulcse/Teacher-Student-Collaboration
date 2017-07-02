@@ -71,6 +71,8 @@ Route::group(['middlewaregroups' => ['web']], function () {
     Route::post('group/{gid}/post/{pid}/comment/{type}/store',['as' => 'post_comment' ,'uses' =>'CommentController@store']);
 
     //CommentController routes are ended 
+
+
 //------------------------------------------------//
     //EmailController routes are started from here
 
@@ -111,7 +113,10 @@ Route::group(['middleware' => ['auth','isAdmin']],function(){
         Route::get('admin/allgroups',['as'=> 'adminAllGroups','uses' =>'AdminController@allGroups']);
         Route::get('admin/allPosts',['as'=> 'adminGroupPosts','uses' =>'AdminController@groupPosts']);
         Route::get('admin/allComments',['as'=> 'adminGroupComments','uses' =>'AdminController@groupComments']);        
+        //ajax calling 
 
+        Route::get('admin/searchGroup',['as'=>'searchGroup','uses'=> 'AdminController@searchGroup']);
+        Route::get('admin/deleteGroup',['as'=>'deleteGroup','uses'=> 'AdminController@deleteGroup']);
     });
 
 

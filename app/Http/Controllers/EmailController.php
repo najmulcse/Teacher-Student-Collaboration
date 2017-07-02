@@ -40,27 +40,27 @@ class EmailController extends Controller
             $group= Group::findOrFail( $gid );
             $user= User::findOrFail($group->user_id);
             return view('emails.emailCreate',compact('group','user'));
-    	}else{
+    	   }else{
                 return redirect()->route('home');
         }
     }
 
     public function send(Request $request)
     {
-                $rules=[
+                $rules = [
                     'email' =>'required'
                 ];
 
-                $this->validate($request,$rules);
-    	        $email=$request->email;
-                $gid=$request->gid;
-                $group= Group::findOrFail( $gid );
+              $this->validate($request,$rules);
+    	        $email  = $request->email;
+              $gid    = $request->gid;
+              $group  = Group::findOrFail( $gid );
 
                 if( EmailValidator::verify($email)->isValid()[0] ){
 
-                            $name=Auth::user()->name;
-                            $group_code=$group->group_code;  
-                            $m= Mail::send('emails.emailContent', ['name' => $name, 'group_code' => $group_code], function ($message) use ($email)
+                            $name       = Auth::user()->name;
+                            $group_code = $group->group_code;  
+                            $m          = Mail::send('emails.emailContent', ['name' => $name, 'group_code' => $group_code], function ($message) use ($email)
                             {
 
                                 $message->from('najmul.ru.cse@gmail.com', 'Collaboration Group');
@@ -70,11 +70,11 @@ class EmailController extends Controller
                             });
 
                            if($m){       
-                           return back()->with('message','Invitation sent successfully.');
+                                 return back()->with('message','Invitation sent successfully.');
                              }
                              else 
                              {
-                               return back()->with('message','Something wrong!.');
+                                return back()->with('message','Something wrong!.');
                              }
                 }
                 else

@@ -10,6 +10,7 @@
 
     <div class="row">
         <div class="col-sm-9">
+        @if(count($posts)>0)
           @foreach ($posts as $post) <!--For Printing all post foreach loop started hro here  -->
               <div class="row">
                   
@@ -145,6 +146,9 @@
 
  --}}
           @endforeach
+        @else
+        <h2>Empty !!!</h2>
+        @endif  
 
         </div>
          <div class="col-sm-3">

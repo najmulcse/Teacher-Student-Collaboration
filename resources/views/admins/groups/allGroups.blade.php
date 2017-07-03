@@ -10,7 +10,7 @@
 		</form>
 	</div>
 </div>
-
+<br>
 <div class="table-responsive" id="txtHint">
 	<table class="table table-hover table-bordered">
 		<thead>
@@ -61,7 +61,7 @@
         <h4 class="modal-title">Delete Group</h4>
       </div>
       <div class="modal-body">
-        <h2>Are you sure to delete this Group?</h2>
+        <p>Are you sure to delete this Group?</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -78,10 +78,10 @@
    		$("#search").keyup(function(){
        		var str =  $("#search").val();
      		  if(str == "") {
-            		   $( "#txtHint" ).html("<b>Group Searching continued...</b>"); 
+            		   $( "#txtHint" ).html("<b>Please type something to search...</b>"); 
      		  }else {
-              		 $.get( "{{ url('admin/searchGroup?id=') }}"+str, function( data ) {
-                  	 $( "#txtHint" ).html( data );  
+              		 $.get( "{{ url('admin/searchGroup?id=') }}"+str, function( data ) {   
+                  	 $( "#txtHint" ).html( data ); 
             			});
        				}		
   	 	});  
@@ -128,4 +128,6 @@ input[type=text]:focus {
     width: 100%;
 }
 </style>
+
+
  @endsection 

@@ -31,11 +31,13 @@ class AdminController extends Controller
     }
 
     public function groupPosts(){
-    	return view('admins.groups.allPosts');
+      $posts = Post::all();
+    	return view('admins.groups.allPosts',compact('posts'));
     }
 
     public function groupComments(){
-    	return view('admins.groups.allComments');
+      $comments =Comment::all();
+    	return view('admins.groups.allComments',compact('comments'));
     }
 
 

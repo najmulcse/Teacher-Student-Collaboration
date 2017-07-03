@@ -12,6 +12,7 @@
 <section>
     <div class="row">
         <div class="col-sm-9">
+        @if(count($lectures)>0)
           @foreach ($lectures as $lecture) <!-- all lectures foreach started -->
               <div class="row">
                 
@@ -114,6 +115,9 @@
                 </div>
                 <hr>
                    @endforeach  <!-- all lectures foreach ended -->
+                @else
+                   <h2>Empty !!!</h2>
+                @endif  
         </div>
 
         <div class="col-sm-3">

@@ -52,7 +52,7 @@ public function checkUsers($gid){
                       ->where('group_id',$gid)
                       ->where('type',$type)
                       ->first();
-          if($post)
+          if($post || Auth::user()->isAdmin())
           {
             return "accepted";
           }
@@ -410,6 +410,7 @@ public function checkUsers($gid){
         if($check=="accepted"){
               $post=Post::findOrFail($pid)->delete();
               $assignment=Assignment::where('post_id',$pid)->delete();
+              $commnets=Comment::where('post_id',$pid)->delete();
               $content=Content::where('post_id',$pid)->first();
               if($content){
                 $file=$content->id;

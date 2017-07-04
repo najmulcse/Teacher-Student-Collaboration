@@ -10,6 +10,7 @@ use App\Group;
 use App\GroupMember;
 use App\Post;
 use App\Comment;
+use App\Assignment;
 
 use Illuminate\Support\Facades\Auth;
 class GroupController extends Controller
@@ -107,6 +108,20 @@ class GroupController extends Controller
       if($check == "accepted"){
         Group::findOrFail($gid)->delete();
         GroupMember::where('group_id',$gid)->delete();
+        $posts      = Post::where('group_id',$gid)->get();
+        Post::where('group_id',$gid)->delete();
+        // foreach($posts as $post){
+
+        // $assignment= Assignment::where('post_id',$post->id)->delete();
+        // $content   =Content::where('post_id',$post->id)->delete();
+        // if($content){
+        //         $file=$content->id;
+        //         unlink(public_path('postfiles/'.$file));
+        //         $content->delete();
+        //         }
+        // }
+        $commnets  =Comment::where('group_id',$gid)->delete();
+              
       }
       return redirect('/home');
     }

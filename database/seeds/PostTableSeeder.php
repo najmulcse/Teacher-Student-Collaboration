@@ -41,8 +41,8 @@ class PostTableSeeder extends Seeder
         for($i=0;$i<10;$i++)
         {
         	DB::table('posts')->insert([
-        		'group_id'    => $faker->randomElement($array = array(3,4,5,6,7,8,9,10,11,12)),
-            'user_id'     => $faker->randomElement($array = array(3,4,5,6,7,8,9,10,11,12)),
+        	'group_id'    => $faker->randomElement($array = array(1,2)),
+            'user_id'     => $faker->randomElement($array = array(3,4,5,6,7,8,9,10)),
             'body'        => $faker->text ,
             'type'        => 'P',
         		'created_at'  => \Carbon\Carbon::now(),

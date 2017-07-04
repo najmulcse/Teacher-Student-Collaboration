@@ -13,6 +13,7 @@
 <br>
 
 <div class="table-responsive" id="txtHint">
+
 	<table class="table table-hover table-bordered">
 		<thead>
 			<tr>
@@ -37,8 +38,7 @@
 				<td>{{$post->title}}</td>
 				<td>{{$post->body}}</td>
 				
-				
-					<td ><a href="#" class="btn btn-sm btn-info"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
+					<td ><a href="#" class="btn btn-info"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
 					<td >	
 						<button class="btn btn-danger delete-task delete-modal" value="{{$post->id}}"><i class="fa fa-trash" aria-hidden="true"></i>
 						</button>
@@ -71,7 +71,7 @@
 </div>
 
 
-<script type="text/javascript">
+<script type="text/javascript" >
 
 	$(document).ready(function(){
    		$("#search").keyup(function(){
@@ -86,7 +86,7 @@
   	 	});  
 
 
-   // Delete group
+   // Delete post
          $('.delete-modal').click(function(){
                   var gid = $(this).val();
                   $('#modal-id-delete').modal('show');

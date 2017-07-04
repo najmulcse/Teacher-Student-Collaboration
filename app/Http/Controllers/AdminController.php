@@ -70,7 +70,63 @@ class AdminController extends Controller
         $gid = $request->id ;
         if($request->ajax()){
             $status = Group::findOrFail($gid)->delete();
-            return response(['msg' => 'Product deleted', 'status' => 'success']);
+            return response(['msg' => 'Group deleted successfully', 'status' => 'success']);
+        }
+        
+    }
+
+    public function searchPost(Request $request){
+
+       $search = $request->id;
+
+               if (empty($search))
+               {
+                  return view('admins.groups.allPosts');         
+               }
+               else
+               {
+                   $posts = Post::where('title','LIKE',"%{$search}%")
+                                  ->orWhere('body','LIKE',"%{$search}%")
+                                  ->get();
+
+                   return view('admins.groups.ajaxSearchPost',compact('posts'));
+               }
+
+    }
+
+    public function deletePost(Request $request){
+        $pid = $request->id ;
+        if($request->ajax()){
+            $status = Post::findOrFail($pid)->delete();
+            return response(['msg' => 'Post deleted successfully', 'status' => 'success']);
+        }
+        
+    }
+
+
+    public function searchComment(Request $request){
+
+       $search = $request->id;
+
+               if (empty($search))
+               {
+                  return view('admins.groups.allComments');         
+               }
+               else
+               {
+                   $comments = Comment::where('comment','LIKE',"%{$search}%")
+                                  ->get();
+
+                   return view('admins.groups.ajaxSearchComment',compact('comments'));
+               }
+
+    }
+
+    public function deleteComment(Request $request){
+        $pid = $request->id ;
+        if($request->ajax()){
+            $status = Comment::findOrFail($pid)->delete();
+            return response(['msg' => 'Comment deleted successfully', 'status' => 'success']);
         }
         
     }

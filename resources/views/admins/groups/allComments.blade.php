@@ -59,10 +59,10 @@
     <div class="modal-content">
       <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-        <h4 class="modal-title">Delete Group</h4>
+        <h4 class="modal-title">Delete Comment</h4>
       </div>
       <div class="modal-body">
-        <p>Are you sure to delete this Group?</p>
+        <p>Are you sure to delete this Comment?</p>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -81,7 +81,7 @@
      		  if(str == "") {
             		   $( "#txtHint" ).html("<b>Please type something to search...</b>"); 
      		  }else {
-              		 $.get( "{{ url('admin/searchGroup?id=') }}"+str, function( data ) {   
+              		 $.get( "{{ url('admin/searchComment?id=') }}"+str, function( data ) {   
                   	 $( "#txtHint" ).html( data ); 
             			});
        				}		
@@ -95,7 +95,7 @@
 
                   $('#delete-confirm').click(function(){
 
-                 $.get( "{{ url('admin/deleteGroup?id=') }}"+gid, function( data ) {
+                 $.get( "{{ url('admin/deleteComment?id=') }}"+gid, function( data ) {
                    			  if(data.status === 'success')
                    			  {
                               $('#g'+gid).remove();

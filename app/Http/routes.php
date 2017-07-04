@@ -117,6 +117,10 @@ Route::group(['middleware' => ['auth','isAdmin']],function(){
 
         Route::get('admin/searchGroup',['as'=>'searchGroup','uses'=> 'AdminController@searchGroup']);
         Route::get('admin/deleteGroup',['as'=>'deleteGroup','uses'=> 'AdminController@deleteGroup']);
+         Route::get('admin/searchPost',['as'=>'searchPost','uses'=> 'AdminController@searchPost']);
+        Route::get('admin/deletePost',['as'=>'deletePost','uses'=> 'AdminController@deletePost']);
+         Route::get('admin/searchComment',['as'=>'searchComment','uses'=> 'AdminController@searchComment']);
+        Route::get('admin/deleteComment',['as'=>'deleteComment','uses'=> 'AdminController@deleteComment']);
     });
 
 

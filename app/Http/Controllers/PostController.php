@@ -509,10 +509,27 @@ public function checkUsers($gid){
       }
 
 
-      public function assignmentFilter($id)
+      public function assignmentFilter($id,$gid)
       { 
-           
-        return  json_encode($id);
+        $check = $this->checkUsers($gid);
+         if($check == "accepted"){
+             $assignments = Post::where('group_id', $gid)
+                         ->where('type','A')
+                         ->orderBy('created_at','desc')
+                         ->get();
+
+               $group =Group::findOrFail($gid);
+               $user= Auth::user();
+               // $contents =Content::where('pid',$id)->get();
+
+               return view('assignments.ajaxSubmitResult',compact('group','assignments','user','id'));
+             }
+             else
+             {
+                return redirect()->route('home');
+             }
+          
+       
 
       }
     

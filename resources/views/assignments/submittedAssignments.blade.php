@@ -13,47 +13,34 @@
 <section>
     <div class="row">
         <div class="col-sm-9">
-           <select class="form-control" id="catId" name="assign" >    
-               <option value="">Select Assignment</option>
+        @if(count($assignments)>0)
+        <form >
+          <div class="form-group">
+            <label class="">Assignment Title</label>
+            <div class="">
+                <select class="form-control" id="catId" name="assign" >    
+                   <option value="">Select Assignment</option>
+                 
                   @foreach( $assignments as $assignment)
                   <option value="{{$assignment->id}}" class="form-control">{{$assignment->title}}
                   </option>    
                   @endforeach
-           </select>
-        {!!$errors->first('assignment_title','<span class="help-block">:message</span>')!!}
-      <div id="pid" name="pid">
-       @if(count($assignments)>0)
-         <div class="table-responsive">
-           <table class="table ">
-             <thead>
-               <tr>
-                 <th>Roll</th>
-                 <th>Name</th>
-                 <th>File</th>
-                 <th>Status</th>
-               </tr>
-             </thead>
-             <tbody>
-              @foreach ( $group->members as $member)
-                  <tr>
-                       <td>{{$member->student->roll}}</td>
-                       <td>{{$member->user->name}}</td>
-                    @if($m=$member->upload()->where('post_id',13)->first())
-                       <td><a href="{{url('downloadA')}}/{{$m->id}}">{{$m->link}}</a></td>
-                       <td><a type="button" class="btn btn-sm btn-success">Submitted</a></td>
-                    @else
-                       <td></td>
-                       <td></td>
-                    @endif
-                  </tr>
-              @endforeach
-             </tbody>
-           </table>
-         </div>
-       @else
-           <h2>Currently empty!!!</h2>
-       @endif 
-       </div>       
+              
+              </select>
+              {!!$errors->first('assignment_title','<span class="help-block">:message</span>')!!}
+            </div>
+          </div>
+          <div class="form-group">
+            <div class=" ">
+            <input type="hidden" name="" id="gid" value="{{$assignment->group_id}}"> 
+            </div>
+            </div>
+        </form>
+          @else
+          <h2>Currently empty!!!</h2>
+          @endif
+            <div class="table-responsive" id="pid">
+           </div>
         </div>
 
         <div class="col-sm-3">
@@ -69,49 +56,32 @@
 <script>
 
 
-       // $.get('/assignmentFilter/'+id, function(data){
-            
-       // console.log(data); run again
-       // });
-//Selecting the assignment id by this ajax request 
-
-    // function assignment(id)
-    // {
-    //   var i = Number(id);
-
-    //   $.ajax({
-    //     type :'GET',
-    //     url :'/assignmentFilter/'+i,
-    //     dataType: 'json',
-    //     headers: {
-    //     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    //     },
-    //     success : function(data){ 
-    //             console.log(data);
-    //     },
-    //      error: function (err) {
-    //              console.log(err); 
-    //             }
-    //    });
-
-    // }
-
+ 
 
  $(document).ready(function() {
 
         $('select[name="assign"]').on('change', function() {
             var assignID = $(this).val();
+            var gid      = $('#gid').val();
+
             if(assignID) {
-                $.ajax({
-                    url: '/assignmentFilter/'+assignID,
-                    type: "GET",
-                    dataType: "json",
-                    success:function(data) {
-                      console.log(data);
-                    // $('#pid').children().css('visibility','hidden');
-                      $('#pid').text(data);     
-                    }
-                });
+
+
+               $.get( "{{ url('/assignmentFilter') }}"+'/'+assignID+'/'+gid, function( data ) {   
+                     $( "#pid" ).html( data ); 
+                  });
+                // $.ajax({
+                //     url: '/assignmentFilter/'+assignID+'/'+gid,
+                //     type: "GET",
+                //     dataType: "json",
+                //     success:function(data) {
+                //       console.log(data);
+                //     // $('#pid').children().css('visibility','hidden');
+                //       $('#pid').html(data);     
+                //     }
+                // });
+            }else{
+              $( "#pid" ).html( '<h2>Please Select Assignment Title</h2>' );
             }
         });
     });

@@ -97,7 +97,7 @@ Route::group(['middlewaregroups' => ['web']], function () {
 //unused till now
     
 
-    Route::get('/assignmentFilter/{id}',['as'=>'ajaxReq','uses' =>'PostController@assignmentFilter']);
+    Route::get('/assignmentFilter/{id}/{gid}',['as'=>'ajaxReq','uses' =>'PostController@assignmentFilter']);
 
 });
 

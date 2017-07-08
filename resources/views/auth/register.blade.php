@@ -31,7 +31,7 @@
                             <form role="form" action="{{url('/register')}}" method="post" class="login-form">
 
                                 {{csrf_field()}}
-
+                                <input type="hidden" name="user_type_id" value="2">
                                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
 
                                     <input type="text" name="name" placeholder="Your full name" class="form-username form-control" id="form-username" value="{{old('name')}}">

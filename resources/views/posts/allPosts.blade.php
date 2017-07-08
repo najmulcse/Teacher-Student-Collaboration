@@ -45,7 +45,7 @@
                                   date:{{ $post->created_at->diffForHumans() }}
                               </small>
                               <div>                                   
-                                      <p>{{ $post->body }}</p>
+                                      <p>{{  $post->body }}</p>
                                       <div>
                                           @if($contents=$post->contents->where('post_id',$post->id))
                                                 @foreach($contents as $content)

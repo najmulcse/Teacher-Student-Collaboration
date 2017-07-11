@@ -23,6 +23,19 @@ Route::group(['middlewaregroups' => ['web']], function () {
 
         return view('welcome');
     });
+
+
+//-------------------------------
+//register route 
+
+Route::get('registerTeacher',['as'=>'registerTeacher','uses'=>'MyLogController@registerTeacher']);
+Route::post('storeTeacherInfo',['as'=>'storeTeacherInfo','uses'=>'MyLogController@storeTeacherInfo']);
+
+
+Route::get('registerStudent',['as'=>'registerStudent','uses'=>'MyLogController@registerStudent']);
+Route::post('storeStudentInfo',['as'=>'storeStudentInfo','uses'=>'MyLogController@storeStudentInfo']);
+
+
 //---------------------------------------------------------------//
     // For group controlling , all the methods are defined in the GroupController 
 

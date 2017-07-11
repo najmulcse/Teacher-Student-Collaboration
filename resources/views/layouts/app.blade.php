@@ -57,8 +57,8 @@
                     <!-- Authentication Links -->
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Login</a></li>
-                        <li><a href="{{ url('/register') }}">Sign up as Teacher</a></li>
-                        <li><a href="#">Sign up as Student</a></li>
+                        <li><a href="{{ url('/registerTeacher') }}">Sign up as Teacher</a></li>
+                        <li><a href="{{ url('/registerStudent') }}">Sign up as Student</a></li>
                     @else
 
                         <li><a href="{{ url('/home') }}">Home</a></li>

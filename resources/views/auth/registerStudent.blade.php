@@ -28,40 +28,60 @@
                             </div>
                         </div>
                         <div class="form-bottom">
-                            <form role="form" action="{{url('/register')}}" method="post" class="login-form">
+                            <form role="form" action="{{url('/storeStudentInfo')}}" method="post" class="login-form">
 
                                 {{csrf_field()}}
-
+                                <input type="hidden" name="user_type_id" value="2">
                                 <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
 
                                     <input type="text" name="name" placeholder="Your full name" class="form-username form-control" id="form-username" value="{{old('name')}}">
+                                    @if ($errors->has('name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
 
                                 </div>
                                 <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
 
                                     <input type="email" name="email" placeholder="Email" class="form-username form-control" id="form-username" value="{{old('email')}}">
+                                    @if ($errors->has('name'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('email') }}</strong>
+                                    </span>
+                                @endif
 
                                 </div>
-                                <div id="user_type" class="form-group{{ $errors->has('select_radio') ? ' has-error' : '' }}">
-                                    <label  class="radio-inline">
-                                      <input id="student" type="radio" name="optradio" checked>Student
-                                    </label>
-                                    <label  class="radio-inline">
-                                      <input type="radio" name="optradio">Teacher
-                                    </label>
 
-                                </div id="std_id">
-                                <div>
-                                    
-                                </div>
-                                <div class="form-group{{ $errors->has('select_radio') ? ' has-error' : '' }}">
+                                <div class="form-group{{ $errors->has('roll') ? ' has-error' : '' }}">
 
-                                    <input type="password" name="password" placeholder="Password" class="form-password form-control" id="form-password">
+                                    <input type="text" name="roll" placeholder="Your roll number" class="form-username form-control" id="form-username" value="{{old('name')}}">
+                                    @if ($errors->has('roll'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('roll') }}</strong>
+                                    </span>
+                                @endif
 
                                 </div>
+                               
                                 <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
 
+                                    <input type="password" name="password" placeholder="Password" class="form-password form-control" id="form-password">
+                                    @if ($errors->has('password'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('password') }}</strong>
+                                    </span>
+                                @endif
+
+                                </div>
+                                <div class="form-group{{ $errors->has('password_confirmation') ? ' has-error' : '' }}">
+
                                     <input type="password" name="password_confirmation" placeholder="Confirmed Password" class="form-password form-control" id="form-password">
+                                     @if ($errors->has('password_confirmation'))
+                                    <span class="help-block">
+                                        <strong>{{ $errors->first('password_confirmation') }}</strong>
+                                    </span>
+                                @endif
 
                                 </div>
                                 <button type="submit" class="btn">
@@ -79,14 +99,5 @@
 
 
 
-<script type="text/javascript">
-    
-    $("#user_type").css("color","white");
-
-    document.getElementById("student").onclick=function(){
-        
-        
-    };
-</script>
 
 @endsection

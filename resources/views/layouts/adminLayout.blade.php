@@ -144,7 +144,8 @@
                     
                     @if (Auth::guest())
                         <li><a href="{{ url('/login') }}">Login</a></li>
-                        <li><a href="{{ url('/register') }}">Register</a></li>
+                        <li><a href="{{ url('/registerTeacher') }}">Sign up as Teacher</a></li>
+                        <li><a href="{{ url('/registerStudent') }}">Sign up as Student</a></li>
                     @else
                         @if(Auth::user()->isAdmin())
                         <li><a href="{{ url('/admin')}}">Admin</a></li>

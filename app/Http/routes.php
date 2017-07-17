@@ -36,6 +36,17 @@ Route::get('registerStudent',['as'=>'registerStudent','uses'=>'MyLogController@r
 Route::post('storeStudentInfo',['as'=>'storeStudentInfo','uses'=>'MyLogController@storeStudentInfo']);
 
 
+//-------------------------------------------------------------
+//------UserManagement routes are started here (HomeController)-------
+
+Route::get('password_changed',['as'=>'changed.password', 'uses' =>'HomeController@changedPassword']);
+Route::post('password_changed',['as'=>'store.password', 'uses' =>'HomeController@storePassword']);
+Route::get('add_photo',['as'=>'add.photo', 'uses' =>'HomeController@addPhoto']);
+
+
+
+//----------------UserManagement routes ended--------------------
+
 //---------------------------------------------------------------//
     // For group controlling , all the methods are defined in the GroupController 
 

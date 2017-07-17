@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 use App\Student;
+use App\Group;
 class MyLogController extends Controller
 {
 	protected $redirectTo = '/home';
@@ -79,4 +80,6 @@ class MyLogController extends Controller
         Auth::login($user);
         return redirect('/login');
     }
+
+    
 }

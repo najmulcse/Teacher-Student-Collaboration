@@ -5,8 +5,8 @@
 @section('group_body')
 
 <div class="row">
-	<div class="col-sm-9">
-		<form action="" method="POST" class="form-horizontal" role="form">
+	<div class="col-sm-8">
+		<form action="" method="POST" class="form-horizontal" role="form" enctype="multipart/form-data">
 		{{csrf_field()}}
 						@if (session('msg'))
 							@if(session('status') == 1)
@@ -34,12 +34,12 @@
 				<div class="form-group">
 				<label class="control-label col-sm-4"></label>
 					<div class="col-sm-8 ">
-						<button type="submit" class="btn btn-success">Save </button>
+						<button type="submit" class="btn btn-success col-sm-6 col-sm-offset-3">Save </button>
 					</div>
 				</div>
 		</form>
 	</div>
-	 <div class="col-sm-3">
+	 <div class="col-sm-4">
            {{-- @include('layouts.rightsidebar') --}} <!--this page is extended from layouts -->   
      </div>
 </div>

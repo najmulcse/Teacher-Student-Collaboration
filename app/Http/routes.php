@@ -42,7 +42,7 @@ Route::post('storeStudentInfo',['as'=>'storeStudentInfo','uses'=>'MyLogControlle
 Route::get('password_changed',['as'=>'changed.password', 'uses' =>'HomeController@changedPassword']);
 Route::post('password_changed',['as'=>'store.password', 'uses' =>'HomeController@storePassword']);
 Route::get('add_photo',['as'=>'add.photo', 'uses' =>'HomeController@addPhoto']);
-
+Route::post('add_photo',['as'=>'store.photo', 'uses' =>'HomeController@storePhoto']);
 
 
 //----------------UserManagement routes ended--------------------

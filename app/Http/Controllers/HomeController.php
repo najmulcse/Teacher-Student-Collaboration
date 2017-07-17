@@ -90,6 +90,43 @@ class HomeController extends Controller
         return view('users.addPhoto');
     }
 
+    public function storePhoto(Request $request)
+    {
+
+        $rules = [
+        'photo'  =>'required '
+        ];
+        $status = 0;
+        $msg = "";
+        $this->validate($request ,$rules);
+        $file     = $request->file('photo');
+        $user     = User::findOrFail(Auth::id());
+        $db_photo = $user->photo;
+        if(!empty($file)){
+        
+        $name    = $file->getClientOriginalName();
+        $userUpdate    = User::findOrFail($user->id)
+                            ->update(['photo' =>$name]);
+
+        
+        }
+        if($userUpdate)
+        {
+            if(!empty($db_photo)){
+                unlink(public_path('img/'.$user->id));
+            }
+            $file->move('img/',$user->id);
+            $msg    = "Photo saved successfully";
+            $status = 1;
+        }else{
+            $msg    = "Something wrong";
+            
+        }                    
+         
+        return back()->with('msg',$msg)
+                     ->with('status',$status);
+    }
+
 
 //ajax testing---------------
     public function myform()

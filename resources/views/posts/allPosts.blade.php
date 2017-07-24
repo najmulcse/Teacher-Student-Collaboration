@@ -16,9 +16,9 @@
                   
                        <div class="col-sm-1">
                           <figure>
-                            <img class="img-responsive" src="{{asset('img/author.jpg')}}">
+                            <img class="img-responsive" src="{{asset('img/'.$post->user->id)}}">
                           
-                          <label>{{ $post->user->where('id',$post->user_id)->first()->name }}</label>
+                          <label>{{ $post->user->name }}</label>
                           </figure>
                        </div>
                        <div class="col-sm-11">
@@ -45,7 +45,7 @@
                                   date:{{ $post->created_at->diffForHumans() }}
                               </small>
                               <div>                                   
-                                      <p>{{  $post->body }}</p>
+                                      <p>{!!  nl2br($post->body) !!}</p>
                                       <div>
                                           @if($contents=$post->contents->where('post_id',$post->id))
                                                 @foreach($contents as $content)
@@ -61,7 +61,7 @@
                             @foreach($post->comments as $comment)
                               <div class="row">    
                                           <div class="col-sm-1">
-                                                 <img class="img-responsive" src="{{asset('img/author.jpg')}}">
+                                                 <img class="img-responsive" src="{{asset('img/'.$comment->user->id)}}">
                                                    <label>{{ $comment->user->name }}</label>
                                           </div>
                                           <div class="col-sm-11">
@@ -83,7 +83,7 @@
                                               </div>
                                               @endif
                                               
-                                              <p>{{$comment->comment}}</p>
+                                              <p>{!! nl2br($comment->comment) !!}</p>
                                           </div>
                                                 
                                   </div>  
@@ -92,7 +92,7 @@
                                         <!--for comment submission form-->
                                  <div class="row">
                                         <div class="col-sm-1">
-                                               <img class="img-responsive" src="{{asset('img/author.jpg')}}">
+                                               <img class="img-responsive" src="{{asset('img/'.$user->id)}}">
                                                  <label>{{ $user->name }}</label>
                                         </div>
                                         <div class="col-sm-11">

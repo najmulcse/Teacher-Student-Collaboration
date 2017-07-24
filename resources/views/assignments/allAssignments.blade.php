@@ -18,9 +18,9 @@
                 
                        <div class="col-sm-1">
                           <figure>
-                            <img class="img-responsive" src="{{asset('img/author.jpg')}}">
+                            <img class="img-responsive" src="{{asset('img/'.$user->id)}}">
                           </figure>
-                         <label>{{ $assignment->user->where('id',$assignment->user_id)->first()->name }}</label>
+                         <label>{{ $assignment->user->name }}</label>
                        </div>
                        <div class="col-sm-11">
                               <div>
@@ -54,7 +54,7 @@
                                                   @endif
                                               </div>    
                                   @endif
-                                  <h2>{{ $assignment->title }}</h2>
+                                  <h2>{!! nl2br($assignment->title) !!}</h2>
                                   <span>
                                      <small>
                                           date:{{ $assignment->created_at->diffForHumans() }}
@@ -62,7 +62,7 @@
                                   </span>
                                </div>
                                     <div>
-                                         <p>{{ $assignment->body }}</p>
+                                         <p>{!! nl2br($assignment->body) !!}</p>
                                           <div>
                                           @if($contents=$assignment->contents->where('post_id',$assignment->id))
                                                 @foreach($contents as $content)

@@ -25,7 +25,7 @@
                        <div class="col-sm-11">
                               <div>
                                         
-                                  <h2>{{ $lecture->title }}</h2>
+                                  <h2>{!! nl2br($lecture->title) !!}</h2>
                                   @if( ( ($lecture->type)=='L') && ($user->id == $lecture->user_id))
                                       <div class="pull-right">
                                           <ul class="nav navbar-nav navbar-right">
@@ -49,7 +49,7 @@
                                   </span>
                                </div>
                                     <div>
-                                         <p>{{ $lecture->body }}</p>
+                                         <p>{!! nl2br($lecture->body) !!}</p>
                                           <div>
                                           @if($contents=$lecture->contents->where('post_id',$lecture->id))
                                                 @foreach($contents as $content)
@@ -83,7 +83,7 @@
                                                           </ul>
                                                         </div>
                                                   @endif
-                                                       <p>{{$comment->comment}}</p>
+                                                       <p>{!! nl2br($comment->comment) !!}</p>
                                                   </div>          
                                          </div>  
                                @endforeach  

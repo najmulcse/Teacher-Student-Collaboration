@@ -148,9 +148,9 @@ public function checkUsers($gid){
 
         $check = $this->checkUsers($gid);
         if($check == "accepted"){
-        		$group = Group::findOrFail( $gid );
-            $user_id=Auth::user()->id;
-        		$user= User::findOrFail($user_id);
+        		$group   = Group::findOrFail( $gid );
+            $user_id = Auth::user()->id;
+        		$user    = User::findOrFail($user_id);
         		return view('posts.createPost',compact('group','user'));
           }else{
             return redirect()->route('home');

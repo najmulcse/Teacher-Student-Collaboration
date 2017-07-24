@@ -114,10 +114,10 @@ window.Laravel = <?php echo json_encode([
                         <a href="javascript:;" data-toggle="collapse" data-target="#demo"><i class="fa fa-user fa-fw""></i> Profile <i class="fa fa-fw fa-caret-down"></i></a>
                         <ul id="demo" class="collapse">
                             <li>
-                                <a href="#"> <i class="fa fa-unlock""></i> Changed Password</a>
+                                <a href="{{route('changed.password')}}"> <i class="fa fa-unlock""></i> Changed Password</a>
                             </li>
                             <li>
-                                <a href="#"> <i class="fa fa-user""></i> Edit Profile</a>
+                                <a href="{{route('add.photo')}}"> <i class="fa fa-user""></i> Add Photo</a>
                             </li>
                         </ul>
                     </li>

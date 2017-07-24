@@ -55,7 +55,7 @@
 
                                 <div class="form-group{{ $errors->has('roll') ? ' has-error' : '' }}">
 
-                                    <input type="text" name="roll" placeholder="Your roll number" class="form-username form-control" id="form-username" value="{{old('name')}}">
+                                    <input type="text" name="roll" placeholder="Your roll number" class="form-username form-control" id="form-username" value="{{old('roll')}}">
                                     @if ($errors->has('roll'))
                                     <span class="help-block">
                                         <strong>{{ $errors->first('roll') }}</strong>

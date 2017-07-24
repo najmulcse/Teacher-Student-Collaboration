@@ -11,9 +11,9 @@
   
 @section('group_body')
 
-   <h3>Pick A Make/Model</h3>
+        <h3>Pick A Make/Model</h3>
 
-     <form ic-post-to="/form">
+         <form ic-post-to="/form">
        <div class="form-group">
          <label class="control-label">Make</label>
          <select class="form-control" name="make" ic-post-to="/models" ic-target="#models" ic-indicator="#model-ind">

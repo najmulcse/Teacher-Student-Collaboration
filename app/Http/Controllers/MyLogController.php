@@ -40,7 +40,7 @@ class MyLogController extends Controller
     	            'name'         => $request->name,
     	            'email'        => $request->email,
     	            'password'     => bcrypt($request->password),
-    	            'user_type_id' =>$request->user_type_id         
+    	            'user_type_id' => $request->user_type_id         
     	               ]);
     	Auth::login($user);
     	return redirect('/login');
@@ -70,11 +70,11 @@ class MyLogController extends Controller
                     'name'         => $request->name,
                     'email'        => $request->email,
                     'password'     => bcrypt($request->password),
-                    'user_type_id' =>$request->user_type_id         
+                    'user_type_id' => $request->user_type_id         
                        ]);
         Student::create([
-                'roll'     =>$request->roll,
-                'user_id'  =>$user->id
+                'roll'     => $request->roll,
+                'user_id'  => $user->id
                     ]);
 
         Auth::login($user);

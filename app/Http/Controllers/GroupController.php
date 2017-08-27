@@ -233,6 +233,28 @@ class GroupController extends Controller
           return back();
      }
        
+     //Searching ....
+     
+
+     public function search(Request $request)
+     {
+       $search = $request->search;
+
+               if (empty($search))
+               {
+                  return back();         
+               }
+               else
+               {
+                   $results = Group::where('group_name','LIKE',"%{$search}%")
+                                  ->orWhere('course_code','LIKE',"%{$search}%")
+                                  ->orWhere('group_code','LIKE',"%{$search}%")
+                                  ->orWhere('session','LIKE',"%{$search}%")
+                                  ->get();
+
+                   return view('groups.searchResult',compact('results'));
+               }
+     }  
       
 }
 

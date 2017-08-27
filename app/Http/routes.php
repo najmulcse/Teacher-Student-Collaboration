@@ -26,6 +26,10 @@ Route::group(['middlewaregroups' => ['web']], function () {
 
 
 //-------------------------------
+//Searching......
+   Route::post('/result',['as'=>'group.search', 'uses'=>'GroupController@search']);
+
+//-------------------------------
 //register route 
 
 Route::get('registerTeacher',['as'=>'registerTeacher','uses'=>'MyLogController@registerTeacher']);

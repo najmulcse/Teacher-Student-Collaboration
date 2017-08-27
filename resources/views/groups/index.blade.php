@@ -141,6 +141,7 @@
                                                   <p>{!!nl2br($comment->comment)!!}</p>
                                           </div>         
                                   </div>  
+                                  <hr>
                             @endforeach  
                                          
                           <!--for comment submission form, started-->

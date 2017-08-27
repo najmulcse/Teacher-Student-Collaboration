@@ -135,16 +135,22 @@ window.Laravel = <?php echo json_encode([
                 <div class="row">
                     <div class="col-lg-4"></div>
                     <div class="col-lg-4">  <!-- searching started -->
-                        <form action="searchResult.php" method="POST">
+
+
+                        <form  ic-post-to ="{{route('group.search')}}" ic-target="#result" class="form-horizontal" role="form">
                            <div class="input-group col-md-12 ">
-                            <input type="text" class="input_search  search-query form-control " name="search_value" placeholder="Search" />
+                           {{--  <input type="text" class="input_search  search-query form-control " name="search_value" placeholder="Search" /> --}}
+                           <span id="indicator" style="display:none">
+                                <i class="fa fa-spinner fa-spin"></i> Searching...
+                              </span>
+                           <input class="form-control" {{-- ic-post-to ="{{route('group.search')}}" --}} type="text" name="search" placeholder=" Search Users..." ic-trigger-on="keyup changed" ic-trigger-delay="500ms" ic-target="#result" ic-indicator="#indicator">
                             <span class="input-group-btn">
                                 <button class="btn btn-danger" type="submit" name="search">
                                     <span class=" glyphicon glyphicon-search"></span>
                                 </button>
                             </span>
                           </div>
-                        </form>
+                        {{-- </form> --}}
                     </div>  <!-- searching ended -->
                     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4">  <!-- group creating button started -->
                         <ul class="list-inline">

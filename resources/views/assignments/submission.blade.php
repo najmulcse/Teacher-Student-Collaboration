@@ -13,7 +13,7 @@
             <div class="row">
                 <small>    <!--For alert message -->
                      @if (session('status'))
-                         <div class="alert alert-danger text-center">
+                         <div class="alert alert-danger text-center alrert_message" >
                              {{ session('status') }}
                          </div>
                      @endif

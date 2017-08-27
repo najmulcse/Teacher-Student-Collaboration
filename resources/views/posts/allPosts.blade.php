@@ -16,7 +16,11 @@
                   
                        <div class="col-sm-1">
                           <figure>
+                          @if(!empty($post->user->photo))
                             <img class="img-responsive" src="{{asset('img/'.$post->user->id)}}">
+                            @else
+                            <img class="img-responsive" src="{{asset('img/backgrounds/default.png')}}">
+                            @endif
                           
                           <label>{{ $post->user->name }}</label>
                           </figure>
@@ -92,7 +96,11 @@
                                         <!--for comment submission form-->
                                  <div class="row">
                                         <div class="col-sm-1">
-                                               <img class="img-responsive" src="{{asset('img/'.$user->id)}}">
+                                               @if(!empty($comment->user->photo))
+                                                     <img class="img-responsive" src="{{asset('img/'.$comment->user->id)}}">
+                                              @else
+                                                    <img class="img-responsive" src="{{asset('img/backgrounds/default.png')}}">
+                                              @endif
                                                  <label>{{ $user->name }}</label>
                                         </div>
                                         <div class="col-sm-11">
@@ -104,7 +112,7 @@
 
                                                 <div class="form-group @if($errors->has('body') && ($post->id == 41 )) has-error @endif" >
                                                  
-                                                        <textarea type="text" class="form-control" name="body" id="" rows="3" placeholder="Write a comment">{{old('body')}}</textarea>
+                                                        <textarea type="text" class="form-control" name="body" id="" rows="3" placeholder="Write a comment" required>{{old('body')}}</textarea>
                                                       {!!$errors->first('body','<span class="help-block">:message </span>')!!}
                                                   </div>
                                                 <div class="form-group">

@@ -19,7 +19,11 @@
                 
                        <div class="col-sm-1">
                           <figure>
-                            <img class="img-responsive" src="{{asset('img/'.$lec_post->user->id)}}">
+                          @if(!empty($lec_post->user->photo))
+                              <img class="img-responsive" src="{{asset('img/'.$lec_post->user->id)}}">
+                          @else
+                              <img class="img-responsive" src="{{asset('img/backgrounds/default.png')}}">
+                          @endif
                           </figure>
                           <label>{{ $lec_post->user->name }}</label>
                        </div>
@@ -110,7 +114,11 @@
                             @foreach($lec_post->comments as $comment)
                                   <div class="row">    
                                           <div class="col-sm-1">
-                                                  <img class="img-responsive" src="{{asset('img/'.$comment->user->id)}}">
+                                             @if(!empty($comment->user->photo))
+                                                     <img class="img-responsive" src="{{asset('img/'.$comment->user->id)}}">
+                                              @else
+                                                    <img class="img-responsive" src="{{asset('img/backgrounds/default.png')}}">
+                                              @endif
                                                    <label>{{ $comment->user->name }}</label>
                                           </div>
                                           <div class="col-sm-11">
@@ -138,7 +146,11 @@
                           <!--for comment submission form, started-->
                                  <div class="row">
                                         <div class="col-sm-1">
-                                               <img class="img-responsive" src="{{asset('img/'.$user->id)}}">
+                                               @if(!empty($comment->user->photo))
+                                                     <img class="img-responsive" src="{{asset('img/'.$comment->user->id)}}">
+                                              @else
+                                                    <img class="img-responsive" src="{{asset('img/backgrounds/default.png')}}">
+                                              @endif
                                                  <label>{{ $user->name }}</label>
                                         </div>
                                         <div class="col-sm-11">
@@ -147,7 +159,7 @@
 
                                                 <div class="form-group">
 
-                                                   <textarea type="text" class="form-control"  name="body" id="" rows="3" placeholder="Write a comment"></textarea>
+                                                   <textarea type="text" class="form-control"  name="body" id="" rows="3" placeholder="Write a comment" required></textarea>
                                                   
                                                 </div>
                                                 <div class="form-group">

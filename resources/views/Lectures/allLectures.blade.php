@@ -18,7 +18,11 @@
                 
                        <div class="col-sm-1">
                           <figure>
-                            <img class="img-responsive" src="{{asset('img/author.jpg')}}">
+                            @if(!empty($lecture->user->photo))
+                            <img class="img-responsive" src="{{asset('img/'.$lecture->user->id)}}">
+                            @else
+                            <img class="img-responsive" src="{{asset('img/backgrounds/default.png')}}">
+                            @endif
                           </figure>
                          <label>{{ $lecture->user->where('id',$lecture->user_id)->first()->name }}</label>
                        </div>

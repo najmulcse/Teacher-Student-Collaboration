@@ -66,6 +66,7 @@
                                       @elseif( ( ($lec_post->type)=='A') && ($user->id == $lec_post->user_id))
                                           <div class="pull-right">
                                           @if($lec_post->assignment)
+                                          <h3 style="color:red ; background-color: #cccccc; padding: 5px; ">Assignment</h3>
                                            <h4 style="color:red ;"><small>Last date : {{$lec_post->assignment->last_submit_date}}</small></h4>
                                            @endif
                                               <ul class="nav navbar-nav navbar-right">
@@ -83,6 +84,7 @@
                                           </div> 
                                           @elseif( ( $lec_post->type=='A') && ( $user->user_type_id == 2))
                                               <div class="pull-right inline-block">
+                                                 <h3 style="color:red ; background-color: #cccccc; padding: 5px; ">Assignment</h3>
                                                  @if($lec_post->uploads->where('user_id',$user->id)->first() )
                                                   <h4 style="color:red ;"><small>Last date was: {{$lec_post->assignment->last_submit_date}}</small></h4>
                                                   <a href="#" type="button" class="btn btn-primary" disabled="disabled" >Submitted</a><i class="fa-x glyphicon glyphicon-ok" ></i>
@@ -94,7 +96,7 @@
 
                                               </div>   
                                   @endif
-                                        <h2>{!! nl2br($lec_post->title) !!}</h2>
+                                        <a href="#"><h2>{!! nl2br($lec_post->title) !!}</h2></a>
                                         <span>
                                             <small>date:{{ $lec_post->created_at->diffForHumans() }}
                                             </small>

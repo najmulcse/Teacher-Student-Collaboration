@@ -51,11 +51,11 @@ window.Laravel = <?php echo json_encode([
                 <!-- Branding Image -->
                 @if (Auth::guest())
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    TS-Group
+                     Teacher-Student Collaboration System
                 </a>
                  @else
                     <a class="navbar-brand" href="{{ url('/home') }}">
-                        TS-Group
+                         Teacher-Student Collaboration System
                     </a>
                   @endif
             </div>
@@ -137,20 +137,20 @@ window.Laravel = <?php echo json_encode([
                     <div class="col-lg-4">  <!-- searching started -->
 
 
-                        <form  ic-post-to ="{{route('group.search')}}" ic-target="#result" class="form-horizontal" role="form">
+                        <form  ic-post-to ="{{route('group.searching')}}" ic-target="#result" >
                            <div class="input-group col-md-12 ">
                            {{--  <input type="text" class="input_search  search-query form-control " name="search_value" placeholder="Search" /> --}}
                            <span id="indicator" style="display:none">
                                 <i class="fa fa-spinner fa-spin"></i> Searching...
                               </span>
-                           <input class="form-control" {{-- ic-post-to ="{{route('group.search')}}" --}} type="text" name="search" placeholder=" Search Users..." ic-trigger-on="keyup changed" ic-trigger-delay="500ms" ic-target="#result" ic-indicator="#indicator">
+                           <input class="form-control"  type="text" name="search_elements" placeholder=" Search..." ic-trigger-on="keyup changed" ic-trigger-delay="500ms" ic-target="#s_result" ic-indicator="#indicator">
                             <span class="input-group-btn">
-                                <button class="btn btn-danger" type="submit" name="search">
+                                <button class="btn btn-danger" type="submit" name="search_elements">
                                     <span class=" glyphicon glyphicon-search"></span>
                                 </button>
                             </span>
                           </div>
-                        {{-- </form> --}}
+                        </form>
                     </div>  <!-- searching ended -->
                     <div class="col-xs-6 col-sm-6 col-md-6 col-lg-4">  <!-- group creating button started -->
                         <ul class="list-inline">

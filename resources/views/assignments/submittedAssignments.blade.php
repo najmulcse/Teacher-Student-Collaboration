@@ -63,7 +63,7 @@
         $('select[name="assign"]').on('change', function() {
             var assignID = $(this).val();
             var gid      = $('#gid').val();
-
+            
             if(assignID) {
 
 

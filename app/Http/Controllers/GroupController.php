@@ -236,10 +236,10 @@ class GroupController extends Controller
      //Searching ....
      
 
-     public function search(Request $request)
+     public function searching(Request $request)
      {
-       $search = $request->search;
-
+       $search = $request->all();
+       dd($search);
                if (empty($search))
                {
                   return back();         

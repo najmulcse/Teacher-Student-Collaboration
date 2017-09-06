@@ -66,10 +66,14 @@
                        <!--for showing comments -->
                                @foreach($lecture->comments as $comment)
                                         <div class="row">    
-                                                  <div class="col-sm-1">
-                                                       <img class="img-responsive" src="{{asset('img/author.jpg')}}">
+                                            <div class="col-sm-1">
+                                                   @if(!empty($comment->user->photo))
+                                                  <img class="img-responsive" src="{{asset('img/'.$comment->user->id)}}">
+                                                  @else
+                                                  <img class="img-responsive" src="{{asset('img/backgrounds/default.png')}}">
+                                                  @endif
                                                        <label>{{ $comment->user->name }}</label>
-                                                  </div>
+                                            </div>
                                                   <div class="col-sm-11">
                                                 @if( $user->id == $comment->user_id)
                                                       <div class="pull-right">
@@ -96,7 +100,11 @@
                        <!--for comment submission started from here -->
                                  <div class="row">
                                         <div class="col-sm-1">
-                                               <img class="img-responsive" src="{{asset('img/author.jpg')}}">
+                                               @if(!empty($comment->user->photo))
+                                                <img class="img-responsive" src="{{asset('img/'.$comment->user->id)}}">
+                                                @else
+                                                <img class="img-responsive" src="{{asset('img/backgrounds/default.png')}}">
+                                                @endif
                                                  <label>{{ $user->name }}</label>
                                         </div>
                                         <div class="col-sm-11">

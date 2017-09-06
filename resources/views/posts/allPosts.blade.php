@@ -65,7 +65,11 @@
                             @foreach($post->comments as $comment)
                               <div class="row">    
                                           <div class="col-sm-1">
-                                                 <img class="img-responsive" src="{{asset('img/'.$comment->user->id)}}">
+                                                 @if(!empty($comment->user->photo))
+                                                     <img class="img-responsive" src="{{asset('img/'.$comment->user->id)}}">
+                                              @else
+                                                    <img class="img-responsive" src="{{asset('img/backgrounds/default.png')}}">
+                                              @endif
                                                    <label>{{ $comment->user->name }}</label>
                                           </div>
                                           <div class="col-sm-11">

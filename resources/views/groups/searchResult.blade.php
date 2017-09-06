@@ -5,7 +5,7 @@
 				<th>Search Result</th>
 			</tr>
 		</thead>
-		<tbody id="result">
+		<tbody id="s_result">
 			<tr>
 			@foreach($results as $result)
 				<td>{{$result}}</td>

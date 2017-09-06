@@ -38,11 +38,11 @@
                 <!-- Branding Image -->
                 @if (Auth::guest())
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    TS-Group
+                    Teacher-Student Collaboration System
                 </a>
                  @else
                     <a class="navbar-brand" href="{{ url('/home') }}">
-                        TS-Group
+                        Teacher-Student Collaboration System
                     </a>
                   @endif
             </div>

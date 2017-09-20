@@ -8,6 +8,7 @@ use App\Http\Requests;
 use App\Group;
 use App\Post;
 use App\Comment;
+use App\User;
 class AdminController extends Controller
 {
     public function __construct(){
@@ -23,7 +24,7 @@ class AdminController extends Controller
     	$posts   = Post::where('type','P')->get();
     	$lectures   = Post::where('type','L')->get();
     	$comments   =Comment::all();
-    	return view('admins.index',compact('assignments','posts','lectures','comments'));
+    	return view('admins.index',compact('assignments','posts','groups','comments'));
     }
     public function allGroups(){
     	$groups = Group::all();
@@ -129,5 +130,35 @@ class AdminController extends Controller
             return response(['msg' => 'Comment deleted successfully', 'status' => 'success']);
         }
         
+    }
+
+    public function addAdmin()
+    {
+      return view('admins.groups.addAdmin');
+    }
+    public function storeAdmin(Request $request)
+    {
+      $rules =[
+          'name'      => 'required|max:255',
+            'email'     => 'required|email|max:255|unique:users',
+            'password'  => 'required|min:6|confirmed',
+      ];
+      $this->validate($request,$rules);
+
+      $user = User::create([
+                  'name'         => $request->name,
+                  'email'        => $request->email,
+                  'password'     => bcrypt($request->password),
+                  'user_type_id' => $request->user_type_id         
+                     ]);
+
+      if($user)
+      {
+        return back()->with('msg'," Admin Successfully Added");
+      }
+      else
+      {
+        return back()->with('msg'," Wrong!!!");
+      }
     }
 }

@@ -137,15 +137,17 @@ window.Laravel = <?php echo json_encode([
                     <div class="col-lg-4">  <!-- searching started -->
 
 
-                        <form  ic-post-to ="{{route('group.searching')}}" ic-target="#result" >
+                        <form  method="post" action="{{route('group.searching')}}"  >
+                        {{ csrf_field() }}
                            <div class="input-group col-md-12 ">
-                           {{--  <input type="text" class="input_search  search-query form-control " name="search_value" placeholder="Search" /> --}}
+                            
                            <span id="indicator" style="display:none">
                                 <i class="fa fa-spinner fa-spin"></i> Searching...
                               </span>
-                           <input class="form-control"  type="text" name="search_elements" placeholder=" Search..." ic-trigger-on="keyup changed" ic-trigger-delay="500ms" ic-target="#s_result" ic-indicator="#indicator">
+                              <input type="text" class="input_search  search-query form-control " name="search_elements" placeholder="Search" />
+                           {{-- <input class="form-control"  type="text" name="search_elements" placeholder=" Search..." ic-trigger-on="keyup changed" ic-trigger-delay="500ms" ic-target="#s_result" ic-indicator="#indicator"> --}}
                             <span class="input-group-btn">
-                                <button class="btn btn-danger" type="submit" name="search_elements">
+                                <button class="btn btn-danger" type="submit" name="">
                                     <span class=" glyphicon glyphicon-search"></span>
                                 </button>
                             </span>

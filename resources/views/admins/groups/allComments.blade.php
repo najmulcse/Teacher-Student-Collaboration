@@ -12,10 +12,11 @@
 </div>
 <br>
 <div class="table-responsive" id="txtHint">
+<h3>All comments</h3>
 	<table class="table table-hover table-bordered">
 		<thead>
 			<tr>
-				<th>S.N</th>
+				<th>ID</th>
 				<th>Group</th>
 				<th>Post</th>
 				<th>User</th>

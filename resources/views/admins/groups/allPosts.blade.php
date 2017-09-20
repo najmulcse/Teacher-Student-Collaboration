@@ -13,12 +13,12 @@
 <br>
 
 <div class="table-responsive" id="txtHint">
-
+<h3>All posts</h3>
 	<table class="table table-hover table-bordered">
 		<thead>
 			<tr>
-				<th>S.N</th>
-				<th>Group</th>
+				<th>ID</th>
+				<th>Group ID</th>
 				<th>Author</th>
 				<th>Type</th>
 				<th>Title</th>
@@ -32,8 +32,8 @@
 			@foreach($posts as $post)
 			<tr id="g{{$post->id}}">
 			    <td>{{$post->id}}</td>
-				<td>{{$post->group_id}}</td>
-				<td>{{$post->user_id}}</td>
+				<td>{{$post->id}}</td>
+				<td>{{$post->user->name}}</td>
 				<td>{{$post->type}}</td>
 				<td>{{$post->title}}</td>
 				<td>{{$post->body}}</td>

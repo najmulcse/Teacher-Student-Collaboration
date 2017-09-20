@@ -27,7 +27,8 @@ class GroupController extends Controller
        $id=Auth::id();
        $group = Group::findOrFail($gid);
        $member=GroupMember::where('group_id',$gid)->where('user_id',$id)->first();
-        if($group->user_id == $id || $member)
+      
+       if($group->user_id == $id || $member)
         {
           return "accepted";
         }
@@ -39,7 +40,7 @@ class GroupController extends Controller
 
     //All groups are shown of user home page 
    public function index($gid){
-      
+
       $check = $this->checkUsers($gid);
       if($check == "accepted")
       {   $group = Group::findOrFail($gid);
@@ -238,23 +239,52 @@ class GroupController extends Controller
 
      public function searching(Request $request)
      {
-       $search = $request->all();
-       dd($search);
+       $search = $request->search_elements;
+      
                if (empty($search))
                {
                   return back();         
                }
                else
                {
-                   $results = Group::where('group_name','LIKE',"%{$search}%")
+                   $groups = Group::where('group_name','LIKE',"%{$search}%")
                                   ->orWhere('course_code','LIKE',"%{$search}%")
                                   ->orWhere('group_code','LIKE',"%{$search}%")
                                   ->orWhere('session','LIKE',"%{$search}%")
                                   ->get();
+                    $posts = Post::where('title','LIKE',"%{$search}%")
+                                  ->orWhere('body','LIKE',"%{$search}%")
+                                  ->get();
+                    
 
-                   return view('groups.searchResult',compact('results'));
+                   return view('groups.searchResult',compact('groups','posts'));
                }
      }  
+
+     public function allMembers($gid)
+     {
+
+     
+        $group = Group::findOrFail($gid)->first();
+        if($group->user_id == Auth::user()->id){
+        $members = GroupMember::where('group_id',$gid)->get();
+        $user=User::findOrFail(Auth::user()->id);
+        return view('groups.allMembers',compact('group','members','user'));
+        }
+      return back();
+     }
+
+     public function removeMember($id)
+     {
+         $gm = GroupMember::findOrFail($id)->first();
+         GroupMember::findOrFail($id)->delete();
+         Post::where('group_id',$gm->group_id)
+              ->where('user_id',$gm->user_id)->delete();
+
+
+      return back();
+
+     }
       
 }
 

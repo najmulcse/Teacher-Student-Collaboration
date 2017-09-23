@@ -183,6 +183,9 @@
                             </li>
                         </ul>
                     </li>
+                    <li class="">
+                        <a href="{{route('add.admin')}}"><i class="fa fa-fw fa-plus"></i> Add Admin</a>
+                    </li>
                     
                 </ul>
             </div>

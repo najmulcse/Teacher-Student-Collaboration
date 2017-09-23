@@ -12,10 +12,11 @@
 </div>
 <br>
 <div class="table-responsive" id="txtHint">
+<h3>All groups</h3>
 	<table class="table table-hover table-bordered">
 		<thead>
 			<tr>
-				<th>S.N</th>
+				<th>ID</th>
 				<th>Group</th>
 				<th>Description</th>
 				<th>Code</th>

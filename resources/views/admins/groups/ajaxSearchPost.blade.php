@@ -11,7 +11,7 @@ if(count($posts)>0)
                     <table class="table table-bordered">
                         <thead>
                             <tr>
-                                <th>S.N</th>
+                                <th>ID</th>
                                 <th>Group</th>
                                 <th>Author</th>
                                 <th>Type</th>

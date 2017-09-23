@@ -16,7 +16,11 @@
                   
                        <div class="col-sm-1">
                           <figure>
+                          @if(!empty($post->user->photo))
                             <img class="img-responsive" src="{{asset('img/'.$post->user->id)}}">
+                            @else
+                            <img class="img-responsive" src="{{asset('img/backgrounds/default.png')}}">
+                            @endif
                           
                           <label>{{ $post->user->name }}</label>
                           </figure>
@@ -61,25 +65,29 @@
                             @foreach($post->comments as $comment)
                               <div class="row">    
                                           <div class="col-sm-1">
-                                                 <img class="img-responsive" src="{{asset('img/'.$comment->user->id)}}">
+                                                 @if(!empty($comment->user->photo))
+                                                     <img class="img-responsive" src="{{asset('img/'.$comment->user->id)}}">
+                                              @else
+                                                    <img class="img-responsive" src="{{asset('img/backgrounds/default.png')}}">
+                                              @endif
                                                    <label>{{ $comment->user->name }}</label>
                                           </div>
                                           <div class="col-sm-11">
                                           @if( $user->id == $comment->user_id)
-                                                <div class="pull-right">
-                                                      <ul class="nav navbar-nav navbar-right">
-                                                            <li class="dropdown">
-                                                                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                                                      <span class=""><i class="fa fa-cog"></i></span>
-                                                                       </a>
-                                                                <ul class="dropdown-menu" role="menu">
-                                                                         <li><a href="#"><i class="fa fa-pencil fa-fw"></i>Edit</a></li>
+                                <div class="pull-right">
+                                      <ul class="nav navbar-nav navbar-right">
+                                          <li class="dropdown">
+                                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                                <span class=""><i class="fa fa-cog"></i></span>
+                                              </a>
+                                              <ul class="dropdown-menu" role="menu">
+                                                <li><a href="{{route('post_comment_edit',['gid'=>$group->id,'pid'=>$post->id,'cid'=>$comment->id, 'type'=>'P'])}}"><i class="fa fa-pencil fa-fw"></i>Edit</a></li>
                                                        <!--  <a class="btn btn-info" data-toggle="modal" href='#{{$post->id}}'> <i class="fa fa-trash-o fa-fw"></i>Delete</a>
  -->
-                                                                         <li><a onclick="return confirm('are you sure?')" href="#"><i class="fa fa-trash-o fa-fw"></i>Delete</a></li>     
-                                                                </ul>
-                                                           </li>
+                                                      <li><a onclick="return confirm('are you sure?')" href="{{ route('comment_delete',['gid' => $group->id,'cid'=>$comment->id ]) }}"><i class="fa fa-trash-o fa-fw"></i>Delete</a></li>     
                                                     </ul>
+                                                  </li>
+                                                </ul>
                                               </div>
                                               @endif
                                               
@@ -92,7 +100,11 @@
                                         <!--for comment submission form-->
                                  <div class="row">
                                         <div class="col-sm-1">
-                                               <img class="img-responsive" src="{{asset('img/'.$user->id)}}">
+                                               @if(!empty($comment->user->photo))
+                                                     <img class="img-responsive" src="{{asset('img/'.$comment->user->id)}}">
+                                              @else
+                                                    <img class="img-responsive" src="{{asset('img/backgrounds/default.png')}}">
+                                              @endif
                                                  <label>{{ $user->name }}</label>
                                         </div>
                                         <div class="col-sm-11">
@@ -104,7 +116,7 @@
 
                                                 <div class="form-group @if($errors->has('body') && ($post->id == 41 )) has-error @endif" >
                                                  
-                                                        <textarea type="text" class="form-control" name="body" id="" rows="3" placeholder="Write a comment">{{old('body')}}</textarea>
+                                                        <textarea type="text" class="form-control" name="body" id="" rows="3" placeholder="Write a comment" required>{{old('body')}}</textarea>
                                                       {!!$errors->first('body','<span class="help-block">:message </span>')!!}
                                                   </div>
                                                 <div class="form-group">

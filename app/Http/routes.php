@@ -26,6 +26,10 @@ Route::group(['middlewaregroups' => ['web']], function () {
 
 
 //-------------------------------
+//Searching......
+   Route::get('search_results',['as'=>'group.searching', 'uses'=>'GroupController@searching']);
+
+//-------------------------------
 //register route 
 
 Route::get('registerTeacher',['as'=>'registerTeacher','uses'=>'MyLogController@registerTeacher']);
@@ -59,7 +63,8 @@ Route::post('add_photo',['as'=>'store.photo', 'uses' =>'HomeController@storePhot
     Route::get('/joinGroup',['as' => 'joinGroupid', 'uses' => 'GroupController@joinGroup']);
     Route::post('/checkGroup' , [ 'as' => 'checkGroup','uses' => 'GroupController@checkGroupForJoining']);
     Route::get('leftgroup/{gid}/{mid}',['as' => 'left_group', 'uses' => 'GroupController@leftGroup' ]);
-
+    Route::get('allMembers/{gid}',['as' => 'allMembers', 'uses' => 'GroupController@allMembers' ]);
+     Route::get('removeMember/{id}',['as'=>'removeMember','uses'=> 'GroupController@removeMember']);
 //-----------------------------------------------------------//
     //PostController routes are started here
 
@@ -93,6 +98,9 @@ Route::post('add_photo',['as'=>'store.photo', 'uses' =>'HomeController@storePhot
 
     //CommentController routes are started from here
     Route::post('group/{gid}/post/{pid}/comment/{type}/store',['as' => 'post_comment' ,'uses' =>'CommentController@store']);
+    Route::get('group/{gid}/post/{pid}/comment/{cid}/{type}/edit',['as' => 'post_comment_edit' ,'uses' =>'CommentController@edit']);
+    Route::patch('group/{gid}/post/{pid}/comment/{cid}/{type}/edit',['as' => 'post_comment_update' ,'uses' =>'CommentController@update']);
+     Route::get('group/{gid}/comment/{id}',['as' => 'comment_delete' ,'uses' =>'CommentController@delete']);
 
     //CommentController routes are ended 
 
@@ -136,7 +144,10 @@ Route::group(['middleware' => ['auth','isAdmin']],function(){
         Route::get('admin',['as' => 'admin' , 'uses' => 'AdminController@index']);
         Route::get('admin/allgroups',['as'=> 'adminAllGroups','uses' =>'AdminController@allGroups']);
         Route::get('admin/allPosts',['as'=> 'adminGroupPosts','uses' =>'AdminController@groupPosts']);
-        Route::get('admin/allComments',['as'=> 'adminGroupComments','uses' =>'AdminController@groupComments']);        
+        Route::get('admin/allComments',['as'=> 'adminGroupComments','uses' =>'AdminController@groupComments']);      
+        Route::get('admin/addAdmin',['as'=> 'add.admin','uses' =>'AdminController@addAdmin']); 
+        Route::post('admin/addAdmin',['as'=> 'store.admin','uses' =>'AdminController@storeAdmin']);      
+
         //ajax calling 
 
         Route::get('admin/searchGroup',['as'=>'searchGroup','uses'=> 'AdminController@searchGroup']);

@@ -18,7 +18,11 @@
                 
                        <div class="col-sm-1">
                           <figure>
-                            <img class="img-responsive" src="{{asset('img/'.$user->id)}}">
+                            @if(!empty($assignment->user->photo))
+                            <img class="img-responsive" src="{{asset('img/'.$assignment->user->id)}}">
+                            @else
+                            <img class="img-responsive" src="{{asset('img/backgrounds/default.png')}}">
+                            @endif
                           </figure>
                          <label>{{ $assignment->user->name }}</label>
                        </div>
@@ -67,6 +71,7 @@
                                           @if($contents=$assignment->contents->where('post_id',$assignment->id))
                                                 @foreach($contents as $content)
                                                     <a class="" href="{{url('download')}}/{{$content->id}}">{{$content->content}} </a>
+                                                   <br>
                                                 @endforeach
                                           @endif
                                           </div>

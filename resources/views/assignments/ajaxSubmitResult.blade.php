@@ -1,4 +1,5 @@
 
+
        @if(count($assignments)>0)
         
            <table class="table ">
@@ -13,7 +14,7 @@
              <tbody>
               @foreach ( $group->members as $member)
                   <tr>
-                       <td>{{$member->student->roll}}</td>
+                       <td>{{ $member->student->roll }}</td>
                        <td>{{$member->user->name}}</td>
                     @if($m=$member->upload()->where('post_id',$id)->first())
                        <td><a href="{{url('downloadA')}}/{{$m->id}}">{{$m->link}}</a></td>

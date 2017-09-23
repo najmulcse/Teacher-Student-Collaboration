@@ -12,13 +12,14 @@
 </div>
 <br>
 <div class="table-responsive" id="txtHint">
+<h3>All comments</h3>
 	<table class="table table-hover table-bordered">
 		<thead>
 			<tr>
-				<th>S.N</th>
-				<th>Group</th>
-				<th>Post</th>
-				<th>User</th>
+				<th>ID</th>
+				<th>Group ID</th>
+				<th>Post ID</th>
+				<th>User ID</th>
 				<th>Body</th>
 				<th>Edit</th>
 				<th>Delete</th>

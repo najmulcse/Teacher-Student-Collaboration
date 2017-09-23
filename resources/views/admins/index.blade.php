@@ -38,7 +38,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="{{route('adminGroupPosts')}}">
                                 <div class="panel-footer">
                                     <span class="pull-left">View Details</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -81,16 +81,16 @@
                                         <i class="fa fa-shopping-cart fa-5x"></i>
                                     </div>
                                     <div class="col-xs-9 text-right">
-                                     @if($l = count($lectures))
-                                        <div class="huge">{{$l}}</div>
-                                        <div>Total Lectures!</div>
+                                     @if($g = count($groups))
+                                        <div class="huge">{{$g}}</div>
+                                        <div>Total Groups!</div>
                                      @else
                                         <div>Empty!</div>
                                      @endif     
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="{{route('adminAllGroups')}}">
                                 <div class="panel-footer">
                                     <span class="pull-left">View Details</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -118,7 +118,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <a href="#">
+                            <a href="{{route('adminGroupComments')}}">
                                 <div class="panel-footer">
                                     <span class="pull-left">View Details</span>
                                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -130,18 +130,7 @@
                 </div>
                 <!-- /.row -->
 
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="panel panel-default">
-                            <div class="panel-heading">
-                                <h3 class="panel-title"><i class="fa fa-bar-chart-o fa-fw"></i> Area Chart</h3>
-                            </div>
-                            <div class="panel-body">
-                                <div id="morris-area-chart"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+               
                 <!-- /.row -->
 
                 

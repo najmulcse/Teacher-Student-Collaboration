@@ -18,7 +18,11 @@
                 
                        <div class="col-sm-1">
                           <figure>
-                            <img class="img-responsive" src="{{asset('img/author.jpg')}}">
+                            @if(!empty($lecture->user->photo))
+                            <img class="img-responsive" src="{{asset('img/'.$lecture->user->id)}}">
+                            @else
+                            <img class="img-responsive" src="{{asset('img/backgrounds/default.png')}}">
+                            @endif
                           </figure>
                          <label>{{ $lecture->user->where('id',$lecture->user_id)->first()->name }}</label>
                        </div>
@@ -62,10 +66,14 @@
                        <!--for showing comments -->
                                @foreach($lecture->comments as $comment)
                                         <div class="row">    
-                                                  <div class="col-sm-1">
-                                                       <img class="img-responsive" src="{{asset('img/author.jpg')}}">
+                                            <div class="col-sm-1">
+                                                   @if(!empty($comment->user->photo))
+                                                  <img class="img-responsive" src="{{asset('img/'.$comment->user->id)}}">
+                                                  @else
+                                                  <img class="img-responsive" src="{{asset('img/backgrounds/default.png')}}">
+                                                  @endif
                                                        <label>{{ $comment->user->name }}</label>
-                                                  </div>
+                                            </div>
                                                   <div class="col-sm-11">
                                                 @if( $user->id == $comment->user_id)
                                                       <div class="pull-right">
@@ -75,9 +83,9 @@
                                                                       <span class=""><i class="fa fa-cog"></i></span>
                                                                        </a>
                                                                  <ul class="dropdown-menu" role="menu">
-                                                                         <li><a href="#"><i class="fa fa-pencil fa-fw"></i>Edit</a><!--  -->
+                                                                         <li><a href="{{route('post_comment_edit',['gid'=>$group->id,'pid'=>$lecture->id,'cid'=>$comment->id, 'type'=>'L'])}}"><i class="fa fa-pencil fa-fw"></i>Edit</a><!--  -->
 
-                                                                         <li><a onclick="return confirm('are you sure?')" href="#"><i class="fa fa-trash-o fa-fw"></i>Delete</a></li>     
+                                                                         <li><a onclick="return confirm('are you sure?')" href="{{ route('comment_delete',['gid' => $group->id,'cid'=>$comment->id ]) }}"><i class="fa fa-trash-o fa-fw"></i>Delete</a></li>     
                                                                  </ul>
                                                              </li>
                                                           </ul>
@@ -92,7 +100,11 @@
                        <!--for comment submission started from here -->
                                  <div class="row">
                                         <div class="col-sm-1">
-                                               <img class="img-responsive" src="{{asset('img/author.jpg')}}">
+                                               @if(!empty($comment->user->photo))
+                                                <img class="img-responsive" src="{{asset('img/'.$comment->user->id)}}">
+                                                @else
+                                                <img class="img-responsive" src="{{asset('img/backgrounds/default.png')}}">
+                                                @endif
                                                  <label>{{ $user->name }}</label>
                                         </div>
                                         <div class="col-sm-11">
@@ -129,6 +141,11 @@
 </section>
 
 </div>
+
+
+
+
+
 
 <script>
 function w3_open() {

@@ -114,8 +114,9 @@ class HomeController extends Controller
         {
             if(!empty($db_photo)){
                 unlink(public_path('img/'.$user->id));
+
             }
-            $file->move('img/',$user->id);
+            $file->move('img',$user->id);
             $msg    = "Photo saved successfully";
             $status = 1;
         }else{

@@ -42,10 +42,20 @@
                                             <textarea class="form-control" name="body" rows="5" placeholder="Write here...">{{ old('body') }}</textarea>
                                             
                                       </div>
-                                     <div class="form-group ">
-                                           <label class="control-label">File(optional)</label>
-                                        	 <input type="file" name="file" class="form-control" accept=".doc,.ppt,.pdf,.jpeg,.png,.jpg," value="{{ old('file') }}">	
-                                            
+                    
+                                      <div class="row">
+                                          
+                                          <div class="col-sm-12">
+                                               <div class="form-group multiple-form-group row" data-max=5>
+                                                     <label class="control-label">File(optional)</label>
+                                                     <div class="form-group input-group">
+                                                  	 <input type="file" name="file[]" class="form-control" accept=".doc,.ppt,.pdf,.jpeg,.JPEG,.png,.jpg," value="{{ old('file') }}">
+                                                      <span class="input-group-btn"><button type="button" class="btn btn-default btn-add">+
+                                                     </button></span>
+                                                     </div>
+                                                      
+                                               </div>
+                                         
                                      </div>
                                      <div class="form-group @if ($errors->has('last_date')) has-error @endif">
                                            <label class="control-label">Last date to submit</label>

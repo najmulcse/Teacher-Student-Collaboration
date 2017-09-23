@@ -51,11 +51,11 @@ window.Laravel = <?php echo json_encode([
                 <!-- Branding Image -->
                 @if (Auth::guest())
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    TS-Group
+                     Teacher-Student Collaboration System
                 </a>
                  @else
                     <a class="navbar-brand" href="{{ url('/home') }}">
-                        TS-Group
+                         Teacher-Student Collaboration System
                     </a>
                   @endif
             </div>
@@ -135,11 +135,19 @@ window.Laravel = <?php echo json_encode([
                 <div class="row">
                     <div class="col-lg-4"></div>
                     <div class="col-lg-4">  <!-- searching started -->
-                        <form action="searchResult.php" method="POST">
+
+
+                        <form  method="GET" action="{{route('group.searching')}}"  >
+                        {{ csrf_field() }}
                            <div class="input-group col-md-12 ">
-                            <input type="text" class="input_search  search-query form-control " name="search_value" placeholder="Search" />
+                            
+                           <span id="indicator" style="display:none">
+                                <i class="fa fa-spinner fa-spin"></i> Searching...
+                              </span>
+                              <input type="text" class="input_search  search-query form-control " name="search_elements" placeholder="Search" />
+                           {{-- <input class="form-control"  type="text" name="search_elements" placeholder=" Search..." ic-trigger-on="keyup changed" ic-trigger-delay="500ms" ic-target="#s_result" ic-indicator="#indicator"> --}}
                             <span class="input-group-btn">
-                                <button class="btn btn-danger" type="submit" name="search">
+                                <button class="btn btn-danger" type="submit" name="">
                                     <span class=" glyphicon glyphicon-search"></span>
                                 </button>
                             </span>
@@ -185,6 +193,54 @@ window.Laravel = <?php echo json_encode([
     <!-- Bootstrap Core JavaScript -->
     <meta name="_token" content="{!! csrf_token() !!}" />
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript">
+    (function ($) {
+    $(function () {
+
+        var addFormGroup = function (event) {
+            event.preventDefault();
+
+            var $formGroup = $(this).closest('.form-group');
+            var $multipleFormGroup = $formGroup.closest('.multiple-form-group');
+            var $formGroupClone = $formGroup.clone();
+
+            $(this)
+                .toggleClass('btn-default btn-add btn-danger btn-remove')
+                .html('–');
+
+            $formGroupClone.find('input').val('');
+            $formGroupClone.insertAfter($formGroup);
+
+            var $lastFormGroupLast = $multipleFormGroup.find('.form-group:last');
+            if ($multipleFormGroup.data('max') <= countFormGroup($multipleFormGroup)) {
+                $lastFormGroupLast.find('.btn-add').attr('disabled', true);
+            }
+        };
+
+        var removeFormGroup = function (event) {
+            event.preventDefault();
+
+            var $formGroup = $(this).closest('.form-group');
+            var $multipleFormGroup = $formGroup.closest('.multiple-form-group');
+
+            var $lastFormGroupLast = $multipleFormGroup.find('.form-group:last');
+            if ($multipleFormGroup.data('max') >= countFormGroup($multipleFormGroup)) {
+                $lastFormGroupLast.find('.btn-add').attr('disabled', false);
+            }
+
+            $formGroup.remove();
+        };
+
+        var countFormGroup = function ($form) {
+            return $form.find('.form-group').length;
+        };
+
+        $(document).on('click', '.btn-add', addFormGroup);
+        $(document).on('click', '.btn-remove', removeFormGroup);
+
+    });
+})(jQuery);
+  </script>
 
 </body>
 

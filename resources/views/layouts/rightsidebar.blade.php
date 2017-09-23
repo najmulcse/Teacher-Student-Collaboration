@@ -17,11 +17,12 @@
                                           <a href="{{ route('submittedAssignments',['gid' => $group->id])}}" class="w3-bar-item w3-button">Submitted Assignments</a>
                                           <a href="{{route('emailCreate',['gid'=>$group->id])}}" class="w3-bar-item w3-button">Add member</a>
                                           <a href="{{route('allMembers',['gid'=>$group->id])}}" class="w3-bar-item w3-button">All members</a>
+                                          
                                     @elseif( $user->user_type_id == 2 && $user->id == $group->user_id)
                                           <a href="{{route('createPost',['gid' =>$group->id])}}" class="w3-bar-item w3-button">Create a post</a>
                                           <a href="{{ route('allPosts',['gid' => $group->id])}}" class="w3-bar-item w3-button">All Posts</a>
                                           <a href="{{route('emailCreate',['gid'=>$group->id])}}" class="w3-bar-item w3-button">Add member</a>
-                                         
+                                          <a href="{{route('allMembers',['gid'=>$group->id])}}" class="w3-bar-item w3-button">All members</a>
                                     
                                     @elseif( $user->user_type_id == 1)
                                           <a href="{{route('createPost',['gid' =>$group->id])}}" class="w3-bar-item w3-button">Create a post</a>

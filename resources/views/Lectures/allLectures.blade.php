@@ -83,9 +83,9 @@
                                                                       <span class=""><i class="fa fa-cog"></i></span>
                                                                        </a>
                                                                  <ul class="dropdown-menu" role="menu">
-                                                                         <li><a href="#"><i class="fa fa-pencil fa-fw"></i>Edit</a><!--  -->
+                                                                         <li><a href="{{route('post_comment_edit',['gid'=>$group->id,'pid'=>$lecture->id,'cid'=>$comment->id, 'type'=>'L'])}}"><i class="fa fa-pencil fa-fw"></i>Edit</a><!--  -->
 
-                                                                         <li><a onclick="return confirm('are you sure?')" href="#"><i class="fa fa-trash-o fa-fw"></i>Delete</a></li>     
+                                                                         <li><a onclick="return confirm('are you sure?')" href="{{ route('comment_delete',['gid' => $group->id,'cid'=>$comment->id ]) }}"><i class="fa fa-trash-o fa-fw"></i>Delete</a></li>     
                                                                  </ul>
                                                              </li>
                                                           </ul>

@@ -17,9 +17,9 @@
 		<thead>
 			<tr>
 				<th>ID</th>
-				<th>Group</th>
-				<th>Post</th>
-				<th>User</th>
+				<th>Group ID</th>
+				<th>Post ID</th>
+				<th>User ID</th>
 				<th>Body</th>
 				<th>Edit</th>
 				<th>Delete</th>

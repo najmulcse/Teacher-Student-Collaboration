@@ -264,8 +264,8 @@ class GroupController extends Controller
      public function allMembers($gid)
      {
 
-     
-        $group = Group::findOrFail($gid)->first();
+
+        $group = Group::findOrFail($gid);
         if($group->user_id == Auth::user()->id){
         $members = GroupMember::where('group_id',$gid)->get();
         $user=User::findOrFail(Auth::user()->id);

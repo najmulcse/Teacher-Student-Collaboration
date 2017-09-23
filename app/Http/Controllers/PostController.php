@@ -89,7 +89,9 @@ public function checkUsers($gid){
                             ->get();
 
            $user=User::findOrFail(Auth::user()->id);
-           $comments=Comment::where('group_id',$gid)->get();
+           $comments=Comment::where('group_id',$gid)
+                        ->orderBy('created_at','desc')
+                        ->get();
            return view('lectures.allLectures',compact('group','user','lectures','comments'));
           }
          else{
@@ -253,19 +255,21 @@ public function checkUsers($gid){
         public function storeAssignment(Request $request, $gid)
             {
 
+
+             // dd($request->all());
              $rules = [
                     'assignment_title'     => 'required |max:80',
                     'last_date' => 'required'
                       ]; 
             $this->validate($request,$rules);
-                   
-            $file= $request->file('file');
+
+           $file= $request->file('file');
            // $user=Group::where('id',$gid)->first();
             $user_id=Auth::user()->id;
             $post=Post::create([
                       'group_id'  => $gid ,
                       'user_id'   => $user_id ,
-                      'type'      =>'A',
+                      'type'      => 'A',
                       'title'     => $request->assignment_title,
                       'body'      => $request->body
                               ]);
@@ -275,15 +279,20 @@ public function checkUsers($gid){
                       'last_submit_date' => $request->last_date 
                           ]);
 
-            if(!empty($file))
+
+            if($request->hasFile('file'))
             {
+               foreach($request->file('file') as $f)
+                   {
+                     
                
-               $content=$file->getClientOriginalName();        
-               $content_store=Content::create([
+               $content       = $f->getClientOriginalName();        
+               $content_store =  Content::create([
                         'post_id' => $post_id ,
                         'content' =>$content 
                         ]);
-               $file->move('postfiles',$content_store->id);
+               $f->move('postfiles',$content_store->id);
+                   }
             }
 
 

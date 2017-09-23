@@ -137,7 +137,7 @@ window.Laravel = <?php echo json_encode([
                     <div class="col-lg-4">  <!-- searching started -->
 
 
-                        <form  method="post" action="{{route('group.searching')}}"  >
+                        <form  method="GET" action="{{route('group.searching')}}"  >
                         {{ csrf_field() }}
                            <div class="input-group col-md-12 ">
                             
@@ -193,6 +193,54 @@ window.Laravel = <?php echo json_encode([
     <!-- Bootstrap Core JavaScript -->
     <meta name="_token" content="{!! csrf_token() !!}" />
     <script src="{{ asset('js/bootstrap.min.js') }}"></script>
+    <script type="text/javascript">
+    (function ($) {
+    $(function () {
+
+        var addFormGroup = function (event) {
+            event.preventDefault();
+
+            var $formGroup = $(this).closest('.form-group');
+            var $multipleFormGroup = $formGroup.closest('.multiple-form-group');
+            var $formGroupClone = $formGroup.clone();
+
+            $(this)
+                .toggleClass('btn-default btn-add btn-danger btn-remove')
+                .html('–');
+
+            $formGroupClone.find('input').val('');
+            $formGroupClone.insertAfter($formGroup);
+
+            var $lastFormGroupLast = $multipleFormGroup.find('.form-group:last');
+            if ($multipleFormGroup.data('max') <= countFormGroup($multipleFormGroup)) {
+                $lastFormGroupLast.find('.btn-add').attr('disabled', true);
+            }
+        };
+
+        var removeFormGroup = function (event) {
+            event.preventDefault();
+
+            var $formGroup = $(this).closest('.form-group');
+            var $multipleFormGroup = $formGroup.closest('.multiple-form-group');
+
+            var $lastFormGroupLast = $multipleFormGroup.find('.form-group:last');
+            if ($multipleFormGroup.data('max') >= countFormGroup($multipleFormGroup)) {
+                $lastFormGroupLast.find('.btn-add').attr('disabled', false);
+            }
+
+            $formGroup.remove();
+        };
+
+        var countFormGroup = function ($form) {
+            return $form.find('.form-group').length;
+        };
+
+        $(document).on('click', '.btn-add', addFormGroup);
+        $(document).on('click', '.btn-remove', removeFormGroup);
+
+    });
+})(jQuery);
+  </script>
 
 </body>
 

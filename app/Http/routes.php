@@ -27,7 +27,7 @@ Route::group(['middlewaregroups' => ['web']], function () {
 
 //-------------------------------
 //Searching......
-   Route::post('results',['as'=>'group.searching', 'uses'=>'GroupController@searching']);
+   Route::get('search_results',['as'=>'group.searching', 'uses'=>'GroupController@searching']);
 
 //-------------------------------
 //register route 
@@ -98,6 +98,9 @@ Route::post('add_photo',['as'=>'store.photo', 'uses' =>'HomeController@storePhot
 
     //CommentController routes are started from here
     Route::post('group/{gid}/post/{pid}/comment/{type}/store',['as' => 'post_comment' ,'uses' =>'CommentController@store']);
+    Route::get('group/{gid}/post/{pid}/comment/{cid}/{type}/edit',['as' => 'post_comment_edit' ,'uses' =>'CommentController@edit']);
+    Route::patch('group/{gid}/post/{pid}/comment/{cid}/{type}/edit',['as' => 'post_comment_update' ,'uses' =>'CommentController@update']);
+     Route::get('group/{gid}/comment/{id}',['as' => 'comment_delete' ,'uses' =>'CommentController@delete']);
 
     //CommentController routes are ended 
 

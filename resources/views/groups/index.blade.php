@@ -107,6 +107,7 @@
                                    @if($contents=$lec_post->contents->where('post_id',$lec_post->id))
                                                 @foreach($contents as $content)
                                                     <a class="" href="{{url('download')}}/{{$content->id}}">{{$content->content}} </a>
+                                                    <br>
                                                 @endforeach
                                           @endif
                             </div>
@@ -123,27 +124,37 @@
                                               @endif
                                                    <label>{{ $comment->user->name }}</label>
                                           </div>
-                                          <div class="col-sm-11">
-                                           @if( $user->id == $comment->user_id)
-                                                <div class="pull-right">
-                                                      <ul class="nav navbar-nav navbar-right">
-                                                            <li class="dropdown">
-                                                              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
-                                                                      <span class=""><i class="fa fa-cog"></i></span>
-                                                                       </a>
-                                                              <ul class="dropdown-menu" role="menu">
-                                                                         <li><a href="#"><i class="fa fa-pencil fa-fw"></i>Edit</a></li>
+
+
+
+
+
+                           <div class="col-sm-11">
+                              @if( $user->id == $comment->user_id)
+                                <div class="pull-right">
+                                    <ul class="nav navbar-nav navbar-right">
+                                         <li class="dropdown">
+                                          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                                            <span class=""><i class="fa fa-cog"></i></span>
+                                          </a>
+                                          <ul class="dropdown-menu" role="menu">
+                                          <li><a href="{{route('post_comment_edit',['gid'=>$group->id,'pid'=>$lec_post->id,'cid'=>$comment->id, 'type'=>'C'])}}"><i class="fa fa-pencil fa-fw"></i>Edit</a></li>
                                                       
-                                                                         <li><a onclick="return confirm('are you sure?')" href="#"><i class="fa fa-trash-o fa-fw"></i>Delete</a></li>     
-                                                                </ul>
-                                                           </li>
-                                                    </ul>
-                                              </div>
-                                              @endif
-                                                  <p>{!!nl2br($comment->comment)!!}</p>
-                                          </div>         
-                                  </div>  
-                                  <hr>
+                                          <li><a onclick="return confirm('are you sure?')" href="{{ route('comment_delete',['gid' => $group->id,'cid'=>$comment->id ]) }}"><i class="fa fa-trash-o fa-fw"></i>Delete</a></li>     
+                                          </ul>
+                                          </li>
+                                        </ul>
+                                    </div>
+
+
+
+
+
+                                    @endif
+                                      <p>{!!nl2br($comment->comment)!!}</p>
+                            </div>         
+                        </div>  
+                        <hr>
                             @endforeach  
                                          
                           <!--for comment submission form, started-->

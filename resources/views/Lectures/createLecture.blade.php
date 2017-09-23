@@ -42,11 +42,15 @@
                                             <textarea class="form-control" name="body" rows="5" placeholder="Write here...">{{ old('body') }}</textarea>
                                             {!!$errors->first('body','<span class="help-block">:message</span>')!!}
                                       </div>
-                                     <div class="form-group @if ($errors->has('file')) has-error @endif">
-                                           <label class="control-label">File</label>
-                                        	 <input type="file" name="file" class="form-control" accept=".doc,.ppt,.pdf,.jpeg,.png,.jpg," value="{{ old('file') }}">	
-                                            {!!$errors->first('file','<span class=" help-block">:message</span>')!!} 
-                                     </div>
+                                     <div class="form-group multiple-form-group" data-max=5>
+                                              <label class="control-label">File(optional)</label>
+                                              <div class="form-group input-group">
+                                                     <input type="file" name="file[]" class="form-control" accept=".doc,.ppt,.pdf,.jpeg,.JPEG,.png,.jpg," value="{{ old('file') }}">
+                                                      <span class="input-group-btn"><button type="button" class="btn btn-default btn-add">+
+                                                     </button></span>     
+                                              </div>
+                                                      
+                                          </div>
                                      <div class="form-group">
 
                               	          <button type="submit" class="btn btn-lg btn-success pull-right">Upload lecture</button>	

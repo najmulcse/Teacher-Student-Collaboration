@@ -58,6 +58,7 @@
                                           @if($contents=$lecture->contents->where('post_id',$lecture->id))
                                                 @foreach($contents as $content)
                                                     <a class="" href="{{url('download')}}/{{$content->id}}">{{$content->content}} </a>
+                                                    <br>
                                                 @endforeach
                                           @endif
                                           </div>

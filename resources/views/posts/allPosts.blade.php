@@ -55,6 +55,7 @@
                                                 @foreach($contents as $content)
                                                 
                                                    <a  href="{{url('download')}}/{{$content->id}}">{{$content->content}} </a>
+                                                   <br>
                                                 @endforeach
                                           @endif
                                       </div>

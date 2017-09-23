@@ -43,20 +43,18 @@
                                             
                                       </div>
                     
-                                      <div class="row">
-                                          
-                                          <div class="col-sm-12">
-                                               <div class="form-group multiple-form-group row" data-max=5>
-                                                     <label class="control-label">File(optional)</label>
-                                                     <div class="form-group input-group">
+                                      
+                                        <div class="form-group multiple-form-group" data-max=5>
+                                              <label class="control-label">File(optional)</label>
+                                              <div class="form-group input-group">
                                                   	 <input type="file" name="file[]" class="form-control" accept=".doc,.ppt,.pdf,.jpeg,.JPEG,.png,.jpg," value="{{ old('file') }}">
                                                       <span class="input-group-btn"><button type="button" class="btn btn-default btn-add">+
-                                                     </button></span>
-                                                     </div>
+                                                     </button></span>     
+                                              </div>
                                                       
-                                               </div>
+                                          </div>
                                          
-                                     </div>
+                                    
                                      <div class="form-group @if ($errors->has('last_date')) has-error @endif">
                                            <label class="control-label">Last date to submit</label>
                                            <input type="date" name="last_date" class="form-control" value="{{ old('last_date') }}">  

@@ -35,9 +35,14 @@
                               <textarea class="form-control" name="body" rows="5" required>{{$post->body}}</textarea>
                              
                           </div>
-                          <div class="form-group">
-                          <label class="control-label">File</label>
-                          	<input type="file" name="file" class="form-control" accept=".doc,.ppt,.jpeg,.png,.jpg,">	 
+                          <div class="form-group multiple-form-group" data-max=5>
+                                    <label class="control-label">File(optional)</label>
+                                    <div class="form-group input-group">
+                                           <input type="file" name="file[]" class="form-control" accept=".doc,.ppt,.pdf,.jpeg,.JPEG,.png,.jpg," value="{{ old('file') }}">
+                                              <span class="input-group-btn"><button type="button" class="btn btn-default btn-add">+
+                                                </button></span>     
+                                    </div>
+                                                      
                           </div>
                           <div class="form-group">
 

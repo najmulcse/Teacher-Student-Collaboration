@@ -113,7 +113,7 @@ public function checkUsers($gid){
      $gid=$request->gid;
      $this->validate($request,$rules);
      
-     $file= $request->file('file');
+     
      $user_id = Auth::user()->id;
      $post=Post::create([
           'group_id'  => $gid ,
@@ -123,16 +123,19 @@ public function checkUsers($gid){
           'type'      => 'L'
                       ]);
 
-     if(!empty($file))
+     if($request->hasFile('file'))
      {
-        $content=$file->getClientOriginalName();
+      foreach ($request->file('file') as $f) {
+        $content=$f->getClientOriginalName();
         $post_id=$post->id;
         $file_store=Content::create([
                     'post_id' => $post_id ,
                     'content' =>$content 
                                    ]);
 
-        $file->move('postfiles',$file_store->id);
+        $f->move('postfiles',$file_store->id);
+        
+      }
      }
 
 
@@ -202,15 +205,18 @@ public function checkUsers($gid){
                 'body'      => $request->body
                         ]);
 
-     	if(!empty($file))
+     	if($request->hasFile('file'))
      	{
          $post_id=$post->id;
-     	   $content=$file->getClientOriginalName();    	   
-     	   $content_store=Content::create([
+         foreach ($request->file('file') as $f) {
+           
+         $content=$f->getClientOriginalName();         
+         $content_store=Content::create([
                   'post_id' => $post_id ,
                   'content' =>$content 
                   ]);
-         $file->move('postfiles',$content_store->id);
+         $f->move('postfiles',$content_store->id);
+         }
      	}
 
      	 return redirect()->route('allPosts',$gid);   
@@ -380,16 +386,22 @@ public function checkUsers($gid){
                 ]);
         }
 
-            if(!empty($file))
+            if($request->hasFile('file'))
             {
-               $file_Exists=Content::where('post_id',$pid)->first();
-               $content=$file->getClientOriginalName();
+               $file_Exists=Content::where('post_id',$pid)->get();
+             
                    if($file_Exists)
                    {
-                      $db_file=$file_Exists->id;                  
-                      unlink(public_path('postfiles/'.$db_file));                  
-                      $file_store=Content::where('post_id',$pid)->update(['content' =>$content ]);
-                      $file->move('postfiles/',$db_file);
+                    foreach ($file_Exists as $file_Exist) {
+                                       
+                      unlink(public_path('postfiles/'.$file_Exist->id));  
+                      Content::findOrFail($file_Exist->id)->delete();                
+                     }
+                     foreach ($request->file('file') as $f) {
+                      $content=$f->getClientOriginalName();
+                      $file_store=Content::create(['post_id'=>$pid,'content' =>$content ]);
+                      $f->move('postfiles/',$file_store->id);
+                     }
                    }
                    else
                    {
@@ -420,11 +432,12 @@ public function checkUsers($gid){
               $post=Post::findOrFail($pid)->delete();
               $assignment=Assignment::where('post_id',$pid)->delete();
               $commnets=Comment::where('post_id',$pid)->delete();
-              $content=Content::where('post_id',$pid)->first();
-              if($content){
-                $file=$content->id;
-                unlink(public_path('postfiles/'.$file));
+              $contents=Content::where('post_id',$pid)->get();
+              if($contents){
+                foreach ($contents as $content) {
+                unlink(public_path('postfiles/'.$content->id));
                 $content->delete();
+                }
                 }
          
         }else{

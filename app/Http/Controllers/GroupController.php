@@ -11,6 +11,7 @@ use App\GroupMember;
 use App\Post;
 use App\Comment;
 use App\Assignment;
+use App\Content;
 
 use Illuminate\Support\Facades\Auth;
 class GroupController extends Controller
@@ -111,19 +112,22 @@ class GroupController extends Controller
         GroupMember::where('group_id',$gid)->delete();
         $posts      = Post::where('group_id',$gid)->get();
         Post::where('group_id',$gid)->delete();
-        // foreach($posts as $post){
 
-        // $assignment= Assignment::where('post_id',$post->id)->delete();
-        // $content   =Content::where('post_id',$post->id)->delete();
-        // if($content){
-        //         $file=$content->id;
-        //         unlink(public_path('postfiles/'.$file));
-        //         $content->delete();
-        //         }
-        // }
-        $commnets  =Comment::where('group_id',$gid)->delete();
+        foreach($posts as $post){
+
+        $assignment= Assignment::where('post_id',$post->id)->delete();
+        $contents   =Content::where('post_id',$post->id)->get();
+        if($contents){
+          foreach ($contents as $content) {
+                unlink(public_path('postfiles/'.$content->id));
+                $content->delete();
+                }
+            
+          }
+        }
               
-      }
+        }
+        $commnets  =Comment::where('group_id',$gid)->delete();
       return redirect('/home');
     }
 
